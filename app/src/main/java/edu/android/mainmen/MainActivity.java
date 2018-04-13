@@ -92,8 +92,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_membershipInformation) {
-
-            tv.setText("sds");
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_bookmark) {
 
