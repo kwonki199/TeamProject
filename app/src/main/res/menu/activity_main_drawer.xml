@@ -5,33 +5,37 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:id="@+id/nav_membershipInformation"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="회원정보" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_bookmark"
+            android:icon="@drawable/ic_bookmark_border_black_24dp"
+            android:title="즐겨찾기" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_profilePicture"
+            android:icon="@drawable/ic_image_black_24dp"
+            android:title="프로필사진 변경" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_writings"
+            android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
+            android:title="내글 보기" />
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="만들 예정">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_coupon"
+                android:icon="@drawable/ic_card_giftcard_black_24dp"
+                android:title="내 쿠폰" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:id="@+id/nav_game"
+                android:icon="@drawable/ic_videogame_asset_black_24dp"
+                android:title="미니게임" />
+            <item
+                android:id="@+id/nav_heart"
+                android:icon="@drawable/ic_favorite_black_24dp"
+                android:title="오늘의 하트왕" />
         </menu>
     </item>
 
