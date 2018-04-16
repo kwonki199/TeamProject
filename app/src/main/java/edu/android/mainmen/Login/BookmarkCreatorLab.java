@@ -1,7 +1,9 @@
-package edu.android.mainmen;
+package edu.android.mainmen.Login;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.android.mainmen.R;
 
 public class BookmarkCreatorLab {
     private static final int[] IMAGE_IDS = {

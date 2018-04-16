@@ -1,4 +1,4 @@
-package edu.android.mainmen;
+package edu.android.mainmen.Login;
 
 public class BookmarkCreator {
     private String tv_store_name;

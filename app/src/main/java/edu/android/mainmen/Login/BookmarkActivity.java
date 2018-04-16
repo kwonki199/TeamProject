@@ -1,8 +1,7 @@
-package edu.android.mainmen;
+package edu.android.mainmen.Login;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +14,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
+
+import edu.android.mainmen.R;
 
 public class BookmarkActivity extends AppCompatActivity{
 
