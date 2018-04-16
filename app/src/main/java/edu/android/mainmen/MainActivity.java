@@ -18,9 +18,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public final static String KEY_ID = "key";
     private NavigationView navigationView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +96,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_bookmark) {
 
         } else if (id == R.id.nav_profilePicture) {
-
-        } else if (id == R.id.nav_profilePicture) {
+            Intent intent = new Intent(MainActivity.this, ChangingActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_writings) {
 
