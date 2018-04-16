@@ -14,9 +14,39 @@
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/allFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="전체" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/koreanFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="한식" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/chineseFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="중식" />
+
+            <android.support.design.widget.TabItem
+                android:id="@+id/westernFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="양식" />
+        </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>
 
