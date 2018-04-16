@@ -1,4 +1,4 @@
-package edu.android.mainmen;
+package edu.android.mainmen.Login;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+
+import edu.android.mainmen.MainActivity;
+import edu.android.mainmen.R;
 
 public class LoginActivity extends AppCompatActivity {
 
