@@ -1,4 +1,4 @@
-package edu.android.mainmen;
+package edu.android.mainmen.Model;
 
 public class kindsOfFood {
 

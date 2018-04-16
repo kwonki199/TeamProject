@@ -1,7 +1,10 @@
-package edu.android.mainmen;
+package edu.android.mainmen.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import edu.android.mainmen.Model.kindsOfFood;
+import edu.android.mainmen.R;
 
 public class kindsOfFoodDao {
     private static final int[] IMAGE_IDS = {

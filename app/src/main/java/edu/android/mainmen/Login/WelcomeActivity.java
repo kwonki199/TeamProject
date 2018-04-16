@@ -1,4 +1,4 @@
-package edu.android.mainmen;
+package edu.android.mainmen.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,6 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.TextView;
+
+import edu.android.mainmen.MainActivity;
+import edu.android.mainmen.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 
