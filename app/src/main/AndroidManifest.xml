@@ -24,6 +24,7 @@
         <activity android:name=".ResisterActivity"/>
         <activity android:name=".WelcomeActivity"/>
         <activity android:name=".ChangingActivity"/>
+        <activity android:name=".BookmarkActivity"/>
 
 
     </application>

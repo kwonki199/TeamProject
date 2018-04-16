@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
     private TabLayout tabLayout;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,6 +121,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_bookmark) {
+            Intent intent = new Intent(MainActivity.this, BookmarkActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_profilePicture) {
             Intent intent = new Intent(MainActivity.this, ChangingActivity.class);
