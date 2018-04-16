@@ -27,6 +27,8 @@ import android.widget.TextView;
 //TODO: Tabbed 기능 추가 홈화면 터치 이외에 탭이동으로도 보기 쉽게 구현 - 해결
 //TODO: 탭에 Horizental ScrollView 미적용 탭을 옆으로 스크롤 아직 불가능. - 미해결
 //TODO: 현재 탭이동시 fragment 1개만 연동중 여러개의 fragment 작성 필요 - 미해결
+//TODO: 클릭시 세부메뉴(한식 > 김치찌개 ) 넘어가게. - 미해결
+//TODO: ViewPager position 정보를 fragment 에서 가져와야하는데 잘 모르겠음 ㅠ - 미해결
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener{

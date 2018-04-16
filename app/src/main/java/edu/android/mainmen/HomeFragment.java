@@ -78,7 +78,7 @@ public class HomeFragment extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    //TODO : 클릭시 세부메뉴 넘어가게. - 미해결
                 }
             });
         }
