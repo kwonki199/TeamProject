@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ChangingActivity extends AppCompatActivity{
 
@@ -14,7 +15,7 @@ public class ChangingActivity extends AppCompatActivity{
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_chaging);
 
-        AutoCompleteTextView id_input = findViewById(R.id.id_input);
+        TextView id_input = findViewById(R.id.id_input);
         AutoCompleteTextView password_input = findViewById(R.id.password_input);
         AutoCompleteTextView password_check_input = findViewById(R.id.password_check_input);
         AutoCompleteTextView name_input = findViewById(R.id.name_input);
