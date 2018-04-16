@@ -50,8 +50,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-
-
                 <AutoCompleteTextView
                     android:id="@+id/password_input"
                     android:layout_width="match_parent"
@@ -141,13 +139,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/change_btn"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="16dp"
-                android:text="정보 변경" />
+                <Button
+                    android:id="@+id/change_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="16dp"
+                    android:text="정보 변경" />
 
                 <Button
                     android:id="@+id/Withdrawal"

@@ -127,8 +127,8 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_bookmark) {
 
         } else if (id == R.id.nav_profilePicture) {
-
-        } else if (id == R.id.nav_profilePicture) {
+            Intent intent = new Intent(MainActivity.this, ChangingActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_writings) {
 
