@@ -39,9 +39,11 @@ public class MainActivity extends AppCompatActivity
     private NavigationView navigationView;
 
     //Tabbed
-    private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
-    private TabLayout tabLayout;
+
+    private SectionsPageAdapter mSectionsPageAdapter;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +53,14 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+
+
         mViewPager=findViewById(R.id.container);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
-        tabLayout = findViewById(R.id.tabs);
+        setupViewPager(mViewPager);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -145,24 +151,13 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    //TODO: Tabbed  현재 한 화면만 나옴 여러화면 나오게 변경필요.
 
 
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return HomeFragment.newInstance(position);
-    }
-
-        //TODO: 현재 탭갯수 4개
-        @Override
-        public int getCount() {
-            return 4;
-        }
+    private void setupViewPager(ViewPager viewPager) {
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new HomeFragment(), "전체");
+        adapter.addFragment(new KoreanFoodFragment(), "한식");
+        viewPager.setAdapter(adapter);
     }
 }
