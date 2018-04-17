@@ -7,19 +7,23 @@
         <item
             android:id="@+id/nav_membershipInformation"
             android:icon="@drawable/ic_sentiment_very_satisfied_black_24dp"
-            android:title="회원가입" />
+            android:title="회원 가입" />
         <item
             android:id="@+id/nav_bookmark"
             android:icon="@drawable/ic_bookmark_border_black_24dp"
-            android:title="즐겨찾기" />
+            android:title="즐겨 찾기" />
         <item
             android:id="@+id/nav_profilePicture"
             android:icon="@drawable/ic_image_black_24dp"
-            android:title="회원정보" />
+            android:title="회원 정보" />
+        <item
+            android:id="@+id/nav_mywritings"
+            android:icon="@drawable/ic_edit_black_24dp"
+            android:title="리뷰 작성" />
         <item
             android:id="@+id/nav_writings"
             android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
-            android:title="내글 보기" />
+            android:title="내가 작성한 글보기" />
     </group>
 
     <item android:title="만들 예정">
