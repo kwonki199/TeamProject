@@ -2,7 +2,9 @@ package edu.android.mainmen.Login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -17,6 +19,10 @@ public class ChangingActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_chaging);
+
+        // 뒤로가기 버튼 이거랑 아래꺼
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
 
         TextView id_input = findViewById(R.id.id_input);
         AutoCompleteTextView password_input = findViewById(R.id.password_input);
@@ -35,5 +41,15 @@ public class ChangingActivity extends AppCompatActivity{
         }
     });
 
+    }
+    // 뒤로가기 버튼 이거
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id==android.R.id.home){
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
