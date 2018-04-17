@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,13 +29,14 @@ import edu.android.mainmen.Login.LoginActivity;
 // 미해결사항 해결하시면 미해결 -> 해결로 바꿔주세요.
 //TODO: Tabbed 기능 추가 홈화면 터치 이외에 탭이동으로도 보기 쉽게 구현 - 해결
 //TODO: 탭에 Horizental ScrollView 미적용 탭을 옆으로 스크롤 아직 불가능. - 미해결
-//TODO: 현재 탭이동시 fragment 1개만 연동중 여러개의 fragment 작성 필요 - 미해결
+//TODO: 현재 탭이동시 fragment 1개만 연동중 여러개의 fragment 작성 필요 - 해결
 //TODO: 클릭시 세부메뉴(한식 > 김치찌개 ) 넘어가게. - 미해결
 //TODO: ViewPager position 정보를 fragment 에서 가져와야하는데 잘 모르겠음 ㅠ - 미해결
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener,HomeFragment.HomeSelectedCallback{
 
+    private static final String TAG = "MainActivity";
 
     private NavigationView navigationView;
 
@@ -42,8 +44,6 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
 
     private SectionsPageAdapter mSectionsPageAdapter;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-
 
         mViewPager=findViewById(R.id.container);
         setupViewPager(mViewPager);
@@ -154,10 +152,19 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "전체");
+        adapter.addFragment(new HomeFragment(), "종류");
         adapter.addFragment(new KoreanFoodFragment(), "한식");
         adapter.addFragment(new ChineseFoodFragment(), "중식");
         adapter.addFragment(new WesternFoodFragment(), "양식");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public void onHomeSelected(int position) {
+//        KoreanFoodFragment fragment = KoreanFoodFragment.newInstance(position);
+//        getSupportFragmentManager().beginTransaction().replace(R.id.recyclerViewKorean, fragment)
+//        .commit();
+        Log.i(TAG, "position=" + position);
+        mViewPager.setCurrentItem(position+1);
     }
 }

@@ -22,10 +22,17 @@ public class KoreanFoodFragment extends Fragment {
 
     private RecyclerView recycler;
     private List<kindsOfFood> dataset;
-
+    private int index;
     public KoreanFoodFragment() {
 
     }
+
+    public static KoreanFoodFragment newInstance(int index) {
+        KoreanFoodFragment fm = new KoreanFoodFragment();
+        fm.setIndex(index);
+        return fm;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +47,10 @@ public class KoreanFoodFragment extends Fragment {
 
         return view;
     }// end onCreateView
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
 
     class kindOfFoodAdapter extends RecyclerView.Adapter<kindOfFoodAdapter.ViewHolder>{
@@ -82,4 +93,4 @@ public class KoreanFoodFragment extends Fragment {
         }
     }
 
-}// end HomeFragment
+}// end KoreanFoodFragment

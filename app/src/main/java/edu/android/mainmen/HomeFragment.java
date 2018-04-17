@@ -1,6 +1,7 @@
 package edu.android.mainmen;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -22,8 +23,24 @@ public class HomeFragment extends Fragment {
     private RecyclerView recycler;
     private List<kindsOfFood> dataset;
 
+    interface HomeSelectedCallback{
+        void onHomeSelected(int position);  // 포지션 정보 매개변수주기
+    }
+
+    private HomeSelectedCallback callback;
+
     public HomeFragment() {
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof HomeSelectedCallback) {
+            callback = (HomeSelectedCallback) context;
+        }else{
+            new RuntimeException("콜백구현하세요. - 동희");
+        }
     }
 
     @Override
@@ -33,7 +50,6 @@ public class HomeFragment extends Fragment {
         recycler = view.findViewById(R.id.recyclerView);
         dataset = kindsOfFoodDao.getInstance().getFoodList();
         recycler.setHasFixedSize(true);
-        //어댑터 설정
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         kindOfFoodAdapter adapter = new kindOfFoodAdapter();
         recycler.setAdapter(adapter);
@@ -53,14 +69,14 @@ public class HomeFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             kindsOfFood food = dataset.get(position);
             holder.foodName.setText(food.getName());
             holder.foodPhoto.setImageResource(food.getPhotoId());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    callback.onHomeSelected(position);
                 }
             });
         }
@@ -71,8 +87,9 @@ public class HomeFragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            ImageView foodPhoto;
+
             TextView foodName;
+            ImageView foodPhoto;
 
             public ViewHolder(View itemView) {
                 super(itemView);
