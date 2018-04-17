@@ -25,6 +25,7 @@
         <activity android:name=".Login.WelcomeActivity"/>
         <activity android:name=".Login.ChangingActivity"/>
         <activity android:name=".Login.BookmarkActivity"/>
+        <activity android:name=".Login.MyWritingsActivity"/>
 
     </application>
 
