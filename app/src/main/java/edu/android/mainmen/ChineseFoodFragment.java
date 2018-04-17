@@ -17,23 +17,23 @@ import java.util.List;
 import edu.android.mainmen.Controller.kindsOfFoodDao;
 import edu.android.mainmen.Model.kindsOfFood;
 
-public class HomeFragment extends Fragment {
+
+public class ChineseFoodFragment extends Fragment {
 
     private RecyclerView recycler;
     private List<kindsOfFood> dataset;
 
-    public HomeFragment() {
+    public ChineseFoodFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_home, container, false);
-        recycler = view.findViewById(R.id.recyclerView);
-        dataset = kindsOfFoodDao.getInstance().getFoodList();
+        View view=inflater.inflate(R.layout.fragment_chinese_food, container, false);
+        recycler = view.findViewById(R.id.recyclerViewChinese);
+        dataset = kindsOfFoodDao.getInstance().getChineseFood();
         recycler.setHasFixedSize(true);
-        //어댑터 설정
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         kindOfFoodAdapter adapter = new kindOfFoodAdapter();
         recycler.setAdapter(adapter);
@@ -60,7 +60,7 @@ public class HomeFragment extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    //TODO : 클릭시 세부메뉴 넘어가게.
                 }
             });
         }
@@ -71,8 +71,8 @@ public class HomeFragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            ImageView foodPhoto;
-            TextView foodName;
+            private ImageView foodPhoto;
+            private TextView foodName;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -82,4 +82,4 @@ public class HomeFragment extends Fragment {
         }
     }
 
-}// end HomeFragment
+}// end ChineseFragment

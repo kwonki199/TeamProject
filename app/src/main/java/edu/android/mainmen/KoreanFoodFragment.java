@@ -31,8 +31,8 @@ public class KoreanFoodFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_korean_food, container, false);
-        recycler = view.findViewById(R.id.recyclerView2);
-        dataset = kindsOfFoodDao.getInstance().getKoreaFood();
+        recycler = view.findViewById(R.id.recyclerViewKorean);
+        dataset = kindsOfFoodDao.getInstance().getKoreanFood();
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         kindOfFoodAdapter adapter = new kindOfFoodAdapter();
@@ -71,8 +71,8 @@ public class KoreanFoodFragment extends Fragment {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            ImageView foodPhoto;
-            TextView foodName;
+            private ImageView foodPhoto;
+            private TextView foodName;
 
             public ViewHolder(View itemView) {
                 super(itemView);

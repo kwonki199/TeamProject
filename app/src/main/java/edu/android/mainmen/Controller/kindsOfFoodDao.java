@@ -18,10 +18,20 @@ public class kindsOfFoodDao {
     private static final String[] KOREAN_FOOD = {
             "김치찌개", "삼겹살", "비빕밥","제육볶음","보쌈","족발"
     };
+    private static final String[] CHINESE_FOOD = {
+            "짜장면", "짬뽕", "탕수육", "라조기", "쟁반짜장", "꿔바로우"
+    };
+    private static final String[] WESTERNSTYLE_FOOD = {
+            "파스타","피자","스테이크","태국음식","멕시코음식","인도음식"
+    };
+
 
 
     private List<kindsOfFood> foodList = new ArrayList<>();
-    private List<kindsOfFood> koreaFood = new ArrayList<>();
+    private List<kindsOfFood> koreanFood = new ArrayList<>();
+    private List<kindsOfFood> chineseFood = new ArrayList<>();
+    private List<kindsOfFood> westernFood = new ArrayList<>();
+
     private static kindsOfFoodDao instance = null;
 
     public static kindsOfFoodDao getInstance() {
@@ -33,23 +43,36 @@ public class kindsOfFoodDao {
 
     private kindsOfFoodDao(){
         for(int i=0 ; i<ALL_MENU.length ; i++) {
-            kindsOfFood kindsOfFood = new kindsOfFood(ALL_MENU[i], IMAGE_IDS[i]);
-            foodList.add(kindsOfFood);
+            kindsOfFood food = new kindsOfFood(ALL_MENU[i], IMAGE_IDS[i]);
+            foodList.add(food);
         }
         for(int i=0; i<KOREAN_FOOD.length ; i++) {
-            kindsOfFood kindsOfFood=new kindsOfFood(KOREAN_FOOD[i],IMAGE_IDS[i]);
+            kindsOfFood food=new kindsOfFood(KOREAN_FOOD[i],IMAGE_IDS[i]);
+            koreanFood.add(food);
         }
-    }
-
-
-
-
-    public List<kindsOfFood> getKoreaFood(){
-        return koreaFood;
+        for(int i=0;i<CHINESE_FOOD.length;i++) {
+            kindsOfFood food = new kindsOfFood(CHINESE_FOOD[i], IMAGE_IDS[i]);
+            chineseFood.add(food);
+        }
+        for (int i=0;i<WESTERNSTYLE_FOOD.length;i++) {
+            kindsOfFood food = new kindsOfFood(WESTERNSTYLE_FOOD[i], IMAGE_IDS[i]);
+            westernFood.add(food);
+        }
     }
 
     public List<kindsOfFood> getFoodList() {
         return foodList;
     }
 
+    public List<kindsOfFood> getKoreanFood(){
+        return koreanFood;
+    }
+
+    public List<kindsOfFood> getChineseFood() {
+        return chineseFood;
+    }
+
+    public List<kindsOfFood> getWesternFood() {
+        return westernFood;
+    }
 }
