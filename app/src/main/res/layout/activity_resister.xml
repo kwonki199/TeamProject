@@ -137,7 +137,8 @@
             </android.support.design.widget.TextInputLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
             <Button
                 android:id="@+id/join_btn"

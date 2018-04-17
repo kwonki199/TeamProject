@@ -65,6 +65,7 @@
             </android.support.design.widget.TextInputLayout>
 
             <Button
+                android:theme="@style/ThemeOverlay.AppCompat.Dark"
                 android:id="@+id/id_sign_in_button"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
