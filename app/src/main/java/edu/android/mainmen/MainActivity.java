@@ -163,6 +163,12 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new KoreanFoodFragment(), "한식");
         adapter.addFragment(new ChineseFoodFragment(), "중식");
         adapter.addFragment(new WesternFoodFragment(), "양식");
+        adapter.addFragment(new WesternFoodFragment(), "일식");
+        adapter.addFragment(new WesternFoodFragment(), "치킨");
+        adapter.addFragment(new WesternFoodFragment(), "피자");
+        adapter.addFragment(new WesternFoodFragment(), "분식");
+        adapter.addFragment(new WesternFoodFragment(), "패스트푸드");
+        adapter.addFragment(new WesternFoodFragment(), "족발,보쌈");
         viewPager.setAdapter(adapter);
     }
 

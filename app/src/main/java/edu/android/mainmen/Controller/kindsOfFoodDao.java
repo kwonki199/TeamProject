@@ -7,13 +7,12 @@ import edu.android.mainmen.Model.kindsOfFood;
 import edu.android.mainmen.R;
 
 public class kindsOfFoodDao {
-    private static final int[] IMAGE_IDS = {
-            R.drawable.p1, R.drawable.p2, R.drawable.p3,
-            R.drawable.taeri1,R.drawable.taeri2,R.drawable.teari3
-
-    };
+    //    private static final int[] IMAGE_IDS = {
+//            R.drawable.p1, R.drawable.p2, R.drawable.p3,
+//            R.drawable.taeri1,R.drawable.taeri2,R.drawable.teari3
+//    };
     private static final String[] ALL_MENU = {
-            "한식", "중식", "양식"
+            "한식", "중식", "양식", "일식","치킨","피자","분식","패스트푸드","족발,보쌈"
     };
     private static final String[] KOREAN_FOOD = {
             "김치찌개", "삼겹살", "비빕밥","제육볶음","보쌈","족발"
@@ -43,19 +42,19 @@ public class kindsOfFoodDao {
 
     private kindsOfFoodDao(){
         for(int i=0 ; i<ALL_MENU.length ; i++) {
-            kindsOfFood food = new kindsOfFood(ALL_MENU[i], IMAGE_IDS[i]);
+            kindsOfFood food = new kindsOfFood(ALL_MENU[i]);
             foodList.add(food);
         }
         for(int i=0; i<KOREAN_FOOD.length ; i++) {
-            kindsOfFood food=new kindsOfFood(KOREAN_FOOD[i],IMAGE_IDS[i]);
+            kindsOfFood food=new kindsOfFood(KOREAN_FOOD[i]);
             koreanFood.add(food);
         }
         for(int i=0;i<CHINESE_FOOD.length;i++) {
-            kindsOfFood food = new kindsOfFood(CHINESE_FOOD[i], IMAGE_IDS[i]);
+            kindsOfFood food = new kindsOfFood(CHINESE_FOOD[i]);
             chineseFood.add(food);
         }
         for (int i=0;i<WESTERNSTYLE_FOOD.length;i++) {
-            kindsOfFood food = new kindsOfFood(WESTERNSTYLE_FOOD[i], IMAGE_IDS[i]);
+            kindsOfFood food = new kindsOfFood(WESTERNSTYLE_FOOD[i]);
             westernFood.add(food);
         }
     }

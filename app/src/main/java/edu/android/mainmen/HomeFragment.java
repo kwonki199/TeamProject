@@ -72,7 +72,7 @@ public class HomeFragment extends Fragment {
         public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             kindsOfFood food = dataset.get(position);
             holder.foodName.setText(food.getName());
-            holder.foodPhoto.setImageResource(food.getPhotoId());
+
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,13 +88,13 @@ public class HomeFragment extends Fragment {
 
         class ViewHolder extends RecyclerView.ViewHolder {
 
-            TextView foodName;
-            ImageView foodPhoto;
+            private TextView foodName;
+
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 foodName = itemView.findViewById(R.id.itemMenuText);
-                foodPhoto = itemView.findViewById(R.id.itemMenuImage);
+
             }
         }
     }
