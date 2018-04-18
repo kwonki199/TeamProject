@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
@@ -24,7 +21,7 @@ import android.widget.TextView;
 import edu.android.mainmen.Login.BookmarkActivity;
 import edu.android.mainmen.Login.ChangingActivity;
 import edu.android.mainmen.Login.LoginActivity;
-
+import edu.android.mainmen.Write.WriteReviewActivity;
 
 // 미해결사항 해결하시면 미해결 -> 해결로 바꿔주세요.
 //TODO: Tabbed 기능 추가 홈화면 터치 이외에 탭이동으로도 보기 쉽게 구현 - 해결
@@ -37,13 +34,11 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,HomeFragment.HomeSelectedCallback{
 
     private static final String TAG = "MainActivity";
-
     private NavigationView navigationView;
-
     //Tabbed
     private ViewPager mViewPager;
-
     private SectionsPageAdapter mSectionsPageAdapter;
+    private FloatingActionButton WriteReviewButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
 
-        // TODO
+        // drawer
         navigationView = findViewById(R.id.nav_view);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -84,6 +79,16 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        WriteReviewButton = findViewById(R.id.fab);
+        WriteReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WriteReviewActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -106,11 +111,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
 
         int id = item.getItemId();
-
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -135,20 +138,14 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_coupon) {
-
         } else if (id == R.id.nav_game) {
-
         } else if (id == R.id.nav_heart) {
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
-
-
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -161,10 +158,8 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onHomeSelected(int position) {
-//        KoreanFoodFragment fragment = KoreanFoodFragment.newInstance(position);
-//        getSupportFragmentManager().beginTransaction().replace(R.id.recyclerViewKorean, fragment)
-//        .commit();
         Log.i(TAG, "position=" + position);
         mViewPager.setCurrentItem(position+1);
     }
+
 }

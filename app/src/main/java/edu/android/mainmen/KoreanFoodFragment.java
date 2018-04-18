@@ -33,7 +33,7 @@ public class KoreanFoodFragment extends Fragment {
         return fm;
     }
 
-
+ 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,7 +71,7 @@ public class KoreanFoodFragment extends Fragment {
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO : 클릭시 세부메뉴 넘어가게.
+
                 }
             });
         }
