@@ -28,6 +28,7 @@ public class ResisterActivity extends AppCompatActivity {
         AutoCompleteTextView name_input = findViewById(R.id.name_input);
         AutoCompleteTextView age_input = findViewById(R.id.age_input);
         AutoCompleteTextView email_input = findViewById(R.id.email_input);
+        AutoCompleteTextView password2_input = findViewById(R.id.password2_input);
 
         Button join_btn = findViewById(R.id.join_btn);
 
