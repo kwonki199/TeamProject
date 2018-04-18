@@ -30,6 +30,7 @@ public class ChangingActivity extends AppCompatActivity{
         AutoCompleteTextView name_input = findViewById(R.id.name_input);
         AutoCompleteTextView age_input = findViewById(R.id.age_input);
         AutoCompleteTextView email_input = findViewById(R.id.email_input);
+        AutoCompleteTextView password2_input = findViewById(R.id.password2_input);
 
         Button change_btn = findViewById(R.id.change_btn);
 

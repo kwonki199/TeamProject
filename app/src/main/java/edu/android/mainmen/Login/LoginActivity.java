@@ -27,7 +27,9 @@ public class LoginActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
 
         Button id_sign_in_button = findViewById(R.id.id_sign_in_button);
-        EditText registerBtn = findViewById(R.id.registerBtn);
+        Button registerBtn = findViewById(R.id.registerBtn);
+        Button id_find_Btn = findViewById(R.id.id_find_Btn);
+        Button password_find_Btn = findViewById(R.id.password_find_Btn);
 
         LoginId = findViewById(R.id.loginId);
 
@@ -44,6 +46,22 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent sign_in = new Intent(LoginActivity.this, MainActivity.class);
                 LoginActivity.this.startActivity(sign_in);
+            }
+        });
+
+        id_find_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent id_find_btn = new Intent(LoginActivity.this, IdFindActivity.class);
+                LoginActivity.this.startActivity(id_find_btn);
+            }
+        });
+
+        password_find_Btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent password_find_btn = new Intent(LoginActivity.this, PasswordFindActivity.class);
+                LoginActivity.this.startActivity(password_find_btn);
             }
         });
 

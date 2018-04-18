@@ -26,6 +26,8 @@
         <activity android:name=".Login.ChangingActivity"/>
         <activity android:name=".Login.BookmarkActivity"/>
         <activity android:name=".Login.MyWritingsActivity"/>
+        <activity android:name=".Login.IdFindActivity"/>
+        <activity android:name=".Login.PasswordFindActivity"/>
 
     </application>
 

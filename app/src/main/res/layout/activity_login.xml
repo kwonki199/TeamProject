@@ -81,23 +81,21 @@
                 android:orientation="horizontal">
 
 
-                <EditText
+                <Button
                     android:id="@+id/registerBtn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:gravity="center"
                     android:inputType="text"
-                    android:layout_weight="1"
                     android:padding="16dp"
+                    android:layout_weight="1"
                     android:text="회원가입"
                     android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
-                <EditText
+                <Button
                     android:id="@+id/id_find_Btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:gravity="center"
                     android:inputType="text"
                     android:padding="16dp"
@@ -105,11 +103,10 @@
                     android:text="아이디 찾기"
                     android:textAppearance="@style/TextAppearance.AppCompat.Button" />
 
-                <EditText
+                <Button
                     android:id="@+id/password_find_Btn"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
                     android:gravity="center"
                     android:inputType="text"
                     android:padding="16dp"
