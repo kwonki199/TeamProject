@@ -1,27 +1,35 @@
 {
   "project_info": {
-    "project_number": "1039213399504",
-    "firebase_url": "https://hopeful-text-200304.firebaseio.com",
-    "project_id": "hopeful-text-200304",
-    "storage_bucket": "hopeful-text-200304.appspot.com"
+    "project_number": "835189048192",
+    "firebase_url": "https://whattoeat-9ce5d.firebaseio.com",
+    "project_id": "whattoeat-9ce5d",
+    "storage_bucket": "whattoeat-9ce5d.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1039213399504:android:fd78defb21a2e4ee",
+        "mobilesdk_app_id": "1:835189048192:android:fd78defb21a2e4ee",
         "android_client_info": {
           "package_name": "edu.android.mainmen"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1039213399504-to5ppjqvdoidvcdicj3tdluphi375im9.apps.googleusercontent.com",
+          "client_id": "835189048192-1kee63f6jqvqdcj4ghludjbtb0horj9l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.android.mainmen",
+            "certificate_hash": "e615f23c32978215304dc1a655e9bb625e15e5fd"
+          }
+        },
+        {
+          "client_id": "835189048192-bvcfc8heq0cuslvh10ch8fgihi6fh2t1.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBLkBWXII6VDO9MDSTZtNYpEIS-fDakRFo"
+          "current_key": "AIzaSyAURSOBqh9kp4evUaKPW3fjmmTUmMkwq9g"
         }
       ],
       "services": {
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835189048192-bvcfc8heq0cuslvh10ch8fgihi6fh2t1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
