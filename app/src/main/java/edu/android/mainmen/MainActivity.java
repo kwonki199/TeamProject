@@ -18,6 +18,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import edu.android.mainmen.Login.BookmarkActivity;
 import edu.android.mainmen.Login.ChangingActivity;
 import edu.android.mainmen.Login.LoginActivity;
@@ -33,6 +36,12 @@ import edu.android.mainmen.Write.WriteReviewActivity;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,HomeFragment.HomeSelectedCallback{
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference bbsRef = database.getReference("bbs");
+
+
+
 
     private static final String TAG = "MainActivity";
     private NavigationView navigationView;
