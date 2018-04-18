@@ -26,6 +26,7 @@
             android:title="내가 작성한 글보기" />
     </group>
 
+    <group>
     <item android:title="만들 예정">
         <menu>
             <item
@@ -42,5 +43,6 @@
                 android:title="오늘의 하트왕" />
         </menu>
     </item>
+    </group>
 
 </menu>
