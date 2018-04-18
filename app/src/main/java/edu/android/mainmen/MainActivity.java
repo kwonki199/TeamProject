@@ -139,6 +139,9 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_mywritings) {
+            Intent intent = new Intent(MainActivity.this, WriteReviewActivity.class);
+            startActivity(intent);
+
 
         } else if (id == R.id.nav_writings) {
             Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
