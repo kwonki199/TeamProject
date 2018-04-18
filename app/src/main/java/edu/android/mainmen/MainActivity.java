@@ -21,6 +21,7 @@ import android.widget.TextView;
 import edu.android.mainmen.Login.BookmarkActivity;
 import edu.android.mainmen.Login.ChangingActivity;
 import edu.android.mainmen.Login.LoginActivity;
+import edu.android.mainmen.Login.MyWritingsActivity;
 import edu.android.mainmen.Write.WriteReviewActivity;
 
 // 미해결사항 해결하시면 미해결 -> 해결로 바꿔주세요.
@@ -135,6 +136,12 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_profilePicture) {
             Intent intent = new Intent(MainActivity.this, ChangingActivity.class);
+            startActivity(intent);
+
+        } else if (id == R.id.nav_mywritings) {
+
+        } else if (id == R.id.nav_writings) {
+            Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_coupon) {

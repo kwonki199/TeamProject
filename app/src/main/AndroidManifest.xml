@@ -28,7 +28,9 @@
         <activity android:name=".Login.MyWritingsActivity"/>
         <activity android:name=".Login.IdFindActivity"/>
         <activity android:name=".Login.PasswordFindActivity"/>
-        <activity android:name=".Write.WriteReviewActivity"></activity>
+
+
+        <activity android:name=".Write.WriteReviewActivity"/>
 
     </application>
 

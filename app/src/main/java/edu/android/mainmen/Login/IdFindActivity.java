@@ -20,7 +20,6 @@ public class IdFindActivity extends AppCompatActivity {
         // 뒤로가기 버튼 이거랑 아래꺼
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override

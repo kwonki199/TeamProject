@@ -33,13 +33,24 @@ public class ChangingActivity extends AppCompatActivity{
         AutoCompleteTextView password2_input = findViewById(R.id.password2_input);
 
         Button change_btn = findViewById(R.id.change_btn);
+        Button withdrawal = findViewById(R.id.withdrawal);
 
             change_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent change_btn = new Intent(ChangingActivity.this, MainActivity.class);
                 ChangingActivity.this.startActivity(change_btn);
+
+
         }
+    });
+            withdrawal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 Intent withdrawal = new Intent(ChangingActivity.this, MainActivity.class);
+                 ChangingActivity.this.startActivity(withdrawal);
+         }
+
     });
 
     }
