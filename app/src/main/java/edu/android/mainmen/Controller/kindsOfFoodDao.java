@@ -15,7 +15,7 @@ public class kindsOfFoodDao {
             "한식", "중식", "양식", "일식","치킨","피자","분식","패스트푸드","족발,보쌈"
     };
     private static final String[] KOREAN_FOOD = {
-            "김치찌개", "삼겹살", "비빕밥","제육볶음","보쌈","족발"
+            "FirebaseTest", "삼겹살", "비빕밥","제육볶음","보쌈","족발"
     };
     private static final String[] CHINESE_FOOD = {
             "짜장면", "짬뽕", "탕수육", "라조기", "쟁반짜장", "꿔바로우"

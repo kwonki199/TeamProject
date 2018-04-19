@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_membershipInformation"
             android:icon="@drawable/ic_sentiment_very_satisfied_black_24dp"
-            android:title="회원 가입" />
+            android:title="로그인" />
         <item
             android:id="@+id/nav_bookmark"
             android:icon="@drawable/ic_bookmark_border_black_24dp"

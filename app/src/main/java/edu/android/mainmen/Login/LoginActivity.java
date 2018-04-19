@@ -12,6 +12,7 @@ import android.widget.EditText;
 
 import edu.android.mainmen.MainActivity;
 import edu.android.mainmen.R;
+import edu.android.mainmen.TestFirebaseActivity;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -36,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent registerIntent = new Intent(LoginActivity.this, ResisterActivity.class);
+                Intent registerIntent = new Intent(LoginActivity.this, TestFirebaseActivity.class);
                 LoginActivity.this.startActivity(registerIntent);
             }
         });

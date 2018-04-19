@@ -40,8 +40,6 @@ public class MainActivity extends AppCompatActivity
 
 
 
-
-
     private static final String TAG = "MainActivity";
     private NavigationView navigationView;
     //Tabbed
