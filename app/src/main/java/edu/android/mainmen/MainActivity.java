@@ -37,8 +37,7 @@ import edu.android.mainmen.Write.WriteReviewActivity;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,HomeFragment.HomeSelectedCallback{
 
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference bbsRef = database.getReference("bbs");
+
 
 
 
@@ -54,6 +53,10 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference bbsRef = database.getReference("bbs");
+//        bbsRef.addValueEventListener();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
