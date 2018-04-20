@@ -167,7 +167,10 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
 
                         } else {
                             Log.i("firebase-test", "onComplete NOT successful");
-                            Toast.makeText(RegisterActivity.this, "회원가입실패.(존재아이디/이메일양식/비밀번호6자리이상)", Toast.LENGTH_LONG).show();
+                            Toast.makeText(RegisterActivity.this, "현재는 있는 아이디도 로그인이 되게끔 구현중", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(RegisterActivity.this, "회원가입실패.(존재아이디/이메일양식/비밀번호6자리이상)", Toast.LENGTH_SHORT).show();
+                            loginUser(email, password);
+                            finish();
                         }
                     }
                 });

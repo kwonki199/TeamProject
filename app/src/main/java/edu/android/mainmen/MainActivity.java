@@ -188,9 +188,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id==R.id.nav_logout) {
             // 로그아웃
             auth.signOut();
-            finish();
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
 
         } else if (id == R.id.nav_coupon) {
         } else if (id == R.id.nav_game) {
