@@ -48,7 +48,7 @@ public class WriteReviewActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        imageView = findViewById(R.id.imageView);
+        imageView = findViewById(R.id.upload_imageView);
 
         setPermission();
 
@@ -152,7 +152,7 @@ public class WriteReviewActivity extends AppCompatActivity {
 
                     //이미지 데이터를 비트맵으로 받아온다.
                     Bitmap image_bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                    ImageView image = (ImageView)findViewById(R.id.imageView);
+                    ImageView image = (ImageView)findViewById(R.id.upload_imageView);
 
                     //배치해놓은 ImageView에 set
                     image.setImageBitmap(image_bitmap);

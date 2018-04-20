@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
 
 import edu.android.mainmen.Login.BookmarkActivity;
 import edu.android.mainmen.Login.ChangingActivity;
@@ -55,6 +56,7 @@ public class MainActivity extends AppCompatActivity
     private TextView header_name;
     private TextView header_email;
     private FirebaseAuth auth;
+    private FirebaseStorage storage;
 
 
     @Override
@@ -63,11 +65,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference bbsRef = database.getReference("bbs");
-//        bbsRef.addValueEventListener();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         auth = FirebaseAuth.getInstance();
+
+
+
         setSupportActionBar(toolbar);
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());

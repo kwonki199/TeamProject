@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/upload_imageView"
         android:layout_width="188dp"
         android:layout_height="158dp"
         android:layout_marginEnd="8dp"
@@ -30,7 +30,7 @@
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/upload_imageView" />
 
     <RatingBar
 
