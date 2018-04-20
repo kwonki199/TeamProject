@@ -48,7 +48,7 @@ import edu.android.mainmen.Write.WriteReviewActivity;
 //TODO: 글쓰기 업로드 연동중
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,HomeFragment.HomeSelectedCallback{
+        implements NavigationView.OnNavigationItemSelectedListener,HomeFragment.HomeSelectedCallback ,KoreanFoodFragment.itemSelectedCallback{
 
 
 
@@ -237,5 +237,12 @@ public class MainActivity extends AppCompatActivity
             // TODO Auto-generated catch block
             Log.e("name not found", e.toString());
         }
+    }
+
+
+    @Override
+    public void onItemSelected(int position) {
+        Intent intent = ReviewActivity.newIntent(this, position);
+        startActivity(intent);
     }
 }

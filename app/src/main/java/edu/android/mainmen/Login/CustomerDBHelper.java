@@ -4,8 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import static android.provider.BaseColumns._ID;
-import static edu.android.mainmen.Login.Customer.CustomerEntity.*;
+
+import edu.android.mainmen.Model.Customer;
+
+import static edu.android.mainmen.Model.Customer.CustomerEntity.*;
 
 public class CustomerDBHelper extends SQLiteOpenHelper {
     public static final String TAG = "edu.android";

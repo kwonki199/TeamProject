@@ -1,4 +1,4 @@
-package edu.android.mainmen.Login;
+package edu.android.mainmen.Model;
 
 import android.provider.BaseColumns;
 

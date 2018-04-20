@@ -1,6 +1,7 @@
 package edu.android.mainmen;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -22,10 +23,17 @@ import edu.android.mainmen.Model.kindsOfFood;
 public class KoreanFoodFragment extends Fragment {
 
     private RecyclerView recycler;
+    private itemSelectedCallback callback;
     private List<kindsOfFood> dataset;
     private int index;
-    public KoreanFoodFragment() {
 
+    interface itemSelectedCallback{
+        void onItemSelected(int position);
+    }
+
+
+
+    public KoreanFoodFragment() {
     }
 
     public static KoreanFoodFragment newInstance(int index) {
@@ -34,7 +42,17 @@ public class KoreanFoodFragment extends Fragment {
         return fm;
     }
 
- 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof itemSelectedCallback) {
+            callback = (itemSelectedCallback) context;
+            // 메인액티비티에 implements KoreanFoodFragment.itemSelectedCallback 를 구현
+        } else {
+            new RuntimeException("반드시 ContactSelectedCallback을 구현해야 함");
+        }
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -65,14 +83,14 @@ public class KoreanFoodFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
             kindsOfFood food = dataset.get(position);
             holder.foodName.setText(food.getName());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    callback.onItemSelected(position);
 
                 }
             });
@@ -95,4 +113,9 @@ public class KoreanFoodFragment extends Fragment {
         }
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        callback = null;
+    }
 }// end KoreanFoodFragment
