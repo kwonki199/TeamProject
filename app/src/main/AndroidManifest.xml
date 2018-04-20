@@ -27,7 +27,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login.LoginActivity" />
-        <activity android:name=".Login.ResisterActivity" />
         <activity android:name=".Login.WelcomeActivity" />
         <activity android:name=".Login.ChangingActivity" />
         <activity android:name=".Login.BookmarkActivity" />
@@ -35,7 +34,8 @@
         <activity android:name=".Login.IdFindActivity" />
         <activity android:name=".Login.PasswordFindActivity" />
         <activity android:name=".Write.WriteReviewActivity" />
-        <activity android:name=".TestFirebaseActivity"></activity>
+        <activity android:name=".Login.RegisterActivity" />
+        <activity android:name=".Write.FirebaseUploadActivity"></activity>
     </application>
 
 </manifest>

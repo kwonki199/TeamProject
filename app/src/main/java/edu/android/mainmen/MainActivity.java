@@ -17,7 +17,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -25,14 +27,18 @@ import edu.android.mainmen.Login.BookmarkActivity;
 import edu.android.mainmen.Login.ChangingActivity;
 import edu.android.mainmen.Login.LoginActivity;
 import edu.android.mainmen.Login.MyWritingsActivity;
+import edu.android.mainmen.Write.FirebaseUploadActivity;
 import edu.android.mainmen.Write.WriteReviewActivity;
 
 // 미해결사항 해결하시면 미해결 -> 해결로 바꿔주세요.
 //TODO: Tabbed 기능 추가 홈화면 터치 이외에 탭이동으로도 보기 쉽게 구현 - 해결
-//TODO: 탭에 Horizental ScrollView 미적용 탭을 옆으로 스크롤 아직 불가능. - 미해결
+//TODO: 탭에 Horizental ScrollView 미적용 탭을 옆으로 스크롤 아직 불가능. - 해결
 //TODO: 현재 탭이동시 fragment 1개만 연동중 여러개의 fragment 작성 필요 - 해결
 //TODO: 클릭시 세부메뉴(한식 > 김치찌개 ) 넘어가게. - 해결
 //TODO: ViewPager position 정보를 fragment 에서 가져와야하는데 잘 모르겠음 ㅠ - 해결
+//TODO: 파이어베이스 연동완료
+//TODO: 로그인/로그아웃 연동완료
+//TODO: 글쓰기 업로드 연동중
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,HomeFragment.HomeSelectedCallback{
@@ -46,6 +52,10 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
     private SectionsPageAdapter mSectionsPageAdapter;
     private FloatingActionButton WriteReviewButton;
+    private TextView header_name;
+    private TextView header_email;
+    private FirebaseAuth auth;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +67,7 @@ public class MainActivity extends AppCompatActivity
 //        bbsRef.addValueEventListener();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        auth = FirebaseAuth.getInstance();
         setSupportActionBar(toolbar);
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
@@ -90,12 +101,21 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        View view = navigationView.getHeaderView(0);
+        header_name= (TextView) view.findViewById(R.id.header_user_Name);
+        header_email = (TextView) view.findViewById(R.id.header_user_Email);
 
+//        header_name.setText(auth.getCurrentUser().getDisplayName());
+//        header_email.setText(auth.getCurrentUser().getEmail());
+
+
+        // 업로드
         WriteReviewButton = findViewById(R.id.fab);
         WriteReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WriteReviewActivity.class);
+
+                Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
                 startActivity(intent);
             }
         });
@@ -148,13 +168,18 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, ChangingActivity.class);
             startActivity(intent);
 
+        }  else if (id == R.id.nav_writings) {
+            Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_mywritings) {
             Intent intent = new Intent(MainActivity.this, WriteReviewActivity.class);
             startActivity(intent);
-
-
-        } else if (id == R.id.nav_writings) {
-            Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
+        } else if (id==R.id.nav_logout) {
+            // 로그아웃
+            auth.signOut();
+            finish();
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_coupon) {
