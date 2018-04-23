@@ -1,5 +1,6 @@
 package edu.android.mainmen;
 
+import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,6 +22,8 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
     }
+
+
 
     public SectionsPageAdapter(FragmentManager fm) {
         super(fm);

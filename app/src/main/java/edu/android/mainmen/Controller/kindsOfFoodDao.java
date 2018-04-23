@@ -12,16 +12,16 @@ public class kindsOfFoodDao {
 //            R.drawable.taeri1,R.drawable.taeri2,R.drawable.teari3
 //    };
     private static final String[] ALL_MENU = {
-            "한식", "중식", "양식", "일식","치킨","피자","분식","패스트푸드","족발,보쌈"
+            "전체리뷰","한식", "중식", "양식", "일식","치킨","피자","분식","패스트푸드","족발,보쌈"
     };
     private static final String[] KOREAN_FOOD = {
-            "전체리뷰보기", "삼겹살", "비빕밥","제육볶음","보쌈","족발"
+            "된장찌개" ,"두부김치","삼겹살", "비빕밥","제육볶음","보쌈","족발"
     };
     private static final String[] CHINESE_FOOD = {
             "짜장면", "짬뽕", "탕수육", "라조기", "쟁반짜장", "꿔바로우"
     };
     private static final String[] WESTERNSTYLE_FOOD = {
-            "파스타","피자","스테이크","태국음식","멕시코음식","인도음식"
+            "파스타","피자","스테이크"
     };
 
 

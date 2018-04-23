@@ -35,6 +35,7 @@ import edu.android.mainmen.Login.LoginActivity;
 import edu.android.mainmen.Login.MyWritingsActivity;
 import edu.android.mainmen.WriteAndRead.FirebaseUploadActivity;
 import edu.android.mainmen.WriteAndRead.ReadReviewActivity;
+import edu.android.mainmen.WriteAndRead.ReadReviewFragment;
 import edu.android.mainmen.WriteAndRead.WriteReviewActivity;
 
 // 미해결사항 해결하시면 미해결 -> 해결로 바꿔주세요.
@@ -203,7 +204,7 @@ public class MainActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "종류");
-        adapter.addFragment(new FoodListFragment(), "전체");
+        adapter.addFragment(new ReadReviewFragment(), "전체");
         adapter.addFragment(new FoodKoreanFragment(), "한식");
         adapter.addFragment(new FoodChineseFragment(), "중식");
         adapter.addFragment(new FoodWestFragment(), "양식");

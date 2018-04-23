@@ -25,6 +25,7 @@ import edu.android.mainmen.R;
 
 public class ReadReviewActivity extends AppCompatActivity {
     private static final String EXTRA_CAONTACT_INDEX="selected_contact_index";
+
     private RecyclerView recyclerView;
     private List<ImageDTO> imageDTOs = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
