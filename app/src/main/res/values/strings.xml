@@ -56,6 +56,28 @@
 
     <string name="facebook_app_id">226881738046500</string>
     <string name="fb_login_protocol_scheme">fb226881738046500</string>
+    <string name="title_activity_maps2">Map</string>
+
+
+    <!--스피너 값-->
+
+
+    <string name="season">카테고리</string>
+
+    <string name="category_prompt">카테고리 선택</string>
+    <string-array name="category_array">
+        <item></item>
+        <item>한식</item>
+        <item>중식</item>
+        <item>양식</item>
+        <item>일식</item>
+        <item>치킨</item>
+        <item>피자</item>
+        <item>패스트푸드</item>
+        <item>족발/보쌈</item>
+
+    </string-array>
+
 
 
 </resources>
