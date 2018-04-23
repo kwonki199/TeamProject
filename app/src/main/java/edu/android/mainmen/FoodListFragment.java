@@ -5,11 +5,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class FoodListFragment extends Fragment {
 
     private RecyclerView recycler;
     private List<kindsOfFood> dataset;
+
 
     interface HomeSelectedCallback{
         void onHomeSelected(int position);  // 포지션 정보 매개변수주기
@@ -49,7 +52,7 @@ public class FoodListFragment extends Fragment {
         recycler = view.findViewById(R.id.recyclerView);
         dataset = kindsOfFoodDao.getInstance().getFoodList();
         recycler.setHasFixedSize(true);
-        recycler.setLayoutManager(new LinearLayoutManager(getContext()));
+        recycler.setLayoutManager(new GridLayoutManager(getContext(), 3));
         kindOfFoodAdapter adapter = new kindOfFoodAdapter();
         recycler.setAdapter(adapter);
 
@@ -70,7 +73,9 @@ public class FoodListFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             kindsOfFood food = dataset.get(position);
+            kindsOfFoodDao dao = kindsOfFoodDao.getInstance();
             holder.foodName.setText(food.getName());
+            holder.foodImageNo.setImageResource(dao.ImageSource(position));    /////////////////////
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,11 +93,13 @@ public class FoodListFragment extends Fragment {
         class ViewHolder extends RecyclerView.ViewHolder {
 
             private TextView foodName;
+            public ImageView foodImageNo; /////////////////////////
 
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 foodName = itemView.findViewById(R.id.itemMenuText);
+                foodImageNo = itemView.findViewById(R.id.itemMenuImage); ///////////////
 
             }
         }

@@ -220,8 +220,8 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         StorageReference storageRef = storage.getReferenceFromUrl("gs://whattoeat-9ce5d.appspot.com");
 
 
-        Uri file = Uri.fromFile(new File(uri));
-        StorageReference riversRef = storageRef.child("images/" + file.getLastPathSegment());
+        final Uri file = Uri.fromFile(new File(uri));
+        StorageReference riversRef = storageRef.child("images/"+file.getLastPathSegment());
         UploadTask uploadTask = riversRef.putFile(file);
 
         // Register observers to listen for when the download is done or if it fails
@@ -244,6 +244,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 imageDTO.uid = auth.getCurrentUser().getUid();
                 imageDTO.userId = auth.getCurrentUser().getEmail();
                 imageDTO.Location = addLocation.getText().toString();
+                imageDTO.imageName = file.getLastPathSegment();
 
                 database.getReference().child("images").push().setValue(imageDTO);
 

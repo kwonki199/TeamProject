@@ -11,12 +11,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +34,9 @@ public class ReadReviewActivity extends AppCompatActivity {
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
 
+    ///////////////////////
+    private FirebaseStorage storage;
+    ///////////////////////
 
     public static Intent newIntent(Context context, int index){
         Intent intent=new Intent(context,ReadReviewActivity.class);
@@ -44,6 +50,10 @@ public class ReadReviewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_review);
         database = FirebaseDatabase.getInstance();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView_Review);
+        ////////////////////////
+        storage = FirebaseStorage.getInstance();
+        ////////////////////////
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         final BoardRecyclerViewAdapter boardRecyclerViewAdapter = new BoardRecyclerViewAdapter();
@@ -91,11 +101,18 @@ public class ReadReviewActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
             ((CustomViewHolder)holder).textView.setText(imageDTOs.get(position).title);
             ((CustomViewHolder)holder).textView2.setText(imageDTOs.get(position).description);
 
             Glide.with(holder.itemView.getContext()).load(imageDTOs.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
+
+            ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    delete_content(position);
+                }
+            });
         }
 
         @Override
@@ -103,16 +120,39 @@ public class ReadReviewActivity extends AppCompatActivity {
             return imageDTOs.size();
         }
 
+
+        //////////////////////////////////////////
+
+        private void delete_content(int position) {
+
+            storage.getReference().child("images").child(imageDTOs.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(ReadReviewActivity.this, "삭제 완료", Toast.LENGTH_SHORT).show();
+                }
+            }).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(ReadReviewActivity.this, "삭제 실패", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+        //////////////////////////////////////////
+
         private class CustomViewHolder extends RecyclerView.ViewHolder {
             ImageView imageView;
             TextView textView;
             TextView textView2;
+            ImageView deleteButton;
 
             public CustomViewHolder(View view) {
                 super(view);
                 imageView = (ImageView) view.findViewById(R.id.item_imageView);
                 textView = (TextView) view.findViewById(R.id.item_textView);
                 textView2 = (TextView) view.findViewById(R.id.item_textView2);
+
+                deleteButton = (ImageView)view.findViewById(R.id.delete_image);
             }
         }
     }

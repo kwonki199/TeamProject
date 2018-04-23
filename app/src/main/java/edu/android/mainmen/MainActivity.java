@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.SearchView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -117,8 +118,10 @@ public class MainActivity extends AppCompatActivity
         header_name= (TextView) view.findViewById(R.id.header_user_Name);
         header_email = (TextView) view.findViewById(R.id.header_user_Email);
 
+
 //        header_name.setText(auth.getCurrentUser().getDisplayName());
 //        header_email.setText(auth.getCurrentUser().getEmail());
+
 
 
         // 업로드 버튼
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 

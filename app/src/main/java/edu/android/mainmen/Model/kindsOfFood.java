@@ -7,7 +7,6 @@ public class kindsOfFood {
 
     public kindsOfFood(String name) {
         this.name = name;
-
     }
 
     public String getName() {
