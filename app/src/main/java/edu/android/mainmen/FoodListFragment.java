@@ -2,7 +2,6 @@ package edu.android.mainmen;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -19,46 +18,37 @@ import java.util.List;
 import edu.android.mainmen.Controller.kindsOfFoodDao;
 import edu.android.mainmen.Model.kindsOfFood;
 
-
-public class KoreanFoodFragment extends Fragment {
+public class FoodListFragment extends Fragment {
 
     private RecyclerView recycler;
-    private itemSelectedCallback callback;
     private List<kindsOfFood> dataset;
-    private int index;
 
-    interface itemSelectedCallback{
-        void onItemSelected(int position);
+    interface HomeSelectedCallback{
+        void onHomeSelected(int position);  // 포지션 정보 매개변수주기
     }
 
+    private HomeSelectedCallback callback;
 
+    public FoodListFragment() {
 
-    public KoreanFoodFragment() {
-    }
-
-    public static KoreanFoodFragment newInstance(int index) {
-        KoreanFoodFragment fm = new KoreanFoodFragment();
-        fm.setIndex(index);
-        return fm;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof itemSelectedCallback) {
-            callback = (itemSelectedCallback) context;
-            // 메인액티비티에 implements KoreanFoodFragment.itemSelectedCallback 를 구현
-        } else {
-            new RuntimeException("반드시 ContactSelectedCallback을 구현해야 함");
+        if (context instanceof HomeSelectedCallback) {
+            callback = (HomeSelectedCallback) context;
+        }else{
+            new RuntimeException("콜백구현하세요. - 동희");
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_korean_food, container, false);
-        recycler = view.findViewById(R.id.recyclerViewKorean);
-        dataset = kindsOfFoodDao.getInstance().getKoreanFood();
+        View view=inflater.inflate(R.layout.fragment_home, container, false);
+        recycler = view.findViewById(R.id.recyclerView);
+        dataset = kindsOfFoodDao.getInstance().getFoodList();
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         kindOfFoodAdapter adapter = new kindOfFoodAdapter();
@@ -66,10 +56,6 @@ public class KoreanFoodFragment extends Fragment {
 
         return view;
     }// end onCreateView
-
-    public void setIndex(int index) {
-        this.index = index;
-    }
 
 
     class kindOfFoodAdapter extends RecyclerView.Adapter<kindOfFoodAdapter.ViewHolder>{
@@ -83,15 +69,14 @@ public class KoreanFoodFragment extends Fragment {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             kindsOfFood food = dataset.get(position);
             holder.foodName.setText(food.getName());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    callback.onItemSelected(position);
-
+                    callback.onHomeSelected(position);
                 }
             });
         }
@@ -105,6 +90,7 @@ public class KoreanFoodFragment extends Fragment {
 
             private TextView foodName;
 
+
             public ViewHolder(View itemView) {
                 super(itemView);
                 foodName = itemView.findViewById(R.id.itemMenuText);
@@ -113,9 +99,4 @@ public class KoreanFoodFragment extends Fragment {
         }
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        callback = null;
-    }
-}// end KoreanFoodFragment
+}// end FoodListFragment

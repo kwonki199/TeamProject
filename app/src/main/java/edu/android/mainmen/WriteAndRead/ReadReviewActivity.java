@@ -1,9 +1,7 @@
-package edu.android.mainmen;
+package edu.android.mainmen.WriteAndRead;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,9 +21,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.android.mainmen.Write.ImageDTO;
+import edu.android.mainmen.R;
 
-public class ReviewActivity extends AppCompatActivity {
+public class ReadReviewActivity extends AppCompatActivity {
     private static final String EXTRA_CAONTACT_INDEX="selected_contact_index";
     private RecyclerView recyclerView;
     private List<ImageDTO> imageDTOs = new ArrayList<>();
@@ -34,7 +32,7 @@ public class ReviewActivity extends AppCompatActivity {
 
 
     public static Intent newIntent(Context context, int index){
-        Intent intent=new Intent(context,ReviewActivity.class);
+        Intent intent=new Intent(context,ReadReviewActivity.class);
         intent.putExtra(EXTRA_CAONTACT_INDEX,index);
         return intent;
     }
@@ -77,7 +75,7 @@ public class ReviewActivity extends AppCompatActivity {
 //        //ContactDetailActivity에 attach된 ContactDetailFragment에게
 //        // index 정보를 전달
 //        FragmentManager fm=getSupportFragmentManager();
-//        ReviewFragment fragment = (ReviewFragment) fm.findFragmentById(R.id.fragment_review);
+//        ReadReviewFragment fragment = (ReadReviewFragment) fm.findFragmentById(R.id.fragment_review);
 //        fragment.setIndex(index);
     }
 

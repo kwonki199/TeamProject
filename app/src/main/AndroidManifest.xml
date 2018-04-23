@@ -33,9 +33,9 @@
         <activity android:name=".Login.MyWritingsActivity" />
         <activity android:name=".Login.IdFindActivity" />
         <activity android:name=".Login.PasswordFindActivity" />
-        <activity android:name=".Write.WriteReviewActivity" />
+        <activity android:name=".WriteAndRead.WriteReviewActivity" />
         <activity android:name=".Login.RegisterActivity" />
-        <activity android:name=".Write.FirebaseUploadActivity" />
+        <activity android:name=".WriteAndRead.FirebaseUploadActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -57,7 +57,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".ReviewActivity"></activity>
+        <activity android:name=".WriteAndRead.ReadReviewActivity"></activity>
     </application>
 
 </manifest>

@@ -18,21 +18,21 @@ import edu.android.mainmen.Controller.kindsOfFoodDao;
 import edu.android.mainmen.Model.kindsOfFood;
 
 
-public class WesternFoodFragment extends Fragment {
+public class FoodChineseFragment extends Fragment {
 
     private RecyclerView recycler;
     private List<kindsOfFood> dataset;
 
-    public WesternFoodFragment() {
+    public FoodChineseFragment() {
 
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_western_food, container, false);
-        recycler = view.findViewById(R.id.recyclerViewWestern);
-        dataset = kindsOfFoodDao.getInstance().getWesternFood();
+        View view=inflater.inflate(R.layout.fragment_chinese_food, container, false);
+        recycler = view.findViewById(R.id.recyclerViewChinese);
+        dataset = kindsOfFoodDao.getInstance().getChineseFood();
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
         kindOfFoodAdapter adapter = new kindOfFoodAdapter();
@@ -82,4 +82,4 @@ public class WesternFoodFragment extends Fragment {
         }
     }
 
-}// end HomeFragment
+}// end ChineseFragment

@@ -24,7 +24,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -34,8 +33,9 @@ import edu.android.mainmen.Login.BookmarkActivity;
 import edu.android.mainmen.Login.ChangingActivity;
 import edu.android.mainmen.Login.LoginActivity;
 import edu.android.mainmen.Login.MyWritingsActivity;
-import edu.android.mainmen.Write.FirebaseUploadActivity;
-import edu.android.mainmen.Write.WriteReviewActivity;
+import edu.android.mainmen.WriteAndRead.FirebaseUploadActivity;
+import edu.android.mainmen.WriteAndRead.ReadReviewActivity;
+import edu.android.mainmen.WriteAndRead.WriteReviewActivity;
 
 // 미해결사항 해결하시면 미해결 -> 해결로 바꿔주세요.
 //TODO: Tabbed 기능 추가 홈화면 터치 이외에 탭이동으로도 보기 쉽게 구현 - 해결
@@ -48,7 +48,7 @@ import edu.android.mainmen.Write.WriteReviewActivity;
 //TODO: 글쓰기 업로드 연동중
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,HomeFragment.HomeSelectedCallback ,KoreanFoodFragment.itemSelectedCallback{
+        implements NavigationView.OnNavigationItemSelectedListener,FoodListFragment.HomeSelectedCallback ,FoodKoreanFragment.itemSelectedCallback{
 
 
 
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity
 //        header_email.setText(auth.getCurrentUser().getEmail());
 
 
-        // 업로드
+        // 업로드 버튼
         WriteReviewButton = findViewById(R.id.fab);
         WriteReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,25 +202,28 @@ public class MainActivity extends AppCompatActivity
 
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new HomeFragment(), "종류");
-        adapter.addFragment(new KoreanFoodFragment(), "한식");
-        adapter.addFragment(new ChineseFoodFragment(), "중식");
-        adapter.addFragment(new WesternFoodFragment(), "양식");
-        adapter.addFragment(new WesternFoodFragment(), "일식");
-        adapter.addFragment(new WesternFoodFragment(), "치킨");
-        adapter.addFragment(new WesternFoodFragment(), "피자");
-        adapter.addFragment(new WesternFoodFragment(), "분식");
-        adapter.addFragment(new WesternFoodFragment(), "패스트푸드");
-        adapter.addFragment(new WesternFoodFragment(), "족발,보쌈");
+        adapter.addFragment(new FoodListFragment(), "종류");
+        adapter.addFragment(new FoodListFragment(), "전체");
+        adapter.addFragment(new FoodKoreanFragment(), "한식");
+        adapter.addFragment(new FoodChineseFragment(), "중식");
+        adapter.addFragment(new FoodWestFragment(), "양식");
+        adapter.addFragment(new FoodWestFragment(), "일식");
+        adapter.addFragment(new FoodWestFragment(), "치킨");
+        adapter.addFragment(new FoodWestFragment(), "피자");
+        adapter.addFragment(new FoodWestFragment(), "분식");
+        adapter.addFragment(new FoodWestFragment(), "패스트푸드");
+        adapter.addFragment(new FoodWestFragment(), "족발,보쌈");
         viewPager.setAdapter(adapter);
     }
 
+    // 탭과 프래그먼트 연동
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
         mViewPager.setCurrentItem(position+1);
     }
 
+    // 페이스북
     private void getAppKeyHash() {
         try {
             PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), PackageManager.GET_SIGNATURES);
@@ -240,7 +243,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onItemSelected(int position) {
-        Intent intent = ReviewActivity.newIntent(this, position);
+        Intent intent = ReadReviewActivity.newIntent(this, position);
         startActivity(intent);
     }
 }

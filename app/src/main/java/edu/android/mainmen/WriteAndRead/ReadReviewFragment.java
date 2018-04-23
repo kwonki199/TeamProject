@@ -1,4 +1,4 @@
-package edu.android.mainmen;
+package edu.android.mainmen.WriteAndRead;
 
 
 import android.os.Bundle;
@@ -11,13 +11,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.android.mainmen.Write.ImageDTO;
+import edu.android.mainmen.R;
+import edu.android.mainmen.WriteAndRead.ImageDTO;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReviewFragment extends Fragment {
+public class ReadReviewFragment extends Fragment {
 
     private int index;
     private RecyclerView recyclerView;
@@ -25,7 +26,7 @@ public class ReviewFragment extends Fragment {
     private List<String> uidLists = new ArrayList<>();
 
 
-    public ReviewFragment() {
+    public ReadReviewFragment() {
         // Required empty public constructor
     }
 

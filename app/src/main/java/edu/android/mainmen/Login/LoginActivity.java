@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
         login_id = findViewById(R.id.login_id);
         login_pw = findViewById(R.id.login_pw);
 
+        // 회원가입 버튼
         registerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
