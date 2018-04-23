@@ -21,13 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.android.mainmen.R;
-import edu.android.mainmen.WriteAndRead.ImageDTO;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReadReviewFragment extends Fragment {
+public class ReadReaviewKoreanFragment extends Fragment {
+
 
     private RecyclerView recyclerView;
     private List<ImageDTO> imageDTOs = new ArrayList<>();
@@ -35,7 +34,7 @@ public class ReadReviewFragment extends Fragment {
     private FirebaseDatabase database;
 
 
-    public ReadReviewFragment() {
+    public ReadReaviewKoreanFragment() {
         // Required empty public constructor
     }
 
@@ -51,7 +50,7 @@ public class ReadReviewFragment extends Fragment {
         final ReviewRecyclerViewAdapter boardRecyclerViewAdapter = new ReviewRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
-        database.getReference().child("images").addValueEventListener(new ValueEventListener() {
+        database.getReference().child("koreanFood").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -110,5 +109,6 @@ public class ReadReviewFragment extends Fragment {
             }
         }
     }
+
 
 }

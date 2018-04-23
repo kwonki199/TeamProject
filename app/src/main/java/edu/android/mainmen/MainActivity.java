@@ -34,6 +34,7 @@ import edu.android.mainmen.Login.ChangingActivity;
 import edu.android.mainmen.Login.LoginActivity;
 import edu.android.mainmen.Login.MyWritingsActivity;
 import edu.android.mainmen.WriteAndRead.FirebaseUploadActivity;
+import edu.android.mainmen.WriteAndRead.ReadReaviewKoreanFragment;
 import edu.android.mainmen.WriteAndRead.ReadReviewActivity;
 import edu.android.mainmen.WriteAndRead.ReadReviewFragment;
 import edu.android.mainmen.WriteAndRead.WriteReviewActivity;
@@ -205,7 +206,7 @@ public class MainActivity extends AppCompatActivity
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "종류");
         adapter.addFragment(new ReadReviewFragment(), "전체");
-        adapter.addFragment(new FoodKoreanFragment(), "한식");
+        adapter.addFragment(new ReadReaviewKoreanFragment(), "한식");
         adapter.addFragment(new FoodChineseFragment(), "중식");
         adapter.addFragment(new FoodWestFragment(), "양식");
         adapter.addFragment(new FoodWestFragment(), "일식");
