@@ -172,29 +172,31 @@ public class MainActivity extends AppCompatActivity
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_membershipInformation) {
+        if (id == R.id.nav_membershipInformation) { // 로그인
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_bookmark) {
-            Intent intent = new Intent(MainActivity.this, BookmarkActivity.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_profilePicture) {
-            Intent intent = new Intent(MainActivity.this, ChangingActivity.class);
-            startActivity(intent);
-
-        }  else if (id == R.id.nav_writings) {
+        }  else if (id == R.id.nav_writings) { // 리뷰 작성
             Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_mywritings) {
+        } else if (id == R.id.nav_mywritings) { // 내가 쓴글
             Intent intent = new Intent(MainActivity.this, WriteReviewActivity.class);
             startActivity(intent);
-        } else if (id==R.id.nav_logout) {
-            // 로그아웃
+
+        } else if (id == R.id.nav_bookmark) { // 즐겨찾기
+            Intent intent = new Intent(MainActivity.this, BookmarkActivity.class);
+            startActivity(intent);
+
+        } else if (id==R.id.nav_logout) { // 로그아웃
             auth.signOut();
             Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+
+
+//        } else if (id == R.id.nav_profilePicture) { // 회원 정보변경
+//            Intent intent = new Intent(MainActivity.this, ChangingActivity.class);
+//            startActivity(intent);
+
 
         } else if (id == R.id.nav_coupon) {
         } else if (id == R.id.nav_game) {
