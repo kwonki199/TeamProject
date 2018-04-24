@@ -59,11 +59,12 @@ public class ReadReviewActivity extends AppCompatActivity {
         final BoardRecyclerViewAdapter boardRecyclerViewAdapter = new BoardRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
+
         database.getReference().child("images").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                imageDTOs.clear();;
+                imageDTOs.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     ImageDTO imageDTO = snapshot.getValue(ImageDTO.class);
                     imageDTOs.add(imageDTO);
@@ -89,6 +90,10 @@ public class ReadReviewActivity extends AppCompatActivity {
 //        ReadReviewFragment fragment = (ReadReviewFragment) fm.findFragmentById(R.id.fragment_review);
 //        fragment.setIndex(index);
     }
+
+
+
+
 
     class BoardRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -120,8 +125,6 @@ public class ReadReviewActivity extends AppCompatActivity {
             return imageDTOs.size();
         }
 
-
-        //////////////////////////////////////////
 
         private void delete_content(int position) {
 

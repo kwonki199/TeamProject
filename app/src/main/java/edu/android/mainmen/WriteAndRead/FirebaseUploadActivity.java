@@ -76,9 +76,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         upload_Button = findViewById(R.id.upload_button);
         addLocation = findViewById(R.id.addLocation);
         spinner = findViewById(R.id.selectCategorySp);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
-//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinner.setAdapter(adapter);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_array,
                 android.R.layout.simple_spinner_item);

@@ -50,7 +50,8 @@ public class ReadReaviewKoreanFragment extends Fragment {
         final ReviewRecyclerViewAdapter boardRecyclerViewAdapter = new ReviewRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
-        database.getReference().child("koreanFood").addValueEventListener(new ValueEventListener() {
+
+        database.getReference().child("images").child("korea").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

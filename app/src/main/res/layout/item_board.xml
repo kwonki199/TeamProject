@@ -5,9 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:background="@drawable/border"
     android:orientation="vertical">
 
     <ImageView
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:id="@+id/item_imageView"
         android:layout_width="match_parent"
         android:layout_height="150dp"
@@ -30,6 +33,8 @@
         android:textAlignment="center" />
 
     <ImageView
+        android:layout_gravity="right"
+        android:layout_margin="8dp"
         android:id="@+id/delete_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
