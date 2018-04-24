@@ -35,6 +35,7 @@
         <activity android:name=".Login.MyWritingsActivity" />
         <activity android:name=".Login.IdFindActivity" />
         <activity android:name=".Login.PasswordFindActivity" />
+        <activity android:name=".RouletteActivity"/>
         <activity android:name=".WriteAndRead.WriteReviewActivity" />
         <activity android:name=".Login.RegisterActivity" />
         <activity android:name=".WriteAndRead.FirebaseUploadActivity" />

@@ -211,6 +211,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_coupon) {
         } else if (id == R.id.nav_game) {
+            Intent intent = new Intent(MainActivity.this, RouletteActivity.class);
+            startActivity(intent);
+
         } else if (id == R.id.nav_heart) {
         }
 
