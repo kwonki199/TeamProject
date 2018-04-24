@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,7 +17,7 @@ import java.util.Random;
 
 public class RouletteActivity extends AppCompatActivity {
 
-    Button btnStart;
+    ImageButton btnStart;
     TextView textView;
     ImageView iv_roulette;
 
@@ -36,7 +37,7 @@ public class RouletteActivity extends AppCompatActivity {
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
-        btnStart = (Button) findViewById(R.id.btnStart);
+        btnStart = (ImageButton) findViewById(R.id.btnStart);
         textView = (TextView) findViewById(R.id.textView);
         iv_roulette = (ImageView) findViewById(R.id.iv_roulette);
 
@@ -78,115 +79,115 @@ public class RouletteActivity extends AppCompatActivity {
 
         // do this for each of the numbers
         if (degrees >= (FACTOR * 1) && degrees < (FACTOR * 3)) {
-            text = "32 red";
+            text = "아몬드 빼빼로";
         }
         if (degrees >= (FACTOR * 3) && degrees < (FACTOR * 5)) {
-            text = "15 black";
+            text = "아몬드 빼빼로";
         }
         if (degrees >= (FACTOR * 5) && degrees < (FACTOR * 7)) {
-            text = "19 red";
+            text = "팔도 왕뚜껑";
         }
         if (degrees >= (FACTOR * 7) && degrees < (FACTOR * 9)) {
-            text = "4 black";
+            text = "팔도 왕뚜껑";
         }
         if (degrees >= (FACTOR * 9) && degrees < (FACTOR * 11)) {
-            text = "21 red";
+            text = "팔도 왕뚜껑";
         }
         if (degrees >= (FACTOR * 11) && degrees < (FACTOR * 13)) {
-            text = "2 black";
+            text = "팔도 왕뚜껑";
         }
         if (degrees >= (FACTOR * 13) && degrees < (FACTOR * 15)) {
-            text = "25 red";
+            text = "BHC치킨 후라이드 + 콜라";
         }
         if (degrees >= (FACTOR * 15) && degrees < (FACTOR * 17)) {
-            text = "17 black";
+            text = "BHC치킨 후라이드 + 콜라";
         }
         if (degrees >= (FACTOR * 17) && degrees < (FACTOR * 19)) {
-            text = "34 red";
+            text = "BHC치킨 후라이드 + 콜라";
         }
         if (degrees >= (FACTOR * 19) && degrees < (FACTOR * 21)) {
-            text = "6 black";
+            text = "BHC치킨 후라이드 + 콜라";
         }
         if (degrees >= (FACTOR * 21) && degrees < (FACTOR * 23)) {
-            text = "27 red";
+            text = "BHC치킨 후라이드 + 콜라";
         }
         if (degrees >= (FACTOR * 23) && degrees < (FACTOR * 25)) {
-            text = "13 black";
+            text = "베스킨라빈스 더블 주니어";
         }
         if (degrees >= (FACTOR * 25) && degrees < (FACTOR * 27)) {
-            text = "36 red";
+            text = "베스킨라빈스 더블 주니어";
         }
         if (degrees >= (FACTOR * 27) && degrees < (FACTOR * 29)) {
-            text = "11 black";
+            text = "베스킨라빈스 더블 주니어";
         }
         if (degrees >= (FACTOR * 29) && degrees < (FACTOR * 31)) {
-            text = "30 red";
+            text = "베스킨라빈스 더블 주니어";
         }
         if (degrees >= (FACTOR * 31) && degrees < (FACTOR * 33)) {
-            text = "8 black";
+            text = "베스킨라빈스 더블 주니어";
         }
         if (degrees >= (FACTOR * 33) && degrees < (FACTOR * 35)) {
-            text = "23 red";
+            text = "초코에몽";
         }
         if (degrees >= (FACTOR * 35) && degrees < (FACTOR * 37)) {
-            text = "10 black";
+            text = "초코에몽";
         }
         if (degrees >= (FACTOR * 37) && degrees < (FACTOR * 39)) {
-            text = "5 red";
+            text = "초코에몽";
         }
         if (degrees >= (FACTOR * 39) && degrees < (FACTOR * 41)) {
-            text = "24 black";
+            text = "초코에몽";
         }
         if (degrees >= (FACTOR * 41) && degrees < (FACTOR * 43)) {
-            text = "16 red";
+            text = "미니언즈 우유";
         }
         if (degrees >= (FACTOR * 43) && degrees < (FACTOR * 45)) {
-            text = "33 black";
+            text = "미니언즈 우유";
         }
         if (degrees >= (FACTOR * 45) && degrees < (FACTOR * 47)) {
-            text = "1 red";
+            text = "미니언즈 우유";
         }
         if (degrees >= (FACTOR * 47) && degrees < (FACTOR * 49)) {
-            text = "20 black";
+            text = "미니언즈 우유";
         }
         if (degrees >= (FACTOR * 49) && degrees < (FACTOR * 51)) {
-            text = "14 red";
+            text = "미니언즈 우유";
         }
         if (degrees >= (FACTOR * 51) && degrees < (FACTOR * 53)) {
-            text = "31 black";
+            text = "문화상품권 5천원";
         }
         if (degrees >= (FACTOR * 53) && degrees < (FACTOR * 55)) {
-            text = "9 red";
+            text = "문화상품권 5천원";
         }
         if (degrees >= (FACTOR * 55) && degrees < (FACTOR * 57)) {
-            text = "22 black";
+            text = "문화상품권 5천원";
         }
         if (degrees >= (FACTOR * 57) && degrees < (FACTOR * 59)) {
-            text = "18 red";
+            text = "문화상품권 5천원";
         }
         if (degrees >= (FACTOR * 59) && degrees < (FACTOR * 61)) {
-            text = "29 black";
+            text = "던킨도너츠 먼치킨 10개팩";
         }
         if (degrees >= (FACTOR * 61) && degrees < (FACTOR * 63)) {
-            text = "7 red";
+            text = "던킨도너츠 먼치킨 10개팩";
         }
         if (degrees >= (FACTOR * 63) && degrees < (FACTOR * 65)) {
-            text = "28 black";
+            text = "던킨도너츠 먼치킨 10개팩";
         }
         if (degrees >= (FACTOR * 65) && degrees < (FACTOR * 67)) {
-            text = "12 red";
+            text = "던킨도너츠 먼치킨 10개팩";
         }
         if (degrees >= (FACTOR * 67) && degrees < (FACTOR * 69)) {
-            text = "35 black";
+            text = "던킨도너츠 먼치킨 10개팩";
         }
         if (degrees >= (FACTOR * 69) && degrees < (FACTOR * 71)) {
-            text = "3 red";
+            text = "아몬드 빼빼로";
         }
         if (degrees >= (FACTOR * 71) && degrees < (FACTOR * 73)) {
-            text = "26 black";
+            text = "아몬드 빼빼로";
         }
         if ((degrees >= (FACTOR * 73) && degrees < 360) || (degrees >=0 && degrees < (FACTOR * 1))) {
-            text = "0";
+            text = "아몬드 빼빼로";
         }
 
         return text;
