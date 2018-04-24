@@ -18,7 +18,6 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         TextView welcomeMsg = findViewById(R.id.welcomeMsg);
-        AutoCompleteTextView id_input = findViewById(R.id.id_input);
         TextView welcomeMain = findViewById(R.id.welcomeMain);
 
         welcomeMain.setOnClickListener(new View.OnClickListener() {

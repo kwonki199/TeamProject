@@ -32,7 +32,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.security.MessageDigest;
 
 import edu.android.mainmen.Login.BookmarkActivity;
-import edu.android.mainmen.Login.ChangingActivity;
 import edu.android.mainmen.Login.LoginActivity;
 import edu.android.mainmen.Login.MyWritingsActivity;
 import edu.android.mainmen.WriteAndRead.FirebaseUploadActivity;
