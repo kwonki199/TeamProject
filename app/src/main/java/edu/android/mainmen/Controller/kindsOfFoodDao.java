@@ -24,12 +24,12 @@ public class kindsOfFoodDao {
             "파스타","피자","스테이크"
     };
     private static final int[] ALL_MENU_IMAGE = { ////////////////////////////// 전체 메뉴 이미지 그림
-            R.drawable.p1, R.drawable.f1, R.drawable.f2,
+            R.drawable.f0, R.drawable.f1, R.drawable.f2,
             R.drawable.f3, R.drawable.f4, R.drawable.f5,
             R.drawable.f6, R.drawable.f7, R.drawable.f8,
             R.drawable.f9,
     };
-    
+
     private List<kindsOfFood> foodList = new ArrayList<>();
     private List<kindsOfFood> koreanFood = new ArrayList<>();
     private List<kindsOfFood> chineseFood = new ArrayList<>();
