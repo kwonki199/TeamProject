@@ -22,12 +22,15 @@ import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
-import static edu.android.mainmen.WriteAndRead.FirebaseUploadActivity.KOREANFOOD;
+
+import static edu.android.mainmen.WriteAndRead.FirebaseUploadActivity.*;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReadReaviewKoreanFragment extends Fragment {
+public class ReadReaviewWesternFragment extends Fragment {
+
 
 
     private RecyclerView recyclerView;
@@ -36,7 +39,7 @@ public class ReadReaviewKoreanFragment extends Fragment {
     private FirebaseDatabase database;
 
 
-    public ReadReaviewKoreanFragment() {
+    public ReadReaviewWesternFragment() {
         // Required empty public constructor
     }
 
@@ -52,14 +55,14 @@ public class ReadReaviewKoreanFragment extends Fragment {
         final ReviewRecyclerViewAdapter boardRecyclerViewAdapter = new ReviewRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
-        database.getReference().child(KOREANFOOD).addValueEventListener(new ValueEventListener() {
+        database.getReference().child(WESTERNFOOD).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 firebaseData.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
-                    ReadReaviewKoreanFragment.this.firebaseData.add(allFoodDTO);
+                    ReadReaviewWesternFragment.this.firebaseData.add(allFoodDTO);
                 }
                 boardRecyclerViewAdapter.notifyDataSetChanged();
             }

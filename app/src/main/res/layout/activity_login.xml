@@ -35,15 +35,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <AutoCompleteTextView
-                    android:id="@+id/login_id"
+                <EditText
+                    android:id="@+id/login_id2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_loginId"
-                    android:inputType="text"
-                    android:maxLines="1"
-                    android:singleLine="true" />
-
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="아이디"
+                    android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout

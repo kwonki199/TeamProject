@@ -24,13 +24,14 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
 public class ReadReviewActivity extends AppCompatActivity {
     private static final String EXTRA_CAONTACT_INDEX="selected_contact_index";
 
     private RecyclerView recyclerView;
-    private List<ImageDTO> imageDTOs = new ArrayList<>();
+    private List<AllFoodDTO> firebaseData = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
 
@@ -59,15 +60,14 @@ public class ReadReviewActivity extends AppCompatActivity {
         final BoardRecyclerViewAdapter boardRecyclerViewAdapter = new BoardRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
-
         database.getReference().child("images").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                imageDTOs.clear();
+                firebaseData.clear();;
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    ImageDTO imageDTO = snapshot.getValue(ImageDTO.class);
-                    imageDTOs.add(imageDTO);
+                    AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
+                    ReadReviewActivity.this.firebaseData.add(allFoodDTO);
                 }
                 boardRecyclerViewAdapter.notifyDataSetChanged();
             }
@@ -91,10 +91,6 @@ public class ReadReviewActivity extends AppCompatActivity {
 //        fragment.setIndex(index);
     }
 
-
-
-
-
     class BoardRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
@@ -107,10 +103,10 @@ public class ReadReviewActivity extends AppCompatActivity {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-            ((CustomViewHolder)holder).textView.setText(imageDTOs.get(position).title);
-            ((CustomViewHolder)holder).textView2.setText(imageDTOs.get(position).description);
+            ((CustomViewHolder)holder).textView.setText(firebaseData.get(position).title);
+            ((CustomViewHolder)holder).textView2.setText(firebaseData.get(position).description);
 
-            Glide.with(holder.itemView.getContext()).load(imageDTOs.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
+            Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
             ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -122,13 +118,15 @@ public class ReadReviewActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            return imageDTOs.size();
+            return firebaseData.size();
         }
 
 
+        //////////////////////////////////////////
+
         private void delete_content(int position) {
 
-            storage.getReference().child("images").child(imageDTOs.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            storage.getReference().child("images").child(firebaseData.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     Toast.makeText(ReadReviewActivity.this, "삭제 완료", Toast.LENGTH_SHORT).show();

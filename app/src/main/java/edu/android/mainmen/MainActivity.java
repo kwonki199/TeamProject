@@ -36,7 +36,10 @@ import edu.android.mainmen.Login.ChangingActivity;
 import edu.android.mainmen.Login.LoginActivity;
 import edu.android.mainmen.Login.MyWritingsActivity;
 import edu.android.mainmen.WriteAndRead.FirebaseUploadActivity;
+import edu.android.mainmen.WriteAndRead.ReadReaviewChinaFragment;
+import edu.android.mainmen.WriteAndRead.ReadReaviewJapanFragment;
 import edu.android.mainmen.WriteAndRead.ReadReaviewKoreanFragment;
+import edu.android.mainmen.WriteAndRead.ReadReaviewWesternFragment;
 import edu.android.mainmen.WriteAndRead.ReadReviewActivity;
 import edu.android.mainmen.WriteAndRead.ReadReviewFragment;
 import edu.android.mainmen.WriteAndRead.WriteReviewActivity;
@@ -69,6 +72,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseStorage storage;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,6 +83,7 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         auth = FirebaseAuth.getInstance();
+
 
 
 
@@ -123,8 +128,8 @@ public class MainActivity extends AppCompatActivity
 //        header_email.setText(auth.getCurrentUser().getEmail());
 
 
-       // drawer에 사용자 아이디 나타냄
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//       // drawer에 사용자 아이디 나타냄
+        FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
             header_email.setText(auth.getCurrentUser().getEmail());
         } else {
@@ -227,9 +232,9 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new FoodListFragment(), "종류");
         adapter.addFragment(new ReadReviewFragment(), "전체");
         adapter.addFragment(new ReadReaviewKoreanFragment(), "한식");
-        adapter.addFragment(new FoodChineseFragment(), "중식");
-        adapter.addFragment(new FoodWestFragment(), "양식");
-        adapter.addFragment(new FoodWestFragment(), "일식");
+        adapter.addFragment(new ReadReaviewChinaFragment(), "중식");
+        adapter.addFragment(new ReadReaviewWesternFragment(), "양식");
+        adapter.addFragment(new ReadReaviewJapanFragment(), "일식");
         adapter.addFragment(new FoodWestFragment(), "치킨");
         adapter.addFragment(new FoodWestFragment(), "피자");
         adapter.addFragment(new FoodWestFragment(), "분식");

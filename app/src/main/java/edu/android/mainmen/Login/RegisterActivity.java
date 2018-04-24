@@ -47,6 +47,9 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     private FirebaseAuth.AuthStateListener mAuthListener;
     private CallbackManager mCallbackManager;
 
+    private Button emailLogin;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,9 +81,13 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
             }
 
         });
+
+
+
         editTextEmail = findViewById(R.id.edittext_email);
         editTextPassword = findViewById(R.id.edittext_password);
-        Button emailLogin = (Button) findViewById(R.id.email_login_button);
+
+        emailLogin =  findViewById(R.id.email_login_button);
 
         //회원가입 버튼
         emailLogin.setOnClickListener(new View.OnClickListener() {

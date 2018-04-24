@@ -1,6 +1,6 @@
-package edu.android.mainmen.WriteAndRead;
+package edu.android.mainmen.Controller;
 
-public class ImageDTO {
+public class AllFoodDTO {
 
     public String imageUrl;
     public String imageName;

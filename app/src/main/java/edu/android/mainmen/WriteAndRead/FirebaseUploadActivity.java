@@ -25,6 +25,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -36,9 +37,15 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 
+import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
 public class FirebaseUploadActivity extends AppCompatActivity {
+    public static final String KOREANFOOD = "AllFood/koreanFood";
+    public static final String CHINESEFOOD = "AllFood/chineseFood";
+    public static final String WESTERNFOOD ="AllFood/westernFood";
+    public static final String JAPANFOOD = "AllFood/japaneseFood";
+
     private static final String TAGSPINNER = "spinner";
 
     private static final int GALLERY_CODE = 10;
@@ -54,6 +61,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private TextView addLocation;
     private Spinner spinner;
     private int spinnerPosition;
+
 
 
     @Override
@@ -77,6 +85,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         addLocation = findViewById(R.id.addLocation);
         spinner = findViewById(R.id.selectCategorySp);
 
+        // 스피너
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_array,
                 android.R.layout.simple_spinner_item);
         spinner.setAdapter(adapter);
@@ -109,9 +118,13 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         upload_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                upload(imagePath, spinnerPosition);
-                Log.i(TAGSPINNER, "position=" + spinnerPosition);
-                finish();
+                if(spinnerPosition !=0) {
+                    upload(imagePath, spinnerPosition);
+                    Log.i(TAGSPINNER, "position=" + spinnerPosition);
+                    finish();
+                }else{
+                    Toast.makeText(FirebaseUploadActivity.this, "메뉴를 선택해주세요.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -130,16 +143,16 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
         final String menu;
         if (p == 1) {
-            menu = "images/korea";
+            menu = KOREANFOOD;
         } else if (p == 2) {
-            menu = "images/china";
+            menu = CHINESEFOOD;
         } else if (p == 3) {
-            menu = "images/western";
+            menu = WESTERNFOOD;
         }else if (p == 4) {
-            menu = "images/japan";
+            menu = JAPANFOOD;
         }
         else {
-            menu = "images/";
+            menu = "images";
         }
 
         //storage 저장소....
@@ -160,16 +173,16 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 @SuppressWarnings("VisibleForTests")
                 Uri downloadUrl = taskSnapshot.getDownloadUrl();
 
-                ImageDTO imageDTO = new ImageDTO();
-                imageDTO.imageUrl = downloadUrl.toString();
-                imageDTO.title = title.getText().toString();
-                imageDTO.description = description.getText().toString();
-                imageDTO.uid = auth.getCurrentUser().getUid();
-                imageDTO.userId = auth.getCurrentUser().getEmail();
-//                imageDTO.Location = addLocation.getText().toString();
-                imageDTO.imageName = file.getLastPathSegment();
+                AllFoodDTO allFoodDTO = new AllFoodDTO();
+                allFoodDTO.imageUrl = downloadUrl.toString();
+                allFoodDTO.title = title.getText().toString();
+                allFoodDTO.description = description.getText().toString();
+                allFoodDTO.uid = auth.getCurrentUser().getUid();
+                allFoodDTO.userId = auth.getCurrentUser().getEmail();
+//                allFoodDTO.Location = addLocation.getText().toString();
+                allFoodDTO.imageName = file.getLastPathSegment();
 
-                database.getReference().child(menu).push().setValue(imageDTO);
+                database.getReference().child(menu).push().setValue(allFoodDTO);
             }
         });
 
