@@ -164,7 +164,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -176,12 +175,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
 
-        }  else if (id == R.id.nav_writings) { // 리뷰 작성
-            Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
-            startActivity(intent);
+        } else if (id == R.id.nav_mywritings) { // 리뷰 작성
 
-        } else if (id == R.id.nav_mywritings) { // 내가 쓴글
-            Intent intent = new Intent(MainActivity.this, WriteReviewActivity.class);
+        }  else if (id == R.id.nav_writings) { // 내가 쓴글
+            Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_bookmark) { // 즐겨찾기
