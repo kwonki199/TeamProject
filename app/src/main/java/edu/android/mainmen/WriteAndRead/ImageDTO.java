@@ -8,5 +8,5 @@ public class ImageDTO {
     public String description;
     public String uid;
     public String userId;
-    public String Location;
+//    public String Location;
 }

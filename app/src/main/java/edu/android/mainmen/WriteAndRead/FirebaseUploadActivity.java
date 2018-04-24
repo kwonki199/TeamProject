@@ -243,7 +243,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 imageDTO.description = description.getText().toString();
                 imageDTO.uid = auth.getCurrentUser().getUid();
                 imageDTO.userId = auth.getCurrentUser().getEmail();
-                imageDTO.Location = addLocation.getText().toString();
+//                imageDTO.Location = addLocation.getText().toString();
                 imageDTO.imageName = file.getLastPathSegment();
 
                 database.getReference().child("images").push().setValue(imageDTO);

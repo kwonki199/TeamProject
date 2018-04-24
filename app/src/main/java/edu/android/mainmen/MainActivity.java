@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -115,12 +116,19 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View view = navigationView.getHeaderView(0);
-        header_name= (TextView) view.findViewById(R.id.header_user_Name);
+//        header_name= (TextView) view.findViewById(R.id.header_user_Name);
         header_email = (TextView) view.findViewById(R.id.header_user_Email);
 
 
 //        header_name.setText(auth.getCurrentUser().getDisplayName());
 //        header_email.setText(auth.getCurrentUser().getEmail());
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            header_email.setText(auth.getCurrentUser().getEmail());
+        } else {
+            header_email.setText("로그인이 되어있지 않습니다.");
+        }
 
 
 
