@@ -184,6 +184,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
+            Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
+            startActivity(intent);
 
         }  else if (id == R.id.nav_writings) { // 내가 쓴글
             Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);

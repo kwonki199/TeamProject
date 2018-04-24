@@ -19,10 +19,13 @@
         android:contentDescription="@string/user_image"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/logotest" />
+
     <TextView
         android:id="@+id/header_user_Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/user_Email" />
+        android:text="@string/user_Email"
+        android:paddingTop="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
 
 </LinearLayout>
