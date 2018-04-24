@@ -4,17 +4,21 @@ import android.Manifest;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.CursorLoader;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,6 +31,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -43,11 +51,11 @@ import edu.android.mainmen.R;
 public class FirebaseUploadActivity extends AppCompatActivity {
     public static final String KOREANFOOD = "AllFood/koreanFood";
     public static final String CHINESEFOOD = "AllFood/chineseFood";
-    public static final String WESTERNFOOD ="AllFood/westernFood";
+    public static final String WESTERNFOOD = "AllFood/westernFood";
     public static final String JAPANFOOD = "AllFood/japaneseFood";
 
     private static final String TAGSPINNER = "spinner";
-
+    private static final int PLACE_PICKER_REQUEST = 1;
     private static final int GALLERY_CODE = 10;
     private static final int CAMERA_REQUEST = 18;
     private FirebaseAuth auth;
@@ -61,7 +69,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private TextView addLocation;
     private Spinner spinner;
     private int spinnerPosition;
-
 
 
     @Override
@@ -84,6 +91,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         upload_Button = findViewById(R.id.upload_button);
         addLocation = findViewById(R.id.addLocation);
         spinner = findViewById(R.id.selectCategorySp);
+
 
         // 스피너
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_array,
@@ -118,11 +126,11 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         upload_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(spinnerPosition !=0) {
+                if (spinnerPosition != 0) {
                     upload(imagePath, spinnerPosition);
                     Log.i(TAGSPINNER, "position=" + spinnerPosition);
                     finish();
-                }else{
+                } else {
                     Toast.makeText(FirebaseUploadActivity.this, "메뉴를 선택해주세요.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -148,10 +156,9 @@ public class FirebaseUploadActivity extends AppCompatActivity {
             menu = CHINESEFOOD;
         } else if (p == 3) {
             menu = WESTERNFOOD;
-        }else if (p == 4) {
+        } else if (p == 4) {
             menu = JAPANFOOD;
-        }
-        else {
+        } else {
             menu = "images";
         }
 
@@ -179,7 +186,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 allFoodDTO.description = description.getText().toString();
                 allFoodDTO.uid = auth.getCurrentUser().getUid();
                 allFoodDTO.userId = auth.getCurrentUser().getEmail();
-//                allFoodDTO.Location = addLocation.getText().toString();
+                allFoodDTO.Location = addLocation.getText().toString();
                 allFoodDTO.imageName = file.getLastPathSegment();
 
                 database.getReference().child(menu).push().setValue(allFoodDTO);
@@ -197,14 +204,27 @@ public class FirebaseUploadActivity extends AppCompatActivity {
             imagePath = getPath(data.getData());        // 파일 경로저장
             File f = new File(imagePath);               // File객체 생성
             imageView.setImageURI(Uri.fromFile(f));     // view에 Uri로 가져와서 보여지게
-        }
-
-        if (requestCode == CAMERA_REQUEST) {
+        } else if (requestCode == CAMERA_REQUEST) {
             if (resultCode == RESULT_OK) {
                 Bitmap imagePath = (Bitmap) data.getExtras().get("data");
                 imageView.setImageBitmap(imagePath);
                 //  File f = new File(String.valueOf(imagePath));
             }
+        } else if (requestCode == PLACE_PICKER_REQUEST) {
+            final Place place = PlacePicker.getPlace(this, data);
+            final CharSequence name = place.getName();
+            final CharSequence address = place.getAddress();
+            String attributions = (String) place.getAttributions();
+            if (attributions == null) {
+                attributions = "";
+            }
+            addLocation.setText("");
+            addLocation.append(name);
+            addLocation.append(": " + address + "\n");
+            addLocation.append(Html.fromHtml(attributions));
+
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
@@ -233,8 +253,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+                useCamera();
             }
 
         };
@@ -275,15 +294,46 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MapsActivity.class);
         startActivity(intent);
     }
+
     // 뒤로가기 버튼 이거
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id==android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+
+    public void findMarketLocation(View view) {
+
+        PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
+        try {
+            Intent intent = intentBuilder.build(this);
+            startActivityForResult(intent, PLACE_PICKER_REQUEST);
+        } catch (GooglePlayServicesRepairableException e) {
+            e.printStackTrace();
+        } catch (GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public void useCamera() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
+        if (permissionCheck == PackageManager.PERMISSION_DENIED) {
+            // 권한 없음
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
+            //Toast.makeText(getApplicationContext(),"권한없음",Toast.LENGTH_SHORT).show();
+        } else {
+            //권한 있음
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, 1);
+        }
+    }
+
 
 }// end Activity
