@@ -66,15 +66,15 @@
 
     <string name="category_prompt">카테고리 선택</string>
     <string-array name="category_array">
-        <item></item>
+        <item>메뉴를 선택해주세요</item>
         <item>한식</item>
         <item>중식</item>
         <item>양식</item>
         <item>일식</item>
-        <item>치킨</item>
-        <item>피자</item>
-        <item>패스트푸드</item>
-        <item>족발/보쌈</item>
+        <!--<item>치킨</item>-->
+        <!--<item>피자</item>-->
+        <!--<item>패스트푸드</item>-->
+        <!--<item>족발/보쌈</item>-->
 
     </string-array>
 
