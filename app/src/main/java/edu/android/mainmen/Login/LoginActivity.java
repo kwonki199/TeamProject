@@ -47,8 +47,6 @@ public class LoginActivity extends AppCompatActivity {
 
         id_sign_in_button = findViewById(R.id.id_sign_in_button);
         registerBtn = findViewById(R.id.registerBtn);
-        id_find_Btn = findViewById(R.id.id_find_Btn);
-        password_find_Btn = findViewById(R.id.password_find_Btn);
         login_id = findViewById(R.id.login_id2);
         login_pw = findViewById(R.id.login_pw);
 
@@ -73,22 +71,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        id_find_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent id_find_btn = new Intent(LoginActivity.this, IdFindActivity.class);
-                LoginActivity.this.startActivity(id_find_btn);
-            }
-        });
-
-        password_find_Btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent password_find_btn = new Intent(LoginActivity.this, PasswordFindActivity.class);
-                LoginActivity.this.startActivity(password_find_btn);
-            }
-        });
-
 
     }// end onCreate
 
@@ -106,7 +88,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
     }
-    
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
