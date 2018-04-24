@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
     private SectionsPageAdapter mSectionsPageAdapter;
     private FloatingActionButton WriteReviewButton;
-    private TextView header_name;
+//    private TextView header_name;
     private TextView header_email;
     private FirebaseAuth auth;
     private FirebaseStorage storage;
@@ -119,10 +119,11 @@ public class MainActivity extends AppCompatActivity
 //        header_name= (TextView) view.findViewById(R.id.header_user_Name);
         header_email = (TextView) view.findViewById(R.id.header_user_Email);
 
-
 //        header_name.setText(auth.getCurrentUser().getDisplayName());
 //        header_email.setText(auth.getCurrentUser().getEmail());
 
+
+       // drawer에 사용자 아이디 나타냄
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             header_email.setText(auth.getCurrentUser().getEmail());
@@ -144,6 +145,8 @@ public class MainActivity extends AppCompatActivity
         });
 
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -184,6 +187,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
+            Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
+            startActivity(intent);
 
         }  else if (id == R.id.nav_writings) { // 내가 쓴글
             Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
@@ -195,6 +200,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id==R.id.nav_logout) { // 로그아웃
             auth.signOut();
+            header_email.setText("로그인이 되어있지 않습니다.");
             Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
 
 

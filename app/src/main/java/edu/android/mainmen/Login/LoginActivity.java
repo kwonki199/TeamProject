@@ -64,6 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                 loginUser(login_id.getText().toString(), login_pw.getText().toString());
                 Intent sign_in = new Intent(LoginActivity.this, MainActivity.class);
                 LoginActivity.this.startActivity(sign_in);
+
             }
         });
 
