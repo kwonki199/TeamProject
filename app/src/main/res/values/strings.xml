@@ -48,7 +48,7 @@
     <string name="password2_input">2차 비밀번호</string>
 
     <string name="welcomeMsg">환영합니다.</string>
-    <string name="welcomeId">회원아이디</string>
+    <string name="welcomeEmail">회원 이메일</string>
     <string name="welcomeMain">메인으로 가기</string>
 
     <!-- TODO: Remove or change this placeholder text -->
