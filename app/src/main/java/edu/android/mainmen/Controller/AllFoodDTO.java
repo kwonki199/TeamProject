@@ -13,8 +13,6 @@ public class AllFoodDTO {
     public String description;
     public String uid;
     public String userId;
-    public String Location;
-//    public Map<String, Boolean> stars = new HashMap<>();
 
-
+  public String Location;
 }
