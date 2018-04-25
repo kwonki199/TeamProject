@@ -7,6 +7,7 @@ import java.util.Map;
 
 public class AllFoodDTO {
 
+    public String food;
     public String imageUrl;
     public String imageName;
     public String title;
@@ -14,5 +15,9 @@ public class AllFoodDTO {
     public String uid;
     public String userId;
 
-  public String Location;
+    public String Location;
+
+    public int starCount = 0;
+    public Map<String, Boolean> stars = new HashMap<>();
+
 }

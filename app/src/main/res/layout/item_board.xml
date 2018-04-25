@@ -61,7 +61,7 @@
 
         <ImageView
             android:layout_margin="8dp"
-            android:id="@+id/heart_image"
+            android:id="@+id/item_heart_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_heart1" />
@@ -75,7 +75,7 @@
 
         <ImageView
             android:layout_margin="8dp"
-            android:id="@+id/delete_image"
+            android:id="@+id/item_delete_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_delete" />

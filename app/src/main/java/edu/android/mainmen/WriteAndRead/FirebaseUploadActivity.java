@@ -49,10 +49,7 @@ import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
 public class FirebaseUploadActivity extends AppCompatActivity {
-    public static final String KOREANFOOD = "AllFood/koreanFood";
-    public static final String CHINESEFOOD = "AllFood/chineseFood";
-    public static final String WESTERNFOOD = "AllFood/westernFood";
-    public static final String JAPANFOOD = "AllFood/japaneseFood";
+    public static final String FOOD = "Food";
 
     private static final String TAGSPINNER = "spinner";
     private static final int PLACE_PICKER_REQUEST = 1;
@@ -69,6 +66,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private TextView addLocation;
     private Spinner spinner;
     private int spinnerPosition;
+
 
 
     @Override
@@ -150,24 +148,28 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
 
         final String menu;
+        String foodmenu = null;
         if (p == 1) {
-            menu = KOREANFOOD;
+
+            foodmenu = "korea";
+
         } else if (p == 2) {
-            menu = CHINESEFOOD;
+
+            foodmenu = "china";
         } else if (p == 3) {
-            menu = WESTERNFOOD;
+            foodmenu = "western";
         } else if (p == 4) {
-            menu = JAPANFOOD;
+            foodmenu = "japan";
         } else {
-            menu = "images";
+
         }
 
         //storage 저장소....
         StorageReference riversRef = storageRef.child("images/" + file.getLastPathSegment());
-
         UploadTask uploadTask = riversRef.putFile(file);
 
         // Register observers to listen for when the download is done or if it fails
+        final String Foodmenu = foodmenu;
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -188,8 +190,9 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 allFoodDTO.userId = auth.getCurrentUser().getEmail();
 //                allFoodDTO.Location = addLocation.getText().toString();
                 allFoodDTO.imageName = file.getLastPathSegment();
+                allFoodDTO.food = Foodmenu;
 
-                database.getReference().child(menu).push().setValue(allFoodDTO);
+                database.getReference().child(FOOD).push().setValue(allFoodDTO);
             }
         });
 
@@ -242,12 +245,10 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         cursor.moveToFirst();
 
         return cursor.getString(index);
-
     }
 
 
     // 사진
-
     public void getGallery(View view) {
 
         DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
@@ -287,7 +288,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         //setNeutralButton
     }
 
-
     // 맵
 
     public void findByMyLocation(View view) {
@@ -308,7 +308,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
 
     public void findMarketLocation(View view) {
-
         PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
         try {
             Intent intent = intentBuilder.build(this);
@@ -318,7 +317,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         } catch (GooglePlayServicesNotAvailableException e) {
             e.printStackTrace();
         }
-
 
     }
 

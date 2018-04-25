@@ -153,7 +153,7 @@ public class ReadReviewActivity extends AppCompatActivity {
                 textView = (TextView) view.findViewById(R.id.item_textView);
                 textView2 = (TextView) view.findViewById(R.id.item_textView2);
 
-                deleteButton = (ImageView)view.findViewById(R.id.delete_image);
+                deleteButton = (ImageView)view.findViewById(R.id.item_delete_image);
             }
         }
     }

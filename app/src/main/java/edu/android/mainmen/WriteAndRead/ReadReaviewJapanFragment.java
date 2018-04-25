@@ -22,8 +22,9 @@ import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
+import static edu.android.mainmen.WriteAndRead.FirebaseUploadActivity.*;
 
-import static edu.android.mainmen.WriteAndRead.FirebaseUploadActivity.JAPANFOOD;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,7 +54,7 @@ public class ReadReaviewJapanFragment extends Fragment {
         final ReviewRecyclerViewAdapter boardRecyclerViewAdapter = new ReviewRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
-        database.getReference().child(JAPANFOOD).addValueEventListener(new ValueEventListener() {
+        database.getReference().child(FOOD).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

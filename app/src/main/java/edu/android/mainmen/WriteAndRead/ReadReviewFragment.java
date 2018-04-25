@@ -2,6 +2,7 @@ package edu.android.mainmen.WriteAndRead;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,15 +11,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
@@ -26,6 +29,8 @@ import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
+
+import static edu.android.mainmen.WriteAndRead.FirebaseUploadActivity.*;
 
 
 /**
@@ -62,32 +67,15 @@ public class ReadReviewFragment extends Fragment {
         recyclerView.setAdapter(reviewRecyclerViewAdapter);
 
 
-        database.getReference().child("AllFood").addChildEventListener(new ChildEventListener() {
+        database.getReference().child(FOOD).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
 //                allFoodDTOS.clear();
-//                업로드시 바로 전체보기에서 추가가 되야하는데 전체보기에서는 나오지 않음
-                for(DataSnapshot data : dataSnapshot.getChildren()){
-                    AllFoodDTO allFoodDTO = data.getValue(AllFoodDTO.class);
+                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
                     ReadReviewFragment.this.allFoodDTOS.add(allFoodDTO);
                 }
-
                 reviewRecyclerViewAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
             }
 
             @Override
@@ -95,7 +83,6 @@ public class ReadReviewFragment extends Fragment {
 
             }
         });
-
         return view;
     }
 
@@ -128,6 +115,7 @@ public class ReadReviewFragment extends Fragment {
                     delete_content(position);
                 }
             });
+
         }
 
         @Override
@@ -137,16 +125,30 @@ public class ReadReviewFragment extends Fragment {
 
 
         //글 삭제
-        private void delete_content(int position) {
+        private void delete_content(final int position) {
 
-            storage.getReference().child("AllFood").child(allFoodDTOS.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            storage.getReference().child("images/").child(allFoodDTOS.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
 
+                    database.getReference().child(FOOD).child(uidLists.get(position)).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Toast.makeText(getContext(), "삭제가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
                 }
-            }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            }).addOnFailureListener(new OnFailureListener() {
                 @Override
-                public void onSuccess(Void aVoid) {
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
+
 
                 }
             });
@@ -166,7 +168,7 @@ public class ReadReviewFragment extends Fragment {
                 imageView = (ImageView) view.findViewById(R.id.item_imageView);
                 textView = (TextView) view.findViewById(R.id.item_textView);
                 textView2 = (TextView) view.findViewById(R.id.item_textView2);
-                deleteButton = (ImageView)view.findViewById(R.id.delete_image);
+                deleteButton = (ImageView)view.findViewById(R.id.item_delete_image);
             }
         }
 
