@@ -9,5 +9,5 @@ public class AllFoodDTO {
     public String uid;
     public String userId;
 
-  public String Location;
+//  public String Location;
 }

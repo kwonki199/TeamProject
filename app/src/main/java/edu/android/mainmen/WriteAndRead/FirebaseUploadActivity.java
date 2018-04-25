@@ -186,7 +186,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 allFoodDTO.description = description.getText().toString();
                 allFoodDTO.uid = auth.getCurrentUser().getUid();
                 allFoodDTO.userId = auth.getCurrentUser().getEmail();
-                allFoodDTO.Location = addLocation.getText().toString();
+//                allFoodDTO.Location = addLocation.getText().toString();
                 allFoodDTO.imageName = file.getLastPathSegment();
 
                 database.getReference().child(menu).push().setValue(allFoodDTO);

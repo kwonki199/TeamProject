@@ -87,6 +87,7 @@ public class ReadReaviewKoreanFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            ((CustomViewHolder)holder).ID.setText(firebaseData.get(position).userId);
             ((CustomViewHolder)holder).textView.setText(firebaseData.get(position).title);
             ((CustomViewHolder)holder).textView2.setText(firebaseData.get(position).description);
 
@@ -102,9 +103,11 @@ public class ReadReaviewKoreanFragment extends Fragment {
             ImageView imageView;
             TextView textView;
             TextView textView2;
+            TextView ID;
 
             public CustomViewHolder(View view) {
                 super(view);
+                ID = (TextView) view.findViewById(R.id.item_textView_id);
                 imageView = (ImageView) view.findViewById(R.id.item_imageView);
                 textView = (TextView) view.findViewById(R.id.item_textView);
                 textView2 = (TextView) view.findViewById(R.id.item_textView2);
