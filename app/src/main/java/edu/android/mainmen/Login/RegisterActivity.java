@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -33,8 +35,10 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.FirebaseDatabase;
 
 import edu.android.mainmen.MainActivity;
+import edu.android.mainmen.Model.User;
 import edu.android.mainmen.R;
 
 public class RegisterActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -43,11 +47,14 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     private FirebaseAuth mAuth;
     private EditText editTextEmail;
     private EditText editTextPassword;
-    //    private CallbackManager mCallbackManager;
+    private EditText editTextName;
+    private RadioButton rbtnMan;
+    private RadioButton rbtnWoman;
+    private RadioGroup rbtnGroup;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private CallbackManager mCallbackManager;
 
-    private Button emailLogin;
+    private Button signUp;
 
 
     @Override
@@ -86,36 +93,48 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
 
         editTextEmail = findViewById(R.id.edittext_email);
         editTextPassword = findViewById(R.id.edittext_password);
+        editTextName = findViewById(R.id.edittext_name);
+        rbtnMan = findViewById(R.id.rbtn_man);
+        rbtnWoman = findViewById(R.id.rbtn_woman);
+        rbtnGroup = findViewById(R.id.rbtnGroup);
+        signUp =  findViewById(R.id.email_login_button);
 
-        emailLogin =  findViewById(R.id.email_login_button);
 
         //회원가입 버튼
-        emailLogin.setOnClickListener(new View.OnClickListener() {
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createUser(editTextEmail.getText().toString(), editTextPassword.getText().toString());
+                if(editTextEmail.getText().toString()==null || editTextPassword.getText().toString()==null||editTextName.getText().toString()==null){
+                    Toast.makeText(RegisterActivity.this, "작성안한곳이 있습니다.", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }else {
+                    String sex = null;
+                    if (rbtnMan.isChecked()) {
+                        sex = "남성";
+                    } else if(rbtnWoman.isChecked()){
+                        sex = "여성";
+                    }
+                    createUser(editTextEmail.getText().toString(), editTextPassword.getText().toString(),editTextName.getText().toString(),sex);
+                }
             }
         });
 
+        //페이스북
         mCallbackManager = CallbackManager.Factory.create();
         LoginButton loginButton = (LoginButton) findViewById(R.id.facebook_login_button);
         loginButton.setReadPermissions("email", "public_profile");
         loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-
                 handleFacebookAccessToken(loginResult.getAccessToken());
             }
-
             @Override
             public void onCancel() {
-
                 // ...
             }
-
             @Override
             public void onError(FacebookException error) {
-
                 // ...
             }
         });
@@ -162,22 +181,27 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     }
 
 
-    private void createUser(final String email, final String password) {
+    private void createUser(final String email, final String password,final String name, final String sex) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            
                             Log.i("firebase-test", "onComplete successful");
                             Toast.makeText(RegisterActivity.this, "회원가입성공", Toast.LENGTH_SHORT).show();
                             loginUser(email, password);
+                            User user = new User();
+                            user.username=name;
+                            user.usersex = sex;
+                            String uid = task.getResult().getUser().getUid();
+                            FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(user);
 
                         } else {
                             Log.i("firebase-test", "onComplete NOT successful");
-                            Toast.makeText(RegisterActivity.this, "현재는 있는 아이디도 로그인이 되게끔 구현중", Toast.LENGTH_LONG).show();
-//                            Toast.makeText(RegisterActivity.this, "회원가입실패.(존재아이디/이메일양식/비밀번호6자리이상)", Toast.LENGTH_SHORT).show();
-                            loginUser(email, password);
-                            finish();
+                            Toast.makeText(RegisterActivity.this, "존재하는 아이디 입니다.", Toast.LENGTH_LONG).show();
+//                            loginUser(email, password);
+                            return;
                         }
                     }
                 });

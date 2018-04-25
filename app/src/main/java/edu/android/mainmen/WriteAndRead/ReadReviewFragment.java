@@ -33,7 +33,7 @@ import edu.android.mainmen.R;
 public class ReadReviewFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private List<AllFoodDTO> firebaseData = new ArrayList<>();
+    private List<AllFoodDTO> allFoodDTOS = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
     private FirebaseStorage storage;
@@ -64,11 +64,11 @@ public class ReadReviewFragment extends Fragment {
         database.getReference().child("AllFood").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-//                firebaseData.clear();
+//                allFoodDTOS.clear();
 //                업로드시 바로 전체보기에서 추가가 되야하는데 전체보기에서는 나오지 않음
                 for(DataSnapshot data : dataSnapshot.getChildren()){
                     AllFoodDTO allFoodDTO = data.getValue(AllFoodDTO.class);
-                    ReadReviewFragment.this.firebaseData.add(allFoodDTO);
+                    ReadReviewFragment.this.allFoodDTOS.add(allFoodDTO);
                 }
 
                 reviewRecyclerViewAdapter.notifyDataSetChanged();
@@ -95,7 +95,6 @@ public class ReadReviewFragment extends Fragment {
             }
         });
 
-
         return view;
     }
 
@@ -103,6 +102,7 @@ public class ReadReviewFragment extends Fragment {
 
     //어댑터
     class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -114,11 +114,12 @@ public class ReadReviewFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-            ((CustomViewHolder)holder).textView.setText(firebaseData.get(position).title);
-            ((CustomViewHolder)holder).textView2.setText(firebaseData.get(position).description);
+            ((CustomViewHolder)holder).textView.setText(allFoodDTOS.get(position).title);
+            ((CustomViewHolder)holder).textView2.setText(allFoodDTOS.get(position).description);
 
-            Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
+            Glide.with(holder.itemView.getContext()).load(allFoodDTOS.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
+            ((CustomViewHolder)holder).ID.setText(allFoodDTOS.get(position).userId);
 
             ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -130,14 +131,14 @@ public class ReadReviewFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            return firebaseData.size();
+            return allFoodDTOS.size();
         }
 
 
         //글 삭제
         private void delete_content(int position) {
 
-            storage.getReference().child("AllFood").child(firebaseData.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+            storage.getReference().child("AllFood").child(allFoodDTOS.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
 

@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity
 //        header_name.setText(auth.getCurrentUser().getDisplayName());
 //        header_email.setText(auth.getCurrentUser().getEmail());
 
-
 //       // drawer에 사용자 아이디 나타냄
         FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
@@ -134,8 +133,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             header_email.setText("로그인이 되어있지 않습니다.");
         }
-
-
 
         // 업로드 버튼
         WriteReviewButton = findViewById(R.id.fab);
@@ -185,10 +182,14 @@ public class MainActivity extends AppCompatActivity
         TextView tv = findViewById(R.id.info);
 
         int id = item.getItemId();
+        // 로그인
 
-        if (id == R.id.nav_membershipInformation) { // 로그인
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
+        if (id ==  R.id.nav_membershipInformation) {
+            FirebaseUser user = auth.getCurrentUser();
+            if (user == null) {
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
 
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
             Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);

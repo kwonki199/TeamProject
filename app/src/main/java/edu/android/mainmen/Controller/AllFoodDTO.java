@@ -1,5 +1,10 @@
 package edu.android.mainmen.Controller;
 
+import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class AllFoodDTO {
 
     public String imageUrl;
@@ -8,6 +13,8 @@ public class AllFoodDTO {
     public String description;
     public String uid;
     public String userId;
+    public String Location;
+//    public Map<String, Boolean> stars = new HashMap<>();
 
-  public String Location;
+
 }
