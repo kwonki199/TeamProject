@@ -105,6 +105,47 @@
             android:text="여성" />
     </RadioGroup>
 
+    <RadioGroup
+        android:id="@+id/sign_up_rbtnGroup2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sign_up_rbtnGroup">
+
+        <RadioButton
+            android:id="@+id/sign_up_age1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="10대" />
+
+        <RadioButton
+            android:id="@+id/sign_up_age2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="20~30대" />
+
+        <RadioButton
+            android:id="@+id/sign_up_age3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="40~50대" />
+
+        <RadioButton
+            android:id="@+id/sign_up_age4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="60대 이상" />
+    </RadioGroup>
+
     <Button
         android:id="@+id/sign_up_button"
         android:layout_width="0dp"
