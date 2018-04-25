@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -68,14 +69,19 @@ public class ReadReaviewKoreanFragment extends Fragment {
         final ReviewRecyclerViewAdapter boardRecyclerViewAdapter = new ReviewRecyclerViewAdapter();
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
+
+
         database.getReference().child(FOOD).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 firebaseData.clear();
+                uidLists.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
-                    ReadReaviewKoreanFragment.this.firebaseData.add(allFoodDTO);
+                    firebaseData.add(allFoodDTO);
+                    String uidKey = snapshot.getKey();
+                    uidLists.add(uidKey);
                 }
                 boardRecyclerViewAdapter.notifyDataSetChanged();
             }
@@ -90,7 +96,7 @@ public class ReadReaviewKoreanFragment extends Fragment {
     }
 
 
-
+    // 어댑터
     class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
@@ -110,7 +116,7 @@ public class ReadReaviewKoreanFragment extends Fragment {
             Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
             //좋아요 버튼
-           ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
+            ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     onStarClicked(database.getReference().child(FOOD).child(uidLists.get(position)));

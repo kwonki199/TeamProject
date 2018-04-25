@@ -60,9 +60,12 @@ public class ReadReaviewWesternFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 firebaseData.clear();
+                uidLists.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
-                    ReadReaviewWesternFragment.this.firebaseData.add(allFoodDTO);
+                   firebaseData.add(allFoodDTO);
+                    String uidKey = snapshot.getKey();
+                    uidLists.add(uidKey);
                 }
                 boardRecyclerViewAdapter.notifyDataSetChanged();
             }
