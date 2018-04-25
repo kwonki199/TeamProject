@@ -41,9 +41,7 @@ import edu.android.mainmen.MainActivity;
 import edu.android.mainmen.Model.User;
 import edu.android.mainmen.R;
 
-public class RegisterActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
-    private static final int RC_SIGN_IN = 10;
-    private GoogleApiClient mGoogleApiClient;
+public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private EditText editTextEmail;
     private EditText editTextPassword;
@@ -52,10 +50,8 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     private RadioButton rbtnWoman;
     private RadioGroup rbtnGroup;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    private CallbackManager mCallbackManager;
 
     private Button signUp;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,31 +70,13 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 .requestEmail()
                 .build();
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-
-        SignInButton googleLogin = (SignInButton) findViewById(R.id.googleLogin);
-        googleLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 구글사용자 여부 확인
-                Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-                startActivityForResult(signInIntent, RC_SIGN_IN);
-            }
-
-        });
-
-
-
-        editTextEmail = findViewById(R.id.edittext_email);
-        editTextPassword = findViewById(R.id.edittext_password);
-        editTextName = findViewById(R.id.edittext_name);
-        rbtnMan = findViewById(R.id.rbtn_man);
-        rbtnWoman = findViewById(R.id.rbtn_woman);
-        rbtnGroup = findViewById(R.id.rbtnGroup);
-        signUp =  findViewById(R.id.email_login_button);
-
+        editTextEmail = findViewById(R.id.sign_up_edittext_email);
+        editTextPassword = findViewById(R.id.sign_up_edittext_password);
+        editTextName = findViewById(R.id.sign_up_edittext_name);
+        rbtnMan = findViewById(R.id.sign_up_rbtn_man);
+        rbtnWoman = findViewById(R.id.sign_up_rbtn_woman);
+        rbtnGroup = findViewById(R.id.sign_up_rbtnGroup);
+        signUp =  findViewById(R.id.sign_up_button);
 
         //회원가입 버튼
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -119,26 +97,6 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                 }
             }
         });
-
-        //페이스북
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = (LoginButton) findViewById(R.id.facebook_login_button);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-            @Override
-            public void onCancel() {
-                // ...
-            }
-            @Override
-            public void onError(FacebookException error) {
-                // ...
-            }
-        });
-
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -162,32 +120,13 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
     }// end onCreate
 
 
-    private void handleFacebookAccessToken(AccessToken token) {
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "facebook 연동 성공", Toast.LENGTH_SHORT).show();
-                        }
-
-
-                        // ...
-                    }
-                });
-    }
-
-
     private void createUser(final String email, final String password,final String name, final String sex) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            
+
                             Log.i("firebase-test", "onComplete successful");
                             Toast.makeText(RegisterActivity.this, "회원가입성공", Toast.LENGTH_SHORT).show();
                             loginUser(email, password);
@@ -222,49 +161,6 @@ public class RegisterActivity extends AppCompatActivity implements GoogleApiClie
                         // ...
                     }
                 });
-    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        mCallbackManager.onActivityResult(requestCode, resultCode, data);
-
-        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            if (result.isSuccess()) {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = result.getSignInAccount();
-                firebaseAuthWithGoogle(account);
-            } else {
-                // Google Sign In failed, update UI appropriately
-                // ...
-            }
-        }
-    }
-
-    private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-
-
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-
-
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "Firebase 아이디 생성이 완료 되었습니다.", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
-    }
-
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 
     @Override

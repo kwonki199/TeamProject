@@ -36,42 +36,74 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/login_id2"
+                    android:id="@+id/edittext_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="16dp"
                     android:ems="10"
-                    android:hint="아이디"
+                    android:hint="Email(양식지켜야함)"
                     android:inputType="textEmailAddress" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/textInputLayout2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/login_pw"
+                    android:id="@+id/edittext_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/prompt_password"
-                    android:imeActionId="6"
-                    android:imeActionLabel="@string/action_sign_in_short"
-                    android:imeOptions="actionUnspecified"
-                    android:inputType="textPassword"
-                    android:maxLines="1"
-                    android:singleLine="true" />
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:ems="10"
+                    android:hint="Password(6자리이상)"
+                    android:inputType="textPassword" />
 
             </android.support.design.widget.TextInputLayout>
 
+
             <Button
-                android:theme="@style/ThemeOverlay.AppCompat.Dark"
-                android:id="@+id/id_sign_in_button"
-                style="?android:textAppearanceSmall"
+                android:id="@+id/email_login_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <com.google.android.gms.common.SignInButton
+                    android:id="@+id/google_login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/facebook_login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"/>
+
+            </LinearLayout>
 
 
             <LinearLayout
@@ -79,20 +111,21 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-
                 <Button
-                    android:id="@+id/registerBtn"
+                    android:id="@+id/resister_button"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:inputType="text"
-                    android:padding="16dp"
-                    android:layout_weight="1"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/colorPrimary"
+                    android:textColor="@android:color/white"
                     android:text="회원가입"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Button" />
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
+
+
 </LinearLayout>

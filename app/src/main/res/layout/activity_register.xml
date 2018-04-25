@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/edittext_email"
+            android:id="@+id/sign_up_edittext_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -41,7 +41,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <EditText
-            android:id="@+id/edittext_password"
+            android:id="@+id/sign_up_edittext_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -66,7 +66,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
         <EditText
-            android:id="@+id/edittext_name"
+            android:id="@+id/sign_up_edittext_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -79,7 +79,7 @@
     </android.support.design.widget.TextInputLayout>
 
     <RadioGroup
-        android:id="@+id/rbtnGroup"
+        android:id="@+id/sign_up_rbtnGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -91,14 +91,14 @@
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
 
         <RadioButton
-            android:id="@+id/rbtn_man"
+            android:id="@+id/sign_up_rbtn_man"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="남성" />
 
         <RadioButton
-            android:id="@+id/rbtn_woman"
+            android:id="@+id/sign_up_rbtn_woman"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -106,12 +106,12 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/email_login_button"
+        android:id="@+id/sign_up_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="256dp"
         android:background="@color/colorPrimary"
         android:text="가입완료"
         android:textColor="@android:color/white"
@@ -120,35 +120,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout3" />
-
-
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleLogin"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_login_button" />
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/facebook_login_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:paddingBottom="15dp"
-        android:paddingTop="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/googleLogin"
-        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>
