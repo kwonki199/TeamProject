@@ -20,7 +20,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -28,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
+import edu.android.mainmen.Model.Function;
 import edu.android.mainmen.R;
 
 import static edu.android.mainmen.WriteAndRead.FirebaseUploadActivity.*;
@@ -70,10 +74,13 @@ public class ReadReviewFragment extends Fragment {
         database.getReference().child(FOOD).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-//                allFoodDTOS.clear();
+                allFoodDTOS.clear();
+                uidLists.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
-                    ReadReviewFragment.this.allFoodDTOS.add(allFoodDTO);
+                    String uidKey = snapshot.getKey();
+                    allFoodDTOS.add(allFoodDTO);
+                    uidLists.add(uidKey);
                 }
                 reviewRecyclerViewAdapter.notifyDataSetChanged();
             }
@@ -108,6 +115,22 @@ public class ReadReviewFragment extends Fragment {
             Glide.with(holder.itemView.getContext()).load(allFoodDTOS.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
             ((CustomViewHolder)holder).ID.setText(allFoodDTOS.get(position).userId);
+            //좋아요 버튼
+            ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onStarClicked(database.getReference().child(FOOD).child(uidLists.get(position)));
+                }
+            });
+
+            if (allFoodDTOS.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
+                ((CustomViewHolder)holder).starButton.setImageResource(R.drawable.ic_heart2);
+
+            }else {
+                ((CustomViewHolder)holder).starButton.setImageResource(R.drawable.ic_heart1);
+            }
+
+
 
             ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -153,14 +176,45 @@ public class ReadReviewFragment extends Fragment {
                 }
             });
         }
+        private void onStarClicked(DatabaseReference postRef) {
+            postRef.runTransaction(new Transaction.Handler() {
+                @Override
+                public Transaction.Result doTransaction(MutableData mutableData) {
+                    AllFoodDTO firebaseData = mutableData.getValue(AllFoodDTO.class);
+                    if (firebaseData == null) {
+                        return Transaction.success(mutableData);
+                    }
+
+                    if (firebaseData.stars.containsKey(auth.getCurrentUser().getUid())) {
+                        // Unstar the post and remove self from stars
+                        firebaseData.starCount = firebaseData.starCount - 1;
+                        firebaseData.stars.remove(auth.getCurrentUser().getUid());
+                    } else {
+                        // Star the post and add self to stars
+                        firebaseData.starCount = firebaseData.starCount + 1;
+                        firebaseData.stars.put(auth.getCurrentUser().getUid(), true);
+                    }
+
+                    // Set value and report transaction success
+                    mutableData.setValue(firebaseData);
+                    return Transaction.success(mutableData);
+                }
+
+                @Override
+                public void onComplete(DatabaseError databaseError, boolean b,
+                                       DataSnapshot dataSnapshot) {
+                    // Transaction completed
+
+                }
+            });
+        }
 
         //뷰홀더
         private class CustomViewHolder extends RecyclerView.ViewHolder {
+            TextView ID,textView,textView2;
             ImageView imageView;
-            TextView textView;
-            TextView textView2;
             ImageView deleteButton;
-            TextView ID;
+            ImageView starButton;
 
             public CustomViewHolder(View view) {
                 super(view);
@@ -169,6 +223,7 @@ public class ReadReviewFragment extends Fragment {
                 textView = (TextView) view.findViewById(R.id.item_textView);
                 textView2 = (TextView) view.findViewById(R.id.item_textView2);
                 deleteButton = (ImageView)view.findViewById(R.id.item_delete_image);
+                starButton = view.findViewById(R.id.item_heart_image);
             }
         }
 
