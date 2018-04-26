@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth auth;
     private FirebaseStorage storage;
 
+    private long lastTimeBackPressed = 0;
 
 
     @Override
@@ -81,8 +82,6 @@ public class MainActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         auth = FirebaseAuth.getInstance();
-
-
 
 
         setSupportActionBar(toolbar);
@@ -146,16 +145,22 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
-
+    /* ↓ Back 버튼 누를 시 앱 종료 기능 */
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+
+        if (System.currentTimeMillis() > lastTimeBackPressed + 2000) {
+            lastTimeBackPressed = System.currentTimeMillis();
+            Toast.makeText(this, "한번 더 누르면 맛뷰를 빠져나갑니다.", Toast.LENGTH_SHORT).show();
+            return;
+
+        } else { // back 키 2번 누르면 앱 종료
+            finish();
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(0);
+
         }
+
     }
 
     @Override
@@ -232,13 +237,12 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ReadReviewFragment(), "전체");
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");
-        adapter.addFragment(new ReviewWesternFragment(), "양식");
+        adapter.addFragment(new ReviewWesternFragment(), "피자/양식");
         adapter.addFragment(new ReviewJapanFragment(), "일식");
         adapter.addFragment(new ReadReviewFragment(), "치킨");
-        adapter.addFragment(new ReadReviewFragment(), "피자");
         adapter.addFragment(new ReadReviewFragment(), "분식");
         adapter.addFragment(new ReadReviewFragment(), "패스트푸드");
-        adapter.addFragment(new ReadReviewFragment(), "족발,보쌈");
+        adapter.addFragment(new ReadReviewFragment(), "족발/보쌈");
         viewPager.setAdapter(adapter);
     }
 
@@ -248,6 +252,7 @@ public class MainActivity extends AppCompatActivity
         Log.i(TAG, "position=" + position);
         mViewPager.setCurrentItem(position+1);
     }
+
 
     // 페이스북
     private void getAppKeyHash() {
@@ -265,6 +270,7 @@ public class MainActivity extends AppCompatActivity
             Log.e("name not found", e.toString());
         }
     }
+
 
 
 

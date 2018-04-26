@@ -74,7 +74,7 @@ public class FoodListFragment extends Fragment {
         public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             kindsOfFood food = dataset.get(position);
             kindsOfFoodDao dao = kindsOfFoodDao.getInstance();
-            holder.foodName.setText(food.getName());
+//            holder.foodName.setText(food.getName());
             holder.foodImageNo.setImageResource(dao.ImageSource(position));    /////////////////////
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -92,13 +92,13 @@ public class FoodListFragment extends Fragment {
 
         class ViewHolder extends RecyclerView.ViewHolder {
 
-            private TextView foodName;
+//            private TextView foodName;
             public ImageView foodImageNo; /////////////////////////
 
 
             public ViewHolder(View itemView) {
                 super(itemView);
-                foodName = itemView.findViewById(R.id.itemMenuText);
+//                foodName = itemView.findViewById(R.id.itemMenuText);
                 foodImageNo = itemView.findViewById(R.id.itemMenuImage); ///////////////
 
             }

@@ -12,7 +12,7 @@ public class kindsOfFoodDao {
 //            R.drawable.taeri1,R.drawable.taeri2,R.drawable.teari3
 //    };
     private static final String[] ALL_MENU = {
-            "전체리뷰","한식", "중식", "양식", "일식","치킨","피자","분식","패스트푸드","족발,보쌈"
+            "전체리뷰","한식", "중식", "피자", "일식","치킨","분식","패스트푸드","족발,보쌈"
     };
     private static final String[] KOREAN_FOOD = {
             "된장찌개" ,"두부김치","삼겹살", "비빕밥","제육볶음","보쌈","족발"
@@ -24,10 +24,9 @@ public class kindsOfFoodDao {
             "파스타","피자","스테이크"
     };
     private static final int[] ALL_MENU_IMAGE = { ////////////////////////////// 전체 메뉴 이미지 그림
-            R.drawable.f0, R.drawable.f1, R.drawable.f2,
-            R.drawable.f3, R.drawable.f4, R.drawable.f5,
-            R.drawable.f6, R.drawable.f7, R.drawable.f8,
-            R.drawable.f9,
+            R.drawable.f1, R.drawable.f2, R.drawable.f3,
+            R.drawable.f4, R.drawable.f5, R.drawable.f6,
+            R.drawable.f7, R.drawable.f8, R.drawable.f9
     };
 
     private List<kindsOfFood> foodList = new ArrayList<>();
