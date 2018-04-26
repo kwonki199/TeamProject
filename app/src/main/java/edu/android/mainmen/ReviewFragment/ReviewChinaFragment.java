@@ -68,7 +68,7 @@ public class ReviewChinaFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         recyclerView = view.findViewById(R.id.recyclerView_Review2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final MyAdapter boardRecyclerViewAdapter = new MyAdapter(firebaseData, auth, database, storage, uidLists);
+        final MyAdapter boardRecyclerViewAdapter = new MyAdapter(getActivity(),firebaseData, auth, database, storage, uidLists);
         recyclerView.setAdapter(boardRecyclerViewAdapter);
 
 

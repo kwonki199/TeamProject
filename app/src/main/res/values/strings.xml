@@ -78,6 +78,7 @@
         <!--<item>족발/보쌈</item>-->
 
     </string-array>
+    <string name="title_activity_maps_test">Map</string>
 
 
 </resources>

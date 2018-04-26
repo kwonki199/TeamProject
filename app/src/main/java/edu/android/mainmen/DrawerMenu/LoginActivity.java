@@ -186,7 +186,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                             loginUser(email, password);
 
 
-                            Toast.makeText(LoginActivity.this, "환영합니다.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(LoginActivity.this,"환영합니다.", Toast.LENGTH_LONG).show();
 
                             finish();
                         }

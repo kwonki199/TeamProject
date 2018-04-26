@@ -1,5 +1,6 @@
 package edu.android.mainmen.Adapter;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,7 +32,9 @@ import edu.android.mainmen.R;
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
 
 public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    
 
+    private Context context;
     private List<AllFoodDTO> firebaseData;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
@@ -39,7 +42,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private List<String> uidLists;
 
 
-    public MyAdapter(List<AllFoodDTO> firebaseData, FirebaseAuth auth, FirebaseDatabase database, FirebaseStorage storage, List<String> uidLists) {
+
+    public MyAdapter(Context context, List<AllFoodDTO> firebaseData, FirebaseAuth auth, FirebaseDatabase database, FirebaseStorage storage, List<String> uidLists) {
+        this.context = context;
         this.firebaseData = firebaseData;
         this.auth = auth;
         this.database = database;
@@ -69,7 +74,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onStarClicked(database.getReference().child(FOOD).child(uidLists.get(position)));
+                FirebaseUser user = auth.getCurrentUser();
+                if (user != null) {
+                    onStarClicked(database.getReference().child(FOOD).child(uidLists.get(position)));
+                } else {
+                    Toast.makeText(context, "로그인해주세요.", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -105,7 +115,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                     @Override
                     public void onSuccess(Void aVoid) {
 
-//                        Toast.makeText(getContext(), "삭제가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "삭제가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
                     }
                 }).addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -117,7 +127,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(getContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "삭제 실패", Toast.LENGTH_SHORT).show();
 
 
             }

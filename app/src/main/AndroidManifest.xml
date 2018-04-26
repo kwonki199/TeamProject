@@ -70,7 +70,7 @@
             android:value="AIzaSyBLOpelo4l6yKdCApN_d5uUehocuiw7Uuk" />
 
         <activity android:name=".Upload.MapsActivity" />
-        <activity android:name=".DrawerMenu.MyWritingActivity"></activity>
+        <activity android:name=".DrawerMenu.MyWritingActivity" />
     </application>
 
 </manifest>

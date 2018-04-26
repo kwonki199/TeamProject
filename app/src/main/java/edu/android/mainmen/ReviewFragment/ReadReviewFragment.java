@@ -67,7 +67,7 @@ public class ReadReviewFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerView_Review2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final MyAdapter reviewRecyclerViewAdapter = new MyAdapter(allFoodDTOS, auth, database, storage, uidLists);
+        final MyAdapter reviewRecyclerViewAdapter = new MyAdapter(getActivity(),allFoodDTOS, auth, database, storage, uidLists);
         recyclerView.setAdapter(reviewRecyclerViewAdapter);
 
 
