@@ -240,7 +240,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new FoodWestFragment(), "분식");
         adapter.addFragment(new FoodWestFragment(), "패스트푸드");
         adapter.addFragment(new FoodWestFragment(), "족발,보쌈");
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);     
     }
 
     // 탭과 프래그먼트 연동
