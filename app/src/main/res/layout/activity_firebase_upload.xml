@@ -15,7 +15,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:onClick="getGallery"
-        android:text="getGallery"
+        android:text="사진선택"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.08"
@@ -38,7 +38,7 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInputLayout5"
         android:layout_width="210dp"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="44dp"
@@ -46,13 +46,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/upload_imageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.155">
 
         <android.support.design.widget.TextInputEditText
             android:id="@+id/upload_title"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:hint="제목" />
+            android:hint="음식이름을 넣어주세요" />
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="top"
-            android:hint="Description"
+            android:hint="글쓰기"
             android:inputType="textMultiLine" />
     </android.support.design.widget.TextInputLayout>
 
@@ -99,21 +99,22 @@
         android:rating="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.871"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.396" />
+        app:layout_constraintVertical_bias="0.188" />
 
     <Spinner
         android:id="@+id/selectCategorySp"
-        android:layout_width="211dp"
-        android:layout_height="27dp"
-        android:layout_marginBottom="356dp"
+        android:layout_width="96dp"
+        android:layout_height="32dp"
+        android:layout_marginBottom="460dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:prompt="@string/category_prompt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.576"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -128,22 +129,23 @@
         android:text="위치"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.996"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.13" />
 
     <TextView
         android:id="@+id/addLocation"
-        android:layout_width="0dp"
+        android:layout_width="238dp"
         android:layout_height="35dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="TextView"
+        android:text="위치"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -63,6 +63,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
         ((CustomViewHolder)holder).ID.setText(firebaseData.get(position).userId);
+        ((CustomViewHolder)holder).heartCount.setText(firebaseData.get(position).starCount+"명이 좋아합니다.");
         //좋아요 버튼
         ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -167,6 +168,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         ImageView imageView;
         ImageView deleteButton;
         ImageView starButton;
+        TextView heartCount;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -176,6 +178,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             textView2 = (TextView) itemView.findViewById(R.id.item_textView2);
             deleteButton = (ImageView)itemView.findViewById(R.id.item_delete_image);
             starButton = itemView.findViewById(R.id.item_heart_image);
+            heartCount = itemView.findViewById(R.id.item_heart_count);
 
         }
     }
