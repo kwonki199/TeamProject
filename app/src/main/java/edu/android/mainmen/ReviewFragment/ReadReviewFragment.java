@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -113,6 +114,10 @@ public class ReadReviewFragment extends Fragment {
             Glide.with(holder.itemView.getContext()).load(allFoodDTOS.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
             ((CustomViewHolder)holder).ID.setText(allFoodDTOS.get(position).userId);
+            ((CustomViewHolder)holder).heartCount.setText(allFoodDTOS.get(position).starCount+"명이 좋아합니다.");
+
+
+
             //좋아요 버튼
             ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,11 +126,15 @@ public class ReadReviewFragment extends Fragment {
                 }
             });
 
-            if (allFoodDTOS.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
-                ((CustomViewHolder)holder).starButton.setImageResource(R.drawable.ic_heart2);
+            FirebaseUser user = auth.getCurrentUser();
+            if(user!=null) {
 
-            }else {
-                ((CustomViewHolder)holder).starButton.setImageResource(R.drawable.ic_heart1);
+                if (allFoodDTOS.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
+                    ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.ic_heart2);
+
+                } else {
+                    ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.ic_heart1);
+                }
             }
 
 
@@ -215,6 +224,7 @@ public class ReadReviewFragment extends Fragment {
             ImageView imageView;
             ImageView deleteButton;
             ImageView starButton;
+            TextView heartCount;
 
             public CustomViewHolder(View view) {
                 super(view);
@@ -224,6 +234,7 @@ public class ReadReviewFragment extends Fragment {
                 textView2 = (TextView) view.findViewById(R.id.item_textView2);
                 deleteButton = (ImageView)view.findViewById(R.id.item_delete_image);
                 starButton = view.findViewById(R.id.item_heart_image);
+                heartCount = view.findViewById(R.id.item_heart_count);
             }
         }
 

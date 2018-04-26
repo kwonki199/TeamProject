@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -122,11 +123,15 @@ public class ReviewChinaFragment extends Fragment {
                 }
             });
 
-            if (firebaseData.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
-                ((CustomViewHolder)holder).starButton.setImageResource(R.drawable.ic_heart2);
+            FirebaseUser user = auth.getCurrentUser();
+            if(user!=null) {
 
-            }else {
-                ((CustomViewHolder)holder).starButton.setImageResource(R.drawable.ic_heart1);
+                if (firebaseData.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
+                    ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.ic_heart2);
+
+                } else {
+                    ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.ic_heart1);
+                }
             }
 
 

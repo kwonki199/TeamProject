@@ -66,6 +66,16 @@
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/ic_heart1" />
 
+        <TextView
+            android:id="@+id/item_heart_count"
+            android:layout_width="247dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0"
+            android:gravity="center_vertical"
+
+            android:text="Count"
+            android:textSize="14sp" />
+
         <ImageView
             android:layout_margin="8dp"
             android:id="@+id/comment_image"
@@ -74,10 +84,10 @@
             app:srcCompat="@drawable/ic_comment" />
 
         <ImageView
-            android:layout_margin="8dp"
             android:id="@+id/item_delete_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             app:srcCompat="@drawable/ic_delete" />
 
     </LinearLayout>
