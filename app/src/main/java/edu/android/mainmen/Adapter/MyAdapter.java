@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -59,7 +60,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
         ((CustomViewHolder)holder).textView.setText(firebaseData.get(position).title);
         ((CustomViewHolder)holder).textView2.setText(firebaseData.get(position).description);
-
+        ((CustomViewHolder)holder).rb.setRating(firebaseData.get(position).ratingScore);
         Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
         ((CustomViewHolder)holder).ID.setText(firebaseData.get(position).userId);
@@ -169,6 +170,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         ImageView deleteButton;
         ImageView starButton;
         TextView heartCount;
+        RatingBar rb;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -179,6 +181,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             deleteButton = (ImageView)itemView.findViewById(R.id.item_delete_image);
             starButton = itemView.findViewById(R.id.item_heart_image);
             heartCount = itemView.findViewById(R.id.item_heart_count);
+            rb = itemView.findViewById(R.id.rb);
 
         }
     }

@@ -14,6 +14,7 @@ public class AllFoodDTO {
     public String description;
     public String uid;
     public String userId;
+    public float ratingScore;
 
     public String Location;
 

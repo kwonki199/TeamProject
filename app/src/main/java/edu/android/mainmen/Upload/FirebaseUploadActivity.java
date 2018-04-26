@@ -27,6 +27,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,6 +47,7 @@ import com.google.firebase.storage.UploadTask;
 import java.io.File;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
+import edu.android.mainmen.MainActivity;
 import edu.android.mainmen.R;
 
 public class FirebaseUploadActivity extends AppCompatActivity {
@@ -59,7 +61,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private static final String TAGSPINNER = "spinner";
     private static final int PLACE_PICKER_REQUEST = 1;
     private static final int GALLERY_CODE = 10;
-    private static final int CAMERA_REQUEST = 18;
     private FirebaseAuth auth;
     private FirebaseStorage storage;
     private FirebaseDatabase database;
@@ -70,8 +71,8 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private String imagePath;
     private TextView addLocation;
     private Spinner spinner;
+    private RatingBar rb;
     private int spinnerPosition;
-
 
 
     @Override
@@ -94,6 +95,18 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         upload_Button = findViewById(R.id.upload_button);
         addLocation = findViewById(R.id.addLocation);
         spinner = findViewById(R.id.selectCategorySp);
+        rb = findViewById(R.id.rb);
+
+
+        rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+
+
+                Toast.makeText(FirebaseUploadActivity.this, rating + "점!", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
 
         // 스피너
@@ -120,7 +133,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
             requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
         }
 
-//        // 위치 설정
+//        // 위치 설정(일단 사용 안함)
 //        Intent intent = getIntent();
 //        String address = intent.getStringExtra("getAddress");
 //        addLocation.setText(address);
@@ -132,7 +145,9 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 if (spinnerPosition != 0) {
                     upload(imagePath, spinnerPosition);
                     Log.i(TAGSPINNER, "position=" + spinnerPosition);
+                    Toast.makeText(FirebaseUploadActivity.this, "업로드가 되었습니다.", Toast.LENGTH_SHORT).show();
                     finish();
+
                 } else {
                     Toast.makeText(FirebaseUploadActivity.this, "메뉴를 선택해주세요.", Toast.LENGTH_SHORT).show();
                 }
@@ -156,17 +171,17 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         // 키값 메뉴
         String foodmenu = null;
         if (p == 1) {
-            menu = FOOD+FOODKOREAN;
+            menu = FOOD + FOODKOREAN;
             foodmenu = "korea";
 
         } else if (p == 2) {
-            menu = FOOD+FOODCHINESE;
+            menu = FOOD + FOODCHINESE;
             foodmenu = "china";
         } else if (p == 3) {
-            menu = FOOD+FOODWESTERN;
+            menu = FOOD + FOODWESTERN;
             foodmenu = "western";
         } else if (p == 4) {
-            menu = FOOD+FOODJAPAN;
+            menu = FOOD + FOODJAPAN;
             foodmenu = "japan";
         } else {
 
@@ -174,6 +189,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
         //storage 저장소....
         StorageReference riversRef = storageRef.child("images/" + file.getLastPathSegment());
+
         UploadTask uploadTask = riversRef.putFile(file);
 
         // Register observers to listen for when the download is done or if it fails
@@ -197,11 +213,14 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 allFoodDTO.description = description.getText().toString();
                 allFoodDTO.uid = auth.getCurrentUser().getUid();
                 allFoodDTO.userId = auth.getCurrentUser().getEmail();
-//                allFoodDTO.Location = addLocation.getText().toString();
+                allFoodDTO.Location = addLocation.getText().toString();
                 allFoodDTO.imageName = file.getLastPathSegment();
+                allFoodDTO.ratingScore = rb.getRating();
                 allFoodDTO.food = Foodmenu;
-
                 database.getReference().child(FOOD).push().setValue(allFoodDTO);
+
+
+
             }
         });
 
@@ -213,33 +232,46 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == GALLERY_CODE) {
-            imagePath = getPath(data.getData());        // 파일 경로저장
-            File f = new File(imagePath);               // File객체 생성
-            imageView.setImageURI(Uri.fromFile(f));     // view에 Uri로 가져와서 보여지게
-        } else if (requestCode == CAMERA_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                Bitmap imagePath = (Bitmap) data.getExtras().get("data");
-                imageView.setImageBitmap(imagePath);
-                //  File f = new File(String.valueOf(imagePath));
-            }
-        } else if (requestCode == PLACE_PICKER_REQUEST) {
-            final Place place = PlacePicker.getPlace(this, data);
-            final CharSequence name = place.getName();
-            final CharSequence address = place.getAddress();
-            String attributions = (String) place.getAttributions();
-            if (attributions == null) {
-                attributions = "";
-            }
-            addLocation.setText("");
-            addLocation.append(name);
-            addLocation.append(": " + address + "\n");
-            addLocation.append(Html.fromHtml(attributions));
 
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
+
+                if(data != null) {
+
+
+                    imagePath = getPath(data.getData());        // 파일 경로저장
+                    File f = new File(imagePath);               // File객체 생성
+                    imageView.setImageURI(Uri.fromFile(f));     // view에 Uri로 가져와서 보여지게
+                }else{
+                    imageView.setImageURI(null);
+
+                }
+
+
+
+
+        } else if (requestCode == PLACE_PICKER_REQUEST) {
+
+            if (data != null) {
+                final Place place = PlacePicker.getPlace(this, data);
+                //final CharSequence name = place.getName();
+
+                final CharSequence address = place.getAddress();
+                String attributions = (String) place.getAttributions();
+                if (attributions == null) {
+                    attributions = "";
+                }
+                addLocation.setText("");
+                //addLocation.append(name);
+                addLocation.append(address + "\n");
+                addLocation.append(Html.fromHtml(attributions));
+
+            } else {
+                addLocation.setText("");
+                //  super.onActivityResult(requestCode, resultCode, data);
+
+
+            }
         }
     }
-
 
     // 경로 저장
 
@@ -254,49 +286,25 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         cursor.moveToFirst();
 
         return cursor.getString(index);
+
     }
 
 
     // 사진
     public void getGallery(View view) {
 
-        DialogInterface.OnClickListener cameraListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                useCamera();
-            }
-
-        };
-
-        // 앨범에서 사진 선택
-        DialogInterface.OnClickListener albumListener = new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
-                startActivityForResult(intent, GALLERY_CODE);
-            }
-
-        };
-
-        // 취소
-        DialogInterface.OnClickListener cancelListener = new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-
-        };
-        new AlertDialog.Builder(this)
-                .setTitle("업로드할 이미지 선택")
-                .setPositiveButton("사진촬영", cameraListener)
-                .setNegativeButton("앨범선택", albumListener)
-                .setNeutralButton("취소", cancelListener)
-                .show();
-        //setNeutralButton
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType(MediaStore.Images.Media.CONTENT_TYPE);
+        startActivityForResult(intent, GALLERY_CODE);
     }
 
+
+    // 맵 (일단 사용안함)
+
+//    public void findByMyLocation(View view) {
+//        Intent intent = new Intent(this, MapsActivity.class);
+//        startActivity(intent);
+//    }
     // 맵
 
     public void findByMyLocation(View view) {
@@ -317,6 +325,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
 
     public void findMarketLocation(View view) {
+
         PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
         try {
             Intent intent = intentBuilder.build(this);
@@ -327,19 +336,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-    }
 
-    public void useCamera() {
-        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
-        if (permissionCheck == PackageManager.PERMISSION_DENIED) {
-            // 권한 없음
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 0);
-            //Toast.makeText(getApplicationContext(),"권한없음",Toast.LENGTH_SHORT).show();
-        } else {
-            //권한 있음
-            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            startActivityForResult(intent, 1);
-        }
     }
 
 

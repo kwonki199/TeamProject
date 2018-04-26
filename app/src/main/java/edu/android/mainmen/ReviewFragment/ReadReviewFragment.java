@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -27,12 +26,13 @@ import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.android.mainmen.Adapter.MyAdapter;
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
+import edu.android.mainmen.Adapter.MyAdapter;
 
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.*;
 
