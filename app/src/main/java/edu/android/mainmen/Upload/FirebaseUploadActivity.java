@@ -1,4 +1,4 @@
-package edu.android.mainmen.WriteAndRead;
+package edu.android.mainmen.Upload;
 
 import android.Manifest;
 
@@ -49,7 +49,12 @@ import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
 public class FirebaseUploadActivity extends AppCompatActivity {
-    public static final String FOOD = "Food";
+    public static final String FOOD = "Food/";
+    public static final String FOODKOREAN = "KoreanFood";
+    public static final String FOODCHINESE = "ChineseFood";
+    public static final String FOODWESTERN = "WesternFood";
+    public static final String FOODJAPAN = "JapanFood";
+
 
     private static final String TAGSPINNER = "spinner";
     private static final int PLACE_PICKER_REQUEST = 1;
@@ -146,19 +151,22 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
         final Uri file = Uri.fromFile(new File(uri));
 
-
-        final String menu;
+        // 하위분류 메뉴
+        String menu = null;
+        // 키값 메뉴
         String foodmenu = null;
         if (p == 1) {
-
+            menu = FOOD+FOODKOREAN;
             foodmenu = "korea";
 
         } else if (p == 2) {
-
+            menu = FOOD+FOODCHINESE;
             foodmenu = "china";
         } else if (p == 3) {
+            menu = FOOD+FOODWESTERN;
             foodmenu = "western";
         } else if (p == 4) {
+            menu = FOOD+FOODJAPAN;
             foodmenu = "japan";
         } else {
 
@@ -170,6 +178,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
         // Register observers to listen for when the download is done or if it fails
         final String Foodmenu = foodmenu;
+        final String finalMenu = menu;
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {

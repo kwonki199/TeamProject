@@ -1,4 +1,4 @@
-package edu.android.mainmen.WriteAndRead;
+package edu.android.mainmen.ReviewFragment;
 
 
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,26 +30,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
-import edu.android.mainmen.Model.Function;
 import edu.android.mainmen.R;
 
-import static edu.android.mainmen.WriteAndRead.FirebaseUploadActivity.*;
+import static edu.android.mainmen.Upload.FirebaseUploadActivity.*;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReadReviewFragment extends Fragment {
+public class ReviewKoreanFragment extends Fragment {
+
 
     private RecyclerView recyclerView;
-    private List<AllFoodDTO> allFoodDTOS = new ArrayList<>();
+    private List<AllFoodDTO> firebaseData = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
-    private FirebaseStorage storage;
     private FirebaseAuth auth;
+    private FirebaseStorage storage;
 
 
-    public ReadReviewFragment() {
+
+    public ReviewKoreanFragment() {
         // Required empty public constructor
     }
 
@@ -60,29 +60,29 @@ public class ReadReviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_review, container, false);
-
         database = FirebaseDatabase.getInstance();
-        storage = FirebaseStorage.getInstance();
         auth = FirebaseAuth.getInstance();
-
+        storage = FirebaseStorage.getInstance();
         recyclerView = view.findViewById(R.id.recyclerView_Review2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final ReviewRecyclerViewAdapter reviewRecyclerViewAdapter = new ReviewRecyclerViewAdapter();
-        recyclerView.setAdapter(reviewRecyclerViewAdapter);
+        final ReviewRecyclerViewAdapter boardRecyclerViewAdapter = new ReviewRecyclerViewAdapter();
+        recyclerView.setAdapter(boardRecyclerViewAdapter);
 
 
-        database.getReference().child(FOOD).addValueEventListener(new ValueEventListener() {
+
+        database.getReference().child(FOOD).orderByChild("food").equalTo("korea").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                allFoodDTOS.clear();
+
+                firebaseData.clear();
                 uidLists.clear();
                 for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                     AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
+                    firebaseData.add(allFoodDTO);
                     String uidKey = snapshot.getKey();
-                    allFoodDTOS.add(allFoodDTO);
                     uidLists.add(uidKey);
                 }
-                reviewRecyclerViewAdapter.notifyDataSetChanged();
+                boardRecyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -90,14 +90,13 @@ public class ReadReviewFragment extends Fragment {
 
             }
         });
+
         return view;
     }
 
 
-
-    //어댑터
+    // 어댑터
     class ReviewRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
 
         @Override
         public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -109,12 +108,12 @@ public class ReadReviewFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
-            ((CustomViewHolder)holder).textView.setText(allFoodDTOS.get(position).title);
-            ((CustomViewHolder)holder).textView2.setText(allFoodDTOS.get(position).description);
+            ((CustomViewHolder)holder).ID.setText(firebaseData.get(position).userId);
+            ((CustomViewHolder)holder).textView.setText(firebaseData.get(position).title);
+            ((CustomViewHolder)holder).textView2.setText(firebaseData.get(position).description);
 
-            Glide.with(holder.itemView.getContext()).load(allFoodDTOS.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
+            Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
-            ((CustomViewHolder)holder).ID.setText(allFoodDTOS.get(position).userId);
             //좋아요 버튼
             ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -123,13 +122,12 @@ public class ReadReviewFragment extends Fragment {
                 }
             });
 
-            if (allFoodDTOS.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
+            if (firebaseData.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
                 ((CustomViewHolder)holder).starButton.setImageResource(R.drawable.ic_heart2);
 
             }else {
                 ((CustomViewHolder)holder).starButton.setImageResource(R.drawable.ic_heart1);
             }
-
 
 
             ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -138,44 +136,13 @@ public class ReadReviewFragment extends Fragment {
                     delete_content(position);
                 }
             });
-
         }
 
         @Override
         public int getItemCount() {
-            return allFoodDTOS.size();
+            return firebaseData.size();
         }
 
-
-        //글 삭제
-        private void delete_content(final int position) {
-
-            storage.getReference().child("images/").child(allFoodDTOS.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-
-                    database.getReference().child(FOOD).child(uidLists.get(position)).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-
-                            Toast.makeText(getContext(), "삭제가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-
-                        }
-                    });
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(getContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
-
-
-                }
-            });
-        }
         private void onStarClicked(DatabaseReference postRef) {
             postRef.runTransaction(new Transaction.Handler() {
                 @Override
@@ -209,26 +176,54 @@ public class ReadReviewFragment extends Fragment {
             });
         }
 
-        //뷰홀더
+
+        private void delete_content(final int position) {
+
+            storage.getReference().child("images/").child(firebaseData.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+
+                    database.getReference().child(FOOD).child(uidLists.get(position)).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+
+                            Toast.makeText(getContext(), "삭제가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+
+                        }
+                    });
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(getContext(), "삭제 실패", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+
         private class CustomViewHolder extends RecyclerView.ViewHolder {
-            TextView ID,textView,textView2;
             ImageView imageView;
+            TextView textView;
+            TextView textView2;
+            TextView ID;
             ImageView deleteButton;
             ImageView starButton;
 
             public CustomViewHolder(View view) {
                 super(view);
-                ID = view.findViewById(R.id.item_textView_id);
+                ID = (TextView) view.findViewById(R.id.item_textView_id);
                 imageView = (ImageView) view.findViewById(R.id.item_imageView);
                 textView = (TextView) view.findViewById(R.id.item_textView);
                 textView2 = (TextView) view.findViewById(R.id.item_textView2);
-                deleteButton = (ImageView)view.findViewById(R.id.item_delete_image);
+                deleteButton = view.findViewById(R.id.item_delete_image);
                 starButton = view.findViewById(R.id.item_heart_image);
             }
         }
-
-
-
     }
+
 
 }

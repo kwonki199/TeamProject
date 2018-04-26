@@ -1,4 +1,4 @@
-package edu.android.mainmen.WriteAndRead;
+package edu.android.mainmen.Upload;
 
 import android.Manifest;
 import android.content.Intent;
@@ -30,9 +30,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 

@@ -1,4 +1,4 @@
-package edu.android.mainmen.WriteAndRead;
+package edu.android.mainmen.ReviewFragment;
 
 
 import android.os.Bundle;
@@ -17,7 +17,6 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,13 +32,13 @@ import java.util.List;
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
-import static edu.android.mainmen.WriteAndRead.FirebaseUploadActivity.*;
+import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReadReaviewKoreanFragment extends Fragment {
+public class ReviewMineFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
@@ -51,7 +50,7 @@ public class ReadReaviewKoreanFragment extends Fragment {
 
 
 
-    public ReadReaviewKoreanFragment() {
+    public ReviewMineFragment() {
         // Required empty public constructor
     }
 
@@ -71,7 +70,7 @@ public class ReadReaviewKoreanFragment extends Fragment {
 
 
 
-        database.getReference().child(FOOD).addValueEventListener(new ValueEventListener() {
+        database.getReference().child(FOOD).orderByChild("userId").equalTo(auth.getCurrentUser().getEmail()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import edu.android.mainmen.Model.Customer;
-import edu.android.mainmen.Login.CustomerDBHelper;
+import edu.android.mainmen.DrawerMenu.CustomerDBHelper;
 
 import static edu.android.mainmen.Model.Customer.CustomerEntity.*;
 

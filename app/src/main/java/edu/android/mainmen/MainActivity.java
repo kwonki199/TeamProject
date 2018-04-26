@@ -9,7 +9,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.SearchView;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -31,17 +30,17 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import java.security.MessageDigest;
 
-import edu.android.mainmen.Login.BookmarkActivity;
-import edu.android.mainmen.Login.LoginActivity;
-import edu.android.mainmen.Login.MyWritingsActivity;
-import edu.android.mainmen.WriteAndRead.FirebaseUploadActivity;
-import edu.android.mainmen.WriteAndRead.ReadReaviewChinaFragment;
-import edu.android.mainmen.WriteAndRead.ReadReaviewJapanFragment;
-import edu.android.mainmen.WriteAndRead.ReadReaviewKoreanFragment;
-import edu.android.mainmen.WriteAndRead.ReadReaviewWesternFragment;
-import edu.android.mainmen.WriteAndRead.ReadReviewActivity;
-import edu.android.mainmen.WriteAndRead.ReadReviewFragment;
-import edu.android.mainmen.WriteAndRead.WriteReviewActivity;
+import edu.android.mainmen.Adapter.SectionsPageAdapter;
+import edu.android.mainmen.DrawerMenu.MyWritingActivity;
+import edu.android.mainmen.DrawerMenu.RouletteActivity;
+import edu.android.mainmen.DrawerMenu.BookmarkActivity;
+import edu.android.mainmen.DrawerMenu.LoginActivity;
+import edu.android.mainmen.Upload.FirebaseUploadActivity;
+import edu.android.mainmen.ReviewFragment.ReviewChinaFragment;
+import edu.android.mainmen.ReviewFragment.ReviewJapanFragment;
+import edu.android.mainmen.ReviewFragment.ReviewKoreanFragment;
+import edu.android.mainmen.ReviewFragment.ReviewWesternFragment;
+import edu.android.mainmen.ReviewFragment.ReadReviewFragment;
 
 // 미해결사항 해결하시면 미해결 -> 해결로 바꿔주세요.
 //TODO: Tabbed 기능 추가 홈화면 터치 이외에 탭이동으로도 보기 쉽게 구현 - 해결
@@ -54,7 +53,7 @@ import edu.android.mainmen.WriteAndRead.WriteReviewActivity;
 //TODO: 글쓰기 업로드 연동중
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,FoodListFragment.HomeSelectedCallback ,FoodKoreanFragment.itemSelectedCallback{
+        implements NavigationView.OnNavigationItemSelectedListener,FoodListFragment.HomeSelectedCallback {
 
 
 
@@ -196,7 +195,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
 
         }  else if (id == R.id.nav_writings) { // 내가 쓴글
-            Intent intent = new Intent(MainActivity.this, MyWritingsActivity.class);
+            Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_bookmark) { // 즐겨찾기
@@ -231,16 +230,16 @@ public class MainActivity extends AppCompatActivity
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "종류");
         adapter.addFragment(new ReadReviewFragment(), "전체");
-        adapter.addFragment(new ReadReaviewKoreanFragment(), "한식");
-        adapter.addFragment(new ReadReaviewChinaFragment(), "중식");
-        adapter.addFragment(new ReadReaviewWesternFragment(), "양식");
-        adapter.addFragment(new ReadReaviewJapanFragment(), "일식");
-        adapter.addFragment(new FoodWestFragment(), "치킨");
-        adapter.addFragment(new FoodWestFragment(), "피자");
-        adapter.addFragment(new FoodWestFragment(), "분식");
-        adapter.addFragment(new FoodWestFragment(), "패스트푸드");
-        adapter.addFragment(new FoodWestFragment(), "족발,보쌈");
-        viewPager.setAdapter(adapter);     
+        adapter.addFragment(new ReviewKoreanFragment(), "한식");
+        adapter.addFragment(new ReviewChinaFragment(), "중식");
+        adapter.addFragment(new ReviewWesternFragment(), "양식");
+        adapter.addFragment(new ReviewJapanFragment(), "일식");
+        adapter.addFragment(new ReadReviewFragment(), "치킨");
+        adapter.addFragment(new ReadReviewFragment(), "피자");
+        adapter.addFragment(new ReadReviewFragment(), "분식");
+        adapter.addFragment(new ReadReviewFragment(), "패스트푸드");
+        adapter.addFragment(new ReadReviewFragment(), "족발,보쌈");
+        viewPager.setAdapter(adapter);
     }
 
     // 탭과 프래그먼트 연동
@@ -268,9 +267,5 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-    @Override
-    public void onItemSelected(int position) {
-        Intent intent = ReadReviewActivity.newIntent(this, position);
-        startActivity(intent);
-    }
+
 }

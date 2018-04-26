@@ -1,4 +1,4 @@
-package edu.android.mainmen.WriteAndRead;
+package edu.android.mainmen.Upload;
 
 import android.Manifest;
 import android.content.DialogInterface;

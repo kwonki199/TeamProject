@@ -1,4 +1,4 @@
-package edu.android.mainmen.Login;
+package edu.android.mainmen.DrawerMenu;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -183,9 +183,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
                         } else {
                             Log.i("firebase-test", "onComplete NOT successful");
-                            Toast.makeText(LoginActivity.this, "현재는 있는 아이디도 로그인이 되게끔 구현중", Toast.LENGTH_LONG).show();
-//                            Toast.makeText(LoginActivity.this, "회원가입실패.(존재아이디/이메일양식/비밀번호6자리이상)", Toast.LENGTH_SHORT).show();
                             loginUser(email, password);
+
+
+                            Toast.makeText(LoginActivity.this, "환영합니다.", Toast.LENGTH_LONG).show();
+
                             finish();
                         }
                     }

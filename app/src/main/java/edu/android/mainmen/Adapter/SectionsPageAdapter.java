@@ -1,4 +1,4 @@
-package edu.android.mainmen;
+package edu.android.mainmen.Adapter;
 
 import android.app.Activity;
 import android.support.annotation.Nullable;

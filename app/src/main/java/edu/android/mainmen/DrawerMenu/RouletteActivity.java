@@ -1,4 +1,4 @@
-package edu.android.mainmen;
+package edu.android.mainmen.DrawerMenu;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -8,12 +8,13 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Random;
+
+import edu.android.mainmen.R;
 
 public class RouletteActivity extends AppCompatActivity {
 

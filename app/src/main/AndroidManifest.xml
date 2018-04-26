@@ -28,15 +28,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login.LoginActivity" />
-        <activity android:name=".Login.WelcomeActivity" />
-        <activity android:name=".Login.BookmarkActivity" />
-        <activity android:name=".Login.MyWritingsActivity" />
-        <activity android:name=".Login.RegisterActivity" />
-
-        <activity android:name=".RouletteActivity"/>
-        <activity android:name=".WriteAndRead.WriteReviewActivity" />
-        <activity android:name=".WriteAndRead.FirebaseUploadActivity" />
+        <activity android:name=".DrawerMenu.LoginActivity" />
+        <activity android:name=".DrawerMenu.WelcomeActivity" />
+        <activity android:name=".DrawerMenu.BookmarkActivity" />
+        <activity android:name=".DrawerMenu.RegisterActivity" />
+        <activity android:name=".DrawerMenu.RouletteActivity" />
+        <activity android:name=".Upload.WriteReviewActivity" />
+        <activity android:name=".Upload.FirebaseUploadActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -46,7 +44,6 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
-
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -72,8 +69,8 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBLOpelo4l6yKdCApN_d5uUehocuiw7Uuk" />
 
-        <activity android:name=".WriteAndRead.ReadReviewActivity" />
-        <activity android:name=".WriteAndRead.MapsActivity" />
+        <activity android:name=".Upload.MapsActivity" />
+        <activity android:name=".DrawerMenu.MyWritingActivity"></activity>
     </application>
 
 </manifest>
