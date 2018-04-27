@@ -129,21 +129,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="20~30대" />
+            android:text="20대" />
 
         <RadioButton
             android:id="@+id/sign_up_age3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="40~50대" />
+            android:text="30대" />
 
         <RadioButton
             android:id="@+id/sign_up_age4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="60대 이상" />
+            android:text="40대 이상" />
     </RadioGroup>
 
     <Button

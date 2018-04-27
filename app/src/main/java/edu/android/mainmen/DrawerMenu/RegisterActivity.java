@@ -31,9 +31,10 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextName;
-    private RadioButton rbtnMan;
-    private RadioButton rbtnWoman;
+    private RadioButton rbtnMan,rbtnWoman;
+    private RadioButton btn1,btn2,btn3, btn4;
     private RadioGroup rbtnGroup;
+
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private Button signUp;
@@ -62,23 +63,33 @@ public class RegisterActivity extends AppCompatActivity {
         rbtnWoman = findViewById(R.id.sign_up_rbtn_woman);
         rbtnGroup = findViewById(R.id.sign_up_rbtnGroup);
         signUp =  findViewById(R.id.sign_up_button);
+        btn1 = findViewById(R.id.sign_up_age1);
+        btn2 = findViewById(R.id.sign_up_age2);
+        btn3 = findViewById(R.id.sign_up_age3);
+        btn4 = findViewById(R.id.sign_up_age4);
 
         //회원가입 버튼
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editTextEmail.getText().toString()==null || editTextPassword.getText().toString()==null||editTextName.getText().toString()==null){
+                if(editTextEmail.getText()==null || editTextPassword.getText()==null||editTextName.getText()==null){
                     Toast.makeText(RegisterActivity.this, "작성안한곳이 있습니다.", Toast.LENGTH_SHORT).show();
                     return;
-
                 }else {
                     String sex = null;
-                    if (rbtnMan.isChecked()) {
-                        sex = "남성";
-                    } else if(rbtnWoman.isChecked()){
-                        sex = "여성";
+                    if (rbtnMan.isChecked()) { sex = "남성"; }
+                    else if(rbtnWoman.isChecked()){ sex = "여성"; }
+                    String age = null;
+                    if (btn1.isChecked()) {
+                        age = "10대";
+                    } else if (btn2.isChecked()) {
+                        age = "20대";
+                    } else if (btn3.isChecked()) {
+                        age = "30대";
+                    } else if (btn4.isChecked()) {
+                        age = "40대 이상";
                     }
-                    createUser(editTextEmail.getText().toString(), editTextPassword.getText().toString(),editTextName.getText().toString(),sex);
+                    createUser(editTextEmail.getText().toString(), editTextPassword.getText().toString(),editTextName.getText().toString(),sex,age);
                 }
             }
         });
@@ -105,7 +116,7 @@ public class RegisterActivity extends AppCompatActivity {
     }// end onCreate
 
 
-    private void createUser(final String email, final String password,final String name, final String sex) {
+    private void createUser(final String email, final String password,final String name, final String sex,final String age) {
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -118,6 +129,8 @@ public class RegisterActivity extends AppCompatActivity {
                             User user = new User();
                             user.username=name;
                             user.usersex = sex;
+                            user.userage = age;
+                            user.uid = mAuth.getCurrentUser().getUid();
                             String uid = task.getResult().getUser().getUid();
                             FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(user);
 

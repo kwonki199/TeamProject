@@ -53,9 +53,7 @@ import edu.android.mainmen.ReviewFragment.ReadReviewFragment;
 //TODO: 글쓰기 업로드 연동중
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener,FoodListFragment.HomeSelectedCallback {
-
-
+        implements NavigationView.OnNavigationItemSelectedListener, FoodListFragment.HomeSelectedCallback {
 
 
     private static final String TAG = "MainActivity";
@@ -64,10 +62,11 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager;
     private SectionsPageAdapter mSectionsPageAdapter;
     private FloatingActionButton WriteReviewButton;
-//    private TextView header_name;
+    //    private TextView header_name;
     private TextView header_email;
     private FirebaseAuth auth;
     private FirebaseStorage storage;
+    private FirebaseDatabase database;
 
     private long lastTimeBackPressed = 0;
 
@@ -78,17 +77,16 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         getAppKeyHash(); // hash 키 불러오기
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
-
+        //액션바
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
-        mViewPager=findViewById(R.id.container);
+        mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
@@ -99,6 +97,7 @@ public class MainActivity extends AppCompatActivity
 
         // drawer
         navigationView = findViewById(R.id.nav_view);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -118,11 +117,8 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View view = navigationView.getHeaderView(0);
-//        header_name= (TextView) view.findViewById(R.id.header_user_Name);
-        header_email = (TextView) view.findViewById(R.id.header_user_Email);
 
-//        header_name.setText(auth.getCurrentUser().getDisplayName());
-//        header_email.setText(auth.getCurrentUser().getEmail());
+        header_email = (TextView) view.findViewById(R.id.header_user_Email);
 
 //       // drawer에 사용자 아이디 나타냄
         FirebaseUser user = auth.getCurrentUser();
@@ -170,14 +166,24 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    // 액션바 선택
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case R.id.app_bar_search:
+                Intent intent = new Intent(this, SearchActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+//        int id = item.getItemId();
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -188,7 +194,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
         // 로그인
 
-        if (id ==  R.id.nav_membershipInformation) {
+        if (id == R.id.nav_membershipInformation) {
             FirebaseUser user = auth.getCurrentUser();
             if (user == null) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -199,7 +205,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
             startActivity(intent);
 
-        }  else if (id == R.id.nav_writings) { // 내가 쓴글
+        } else if (id == R.id.nav_writings) { // 내가 쓴글
             Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
             startActivity(intent);
 
@@ -207,7 +213,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, BookmarkActivity.class);
             startActivity(intent);
 
-        } else if (id==R.id.nav_logout) { // 로그아웃
+        } else if (id == R.id.nav_logout) { // 로그아웃
             auth.signOut();
             header_email.setText("로그인이 되어있지 않습니다.");
             Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
@@ -243,6 +249,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ReadReviewFragment(), "분식");
         adapter.addFragment(new ReadReviewFragment(), "패스트푸드");
         adapter.addFragment(new ReadReviewFragment(), "족발/보쌈");
+
         viewPager.setAdapter(adapter);
     }
 
@@ -250,7 +257,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
-        mViewPager.setCurrentItem(position+1);
+        mViewPager.setCurrentItem(position + 1);
     }
 
 
@@ -270,8 +277,6 @@ public class MainActivity extends AppCompatActivity
             Log.e("name not found", e.toString());
         }
     }
-
-
 
 
 }

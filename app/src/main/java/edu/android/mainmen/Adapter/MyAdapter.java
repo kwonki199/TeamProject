@@ -1,7 +1,9 @@
 package edu.android.mainmen.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,6 +30,7 @@ import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
+import edu.android.mainmen.SearchActivity;
 
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
 
@@ -102,6 +105,13 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             }
         });
 
+        ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(context, SearchActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     //글 삭제

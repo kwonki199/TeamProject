@@ -68,8 +68,8 @@ public class ReviewKoreanFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         recyclerView = view.findViewById(R.id.recyclerView_Review2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final MyAdapter boardRecyclerViewAdapter = new MyAdapter(getActivity(),firebaseData, auth, database, storage, uidLists);
-        recyclerView.setAdapter(boardRecyclerViewAdapter);
+        final MyAdapter MyRecyclerViewAdapter = new MyAdapter(getActivity(),firebaseData, auth, database, storage, uidLists);
+        recyclerView.setAdapter(MyRecyclerViewAdapter);
 
 
 
@@ -85,7 +85,7 @@ public class ReviewKoreanFragment extends Fragment {
                     String uidKey = snapshot.getKey();
                     uidLists.add(uidKey);
                 }
-                boardRecyclerViewAdapter.notifyDataSetChanged();
+                MyRecyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override

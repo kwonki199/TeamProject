@@ -39,6 +39,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -49,6 +50,7 @@ import java.io.File;
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.MainActivity;
 import edu.android.mainmen.R;
+import edu.android.mainmen.SearchActivity;
 
 public class FirebaseUploadActivity extends AppCompatActivity {
     public static final String FOOD = "Food/";
@@ -73,12 +75,15 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private Spinner spinner;
     private RatingBar rb;
     private int spinnerPosition;
+    private Button cancelBtn;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_firebase_upload);
+        hideActionBar();
+
 
         // 뒤로가기 버튼 이거랑 아래꺼
         ActionBar ab = getSupportActionBar();
@@ -96,6 +101,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         addLocation = findViewById(R.id.addLocation);
         spinner = findViewById(R.id.selectCategorySp);
         rb = findViewById(R.id.rb);
+        cancelBtn = findViewById(R.id.cancelBtn);
 
 
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -154,6 +160,12 @@ public class FirebaseUploadActivity extends AppCompatActivity {
             }
         });
 
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }// end onCreate()
 
@@ -167,21 +179,16 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         final Uri file = Uri.fromFile(new File(uri));
 
         // 하위분류 메뉴
-        String menu = null;
+
         // 키값 메뉴
         String foodmenu = null;
         if (p == 1) {
-            menu = FOOD + FOODKOREAN;
             foodmenu = "korea";
-
         } else if (p == 2) {
-            menu = FOOD + FOODCHINESE;
             foodmenu = "china";
         } else if (p == 3) {
-            menu = FOOD + FOODWESTERN;
             foodmenu = "western";
         } else if (p == 4) {
-            menu = FOOD + FOODJAPAN;
             foodmenu = "japan";
         } else {
 
@@ -194,7 +201,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
         // Register observers to listen for when the download is done or if it fails
         final String Foodmenu = foodmenu;
-        final String finalMenu = menu;
+
         uploadTask.addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception exception) {
@@ -217,15 +224,18 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 allFoodDTO.imageName = file.getLastPathSegment();
                 allFoodDTO.ratingScore = rb.getRating();
                 allFoodDTO.food = Foodmenu;
+
+
+//                allFoodDTO.usex = database.getReference().child("users").orderByChild("usersex").equalTo("남성").toString();
                 database.getReference().child(FOOD).push().setValue(allFoodDTO);
-
-
 
             }
         });
 
 
     }
+
+
 
 
     @Override
@@ -273,6 +283,8 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         }
     }
 
+
+
     // 경로 저장
 
     public String getPath(Uri uri) {
@@ -312,15 +324,12 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    // 뒤로가기 버튼 이거
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            onBackPressed();
-            return true;
+    private void hideActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.hide();
         }
-        return super.onOptionsItemSelected(item);
     }
 
 

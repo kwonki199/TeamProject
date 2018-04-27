@@ -2,8 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:id="@+id/app_bar_search"
+        android:icon="@android:drawable/ic_search_category_default"
+        android:title="Search"
+        app:showAsAction="ifRoom"></item>
+    <!--app:actionViewClass="android.widget.SearchView"-->
+
+
+    <!--<item android : id = " @ + id / action_favorite "-->
+        <!--android : icon = "@ drawable / ic_favorite_black_48dp "-->
+        <!--android : title = "@ string / action_favorite "-->
+        <!--app : showAsAction = "ifRoom " />-->
+
 </menu>

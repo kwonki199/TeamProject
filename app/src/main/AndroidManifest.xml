@@ -71,6 +71,7 @@
 
         <activity android:name=".Upload.MapsActivity" />
         <activity android:name=".DrawerMenu.MyWritingActivity" />
+        <activity android:name=".SearchActivity"></activity>
     </application>
 
 </manifest>
