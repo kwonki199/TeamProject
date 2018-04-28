@@ -63,7 +63,7 @@ public class BookmarkActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookmark_main);
 
-        data = BookmarkCreatorLab.getInstance().getBookmarkCreatorList();
+
         listView = findViewById(R.id.listView);
 
         BookmarkAdapter adapter = new BookmarkAdapter(this, data);

@@ -1,5 +1,7 @@
 package edu.android.mainmen.DrawerMenu;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -8,8 +10,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.AccessToken;
@@ -55,6 +59,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private Button emailLogin;
     private Button resisterBtn;
 
+    private TextView header_email;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +71,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         // 뒤로가기 버튼 이거랑 아래꺼
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        hideActionBar();
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -92,11 +101,18 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         editTextPassword = findViewById(R.id.edittext_password);
         resisterBtn = findViewById(R.id.resister_button);
 
+        header_email = findViewById(R.id.header_user_Email);
         // 로그인 버튼
         emailLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createUser(editTextEmail.getText().toString(), editTextPassword.getText().toString());
+//                header_email.setText(mAuth.getCurrentUser().getEmail());
+                ProgressDialog progress_spinner = new ProgressDialog(LoginActivity.this);
+                progress_spinner.setMessage("Loading...");
+                progress_spinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progress_spinner.show();
+
             }
         });
 
@@ -271,4 +287,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             mAuth.removeAuthStateListener(mAuthListener);
         }
     }
+
+    private void hideActionBar(){
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+    }
+
+
+
+
 }

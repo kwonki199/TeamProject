@@ -18,16 +18,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".TutorialActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity android:name=".DrawerMenu.LoginActivity" />
         <activity android:name=".DrawerMenu.WelcomeActivity" />
         <activity android:name=".DrawerMenu.BookmarkActivity" />
@@ -35,6 +38,9 @@
         <activity android:name=".DrawerMenu.RouletteActivity" />
         <activity android:name=".Upload.WriteReviewActivity" />
         <activity android:name=".Upload.FirebaseUploadActivity" />
+        <activity android:name=".Upload.MapsActivity" />
+        <activity android:name=".DrawerMenu.MyWritingActivity" />
+        <activity android:name=".SearchActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -69,9 +75,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBLOpelo4l6yKdCApN_d5uUehocuiw7Uuk" />
 
-        <activity android:name=".Upload.MapsActivity" />
-        <activity android:name=".DrawerMenu.MyWritingActivity" />
-        <activity android:name=".SearchActivity"></activity>
+
     </application>
 
 </manifest>

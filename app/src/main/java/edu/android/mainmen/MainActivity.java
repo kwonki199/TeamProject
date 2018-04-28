@@ -1,16 +1,22 @@
 package edu.android.mainmen;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -20,9 +26,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
@@ -33,7 +44,6 @@ import java.security.MessageDigest;
 import edu.android.mainmen.Adapter.SectionsPageAdapter;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
-import edu.android.mainmen.DrawerMenu.BookmarkActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
 import edu.android.mainmen.Upload.FirebaseUploadActivity;
 import edu.android.mainmen.ReviewFragment.ReviewChinaFragment;
@@ -75,6 +85,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        alertNoticeButton();
         getAppKeyHash(); // hash 키 불러오기
 
         database = FirebaseDatabase.getInstance();
@@ -139,6 +150,9 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        email = findViewById(R.id.alert_username);
+        password = findViewById(R.id.alert_password);
+
     }
 
     /* ↓ Back 버튼 누를 시 앱 종료 기능 */
@@ -186,43 +200,61 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+
+    // DrawerMenu 세팅
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         TextView tv = findViewById(R.id.info);
 
         int id = item.getItemId();
-        // 로그인
 
-        if (id == R.id.nav_membershipInformation) {
+
+        if (id == R.id.nav_membershipInformation) { // 로그인
             FirebaseUser user = auth.getCurrentUser();
             if (user == null) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
+            }else{
+                Toast.makeText(this, "로그인중입니다~~~ ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
+                header_email.setText(auth.getCurrentUser().getEmail());
             }
 
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
+            FirebaseUser user = auth.getCurrentUser();
+            if (user != null) {
             Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
             startActivity(intent);
+            }else{
+                alertLoginButtons();
+//                Toast.makeText(this, "로그인이 필요합니다~ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
+            }
+
 
         } else if (id == R.id.nav_writings) { // 내가 쓴글
-            Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
-            startActivity(intent);
+            FirebaseUser user = auth.getCurrentUser();
+            if (user != null) {
+                Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
+                startActivity(intent);
+            }else{
+                alertLoginLayout();
+//                Toast.makeText(this, "로그인이 필요합니다~ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
+            }
 
         } else if (id == R.id.nav_bookmark) { // 즐겨찾기
-            Intent intent = new Intent(MainActivity.this, BookmarkActivity.class);
-            startActivity(intent);
+
+            // 아직 즐겨찾기 구현안됨
 
         } else if (id == R.id.nav_logout) { // 로그아웃
-            auth.signOut();
-            header_email.setText("로그인이 되어있지 않습니다.");
-            Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
+            FirebaseUser user = auth.getCurrentUser();
+            if (user != null) {
+                auth.signOut();
+                header_email.setText("로그인이 되어있지 않습니다.");
+                Toast.makeText(this, "로그아웃되었습니다.~~~", Toast.LENGTH_SHORT).show();
+            }else {
 
-
-//        } else if (id == R.id.nav_profilePicture) { // 회원 정보변경
-//            Intent intent = new Intent(MainActivity.this, ChangingActivity.class);
-//            startActivity(intent);
-
+                Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
+            }
 
         } else if (id == R.id.nav_coupon) {
         } else if (id == R.id.nav_game) {
@@ -237,6 +269,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "종류");
@@ -278,5 +311,84 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    public void alertNoticeButton() {
+
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle(R.string.notice1)
+                .setMessage(R.string.notice2)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+                }).show();
+    }
+
+    public void alertLoginButtons() {
+        new AlertDialog.Builder(MainActivity.this)
+                .setTitle("로그인이 필요합니다")
+                .setMessage("로그인창으로 이동하시겠습니까?")
+                .setIcon(R.drawable.logotest)
+                .setPositiveButton("YES",
+                        new DialogInterface.OnClickListener() {
+                            @TargetApi(11)
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                dialog.cancel();
+                            }
+                        })
+                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                    @TargetApi(11)
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                }).show();
+    }
+
+    private EditText email, password;
+
+    public void alertLoginLayout(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+
+        // get the layout inflater
+        LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+
+        // inflate and set the layout for the dialog
+        // pass null as the parent view because its going in the dialog layout
+        builder.setView(inflater.inflate(R.layout.alert_login_layout, null))
+
+                // action buttons
+                .setPositiveButton("Login", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // your sign in code here
+                        loginUser(email.getText().toString(),password.getText().toString());
+                        finish();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // remove the dialog from the screen
+                        dialog.cancel();
+                    }
+                })
+                .show();
+
+    }
+    private void loginUser(final String email, final String password) {
+        auth.signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MainActivity.this, "로그인 완료", Toast.LENGTH_LONG).show();
+                        } else {
+//                            Toast.makeText(LoginActivity.this, "로그인 실패", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
 
 }

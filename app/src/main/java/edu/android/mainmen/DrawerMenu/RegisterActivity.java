@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -38,12 +39,14 @@ public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     private Button signUp;
+    private TextView header_email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        hideActionBar();
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
@@ -67,6 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn2 = findViewById(R.id.sign_up_age2);
         btn3 = findViewById(R.id.sign_up_age3);
         btn4 = findViewById(R.id.sign_up_age4);
+        header_email = findViewById(R.id.header_user_Email);
 
         //회원가입 버튼
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -90,6 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                         age = "40대 이상";
                     }
                     createUser(editTextEmail.getText().toString(), editTextPassword.getText().toString(),editTextName.getText().toString(),sex,age);
+//                    header_email.setText(mAuth.getCurrentUser().getEmail());
                 }
             }
         });
@@ -182,6 +187,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStop();
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+    private void hideActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
         }
     }
 
