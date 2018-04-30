@@ -2,6 +2,11 @@ package edu.android.mainmen.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
+import android.net.Uri;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,6 +31,8 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.io.ByteArrayOutputStream;
+import java.io.Serializable;
 import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
@@ -35,8 +42,8 @@ import edu.android.mainmen.ReviewFragment.DetailViewActivity2;
 
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
 
-public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
-    
+public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
 
     private Context context;
     private List<AllFoodDTO> firebaseData;
@@ -67,15 +74,15 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        ((CustomViewHolder)holder).textView.setText(firebaseData.get(position).title);
-        ((CustomViewHolder)holder).textView2.setText(firebaseData.get(position).description);
-        ((CustomViewHolder)holder).rb.setRating(firebaseData.get(position).ratingScore);
-        Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
+        ((CustomViewHolder) holder).textView.setText(firebaseData.get(position).title);
+        ((CustomViewHolder) holder).textView2.setText(firebaseData.get(position).description);
+        ((CustomViewHolder) holder).rb.setRating(firebaseData.get(position).ratingScore);
+        Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder) holder).imageView);
 
-        ((CustomViewHolder)holder).ID.setText(firebaseData.get(position).userId);
-        ((CustomViewHolder)holder).heartCount.setText(firebaseData.get(position).starCount+"명이 좋아합니다.");
+        ((CustomViewHolder) holder).ID.setText(firebaseData.get(position).userId);
+        ((CustomViewHolder) holder).heartCount.setText(firebaseData.get(position).starCount + "명이 좋아합니다.");
         //좋아요 버튼
-        ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
+        ((CustomViewHolder) holder).starButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = auth.getCurrentUser();
@@ -89,7 +96,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
 
         FirebaseUser user = auth.getCurrentUser();
-        if(user!=null) {
+        if (user != null) {
             if (firebaseData.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
                 ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.ic_heart2);
 
@@ -98,22 +105,44 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             }
         }
 
-
-        ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
+        ((CustomViewHolder) holder).imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Intent intent = new Intent(context, DetailViewActivity2.class);
+                intent.putExtra("location", firebaseData.get(position).Location);
+                intent.putExtra("id", firebaseData.get(position).userId);
+                intent.putExtra("title", firebaseData.get(position).title);
+                intent.putExtra("desc", firebaseData.get(position).description);
+                intent.putExtra("rating", firebaseData.get(position).ratingScore);
+                intent.putExtra("images", firebaseData.get(position).imageUrl);
+                intent.putExtra("heartCount", firebaseData.get(position).starCount);
+                intent.putExtra("position",position);
+
+                context.startActivity(intent);
+
+
+            }
+        });
+
+
+        ((CustomViewHolder) holder).deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
                 delete_content(position);
             }
         });
 
-        ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent =new Intent(context, SearchActivity.class);
-                context.startActivity(intent);
-            }
-        });
+//        ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent =new Intent(context, SearchActivity.class);
+//                context.startActivity(intent);
+//            }
+//        });
     }
+
 
     //글 삭제
     private void delete_content(final int position) {
@@ -186,7 +215,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     }
 
     private class CustomViewHolder extends RecyclerView.ViewHolder {
-        TextView ID,textView,textView2;
+        TextView ID, textView, textView2;
         ImageView imageView;
         ImageView deleteButton;
         ImageView starButton;
@@ -199,7 +228,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             imageView = (ImageView) itemView.findViewById(R.id.item_imageView);
             textView = (TextView) itemView.findViewById(R.id.item_textView);
             textView2 = (TextView) itemView.findViewById(R.id.item_textView2);
-            deleteButton = (ImageView)itemView.findViewById(R.id.item_delete_image);
+            deleteButton = (ImageView) itemView.findViewById(R.id.item_delete_image);
             starButton = itemView.findViewById(R.id.item_heart_image);
             heartCount = itemView.findViewById(R.id.item_heart_count);
             rb = itemView.findViewById(R.id.rb);
