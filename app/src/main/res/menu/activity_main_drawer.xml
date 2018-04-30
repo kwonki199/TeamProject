@@ -32,7 +32,7 @@
     </group>
 
     <group>
-    <item android:title="만들 예정">
+    <item android:title="이벤트">
         <menu>
             <item
                 android:id="@+id/nav_coupon"
