@@ -36,7 +36,7 @@ import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
-
+import static edu.android.mainmen.ReviewFragment.ReadReviewFragment.*;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,7 +73,7 @@ public class ReviewJapanFragment extends Fragment {
 
 
 
-        database.getReference().child(FOOD).orderByChild("food").equalTo("japan").addValueEventListener(new ValueEventListener() {
+        database.getReference().child(FOOD).orderByChild("food").equalTo(JAPAN).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

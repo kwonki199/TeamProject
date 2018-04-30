@@ -15,6 +15,7 @@ import edu.android.mainmen.R;
 public class DetailView2 extends Fragment {
 
 
+
     public DetailView2() {
         // Required empty public constructor
     }

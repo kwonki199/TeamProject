@@ -43,6 +43,10 @@ import edu.android.mainmen.Adapter.SectionsPageAdapter;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
+import edu.android.mainmen.ReviewFragment.ReviewBossamFragment;
+import edu.android.mainmen.ReviewFragment.ReviewChikenFragment;
+import edu.android.mainmen.ReviewFragment.ReviewFastFoodFragment;
+import edu.android.mainmen.ReviewFragment.ReviewSnackBarFragment;
 import edu.android.mainmen.Search.SearchActivity;
 import edu.android.mainmen.Upload.FirebaseUploadActivity;
 import edu.android.mainmen.ReviewFragment.ReviewChinaFragment;
@@ -279,10 +283,10 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ReviewChinaFragment(), "중식");
         adapter.addFragment(new ReviewWesternFragment(), "피자/양식");
         adapter.addFragment(new ReviewJapanFragment(), "일식");
-        adapter.addFragment(new ReadReviewFragment(), "치킨");
-        adapter.addFragment(new ReadReviewFragment(), "분식");
-        adapter.addFragment(new ReadReviewFragment(), "패스트푸드");
-        adapter.addFragment(new ReadReviewFragment(), "족발/보쌈");
+        adapter.addFragment(new ReviewChikenFragment(), "치킨");
+        adapter.addFragment(new ReviewSnackBarFragment(), "분식");
+        adapter.addFragment(new ReviewFastFoodFragment(), "패스트푸드");
+        adapter.addFragment(new ReviewBossamFragment(), "족발/보쌈");
 
         viewPager.setAdapter(adapter);
     }

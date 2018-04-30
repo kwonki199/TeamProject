@@ -44,11 +44,6 @@ import edu.android.mainmen.R;
 
 public class FirebaseUploadActivity extends AppCompatActivity {
     public static final String FOOD = "Food/";
-    public static final String FOODKOREAN = "KoreanFood";
-    public static final String FOODCHINESE = "ChineseFood";
-    public static final String FOODWESTERN = "WesternFood";
-    public static final String FOODJAPAN = "JapanFood";
-
 
     private static final String TAGSPINNER = "spinner";
     private static final int PLACE_PICKER_REQUEST = 1;
@@ -180,7 +175,16 @@ public class FirebaseUploadActivity extends AppCompatActivity {
             foodmenu = "western";
         } else if (p == 4) {
             foodmenu = "japan";
-        } else {
+        }else if (p == 5) {
+            foodmenu = "chiken";
+        }else if (p == 6) {
+            foodmenu = "snackbar";
+        }else if (p == 7) {
+            foodmenu = "fastfood";
+        }else if (p == 8) {
+            foodmenu = "bossam";
+        }
+        else {
 
         }
 

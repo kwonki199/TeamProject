@@ -72,8 +72,8 @@ public class ReviewSearchDetailFragment extends Fragment {
                     .addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-//                    firebaseData.clear();
-//                    uidLists.clear();
+                            allFoodDTOList.clear();
+                            uidLists.clear();
                             for(DataSnapshot snapshot : dataSnapshot.getChildren()){
                                 AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
                                 allFoodDTOList.add(allFoodDTO);
@@ -94,8 +94,8 @@ public class ReviewSearchDetailFragment extends Fragment {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    User user = snapshot.getValue(User.class);
-//                    users.add(user);
+//                        allFoodDTOList.clear();
+//                        uidLists.clear();
                         String uid = snapshot.getKey();
                         Log.i("user아이디", uid);
                         uidListsDetail.add(uid);
@@ -106,8 +106,8 @@ public class ReviewSearchDetailFragment extends Fragment {
                                 .addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(DataSnapshot dataSnapshot) {
-//                    firebaseData.clear();
-//                    uidLists.clear();
+                                        allFoodDTOList.clear();
+                                        uidLists.clear();
                                         for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                                             AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
                                             allFoodDTOList.add(allFoodDTO);
