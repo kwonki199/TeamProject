@@ -288,6 +288,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
     private void hideActionBar(){
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {

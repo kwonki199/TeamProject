@@ -1,7 +1,6 @@
 package edu.android.mainmen;
 
 import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -30,7 +29,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -45,6 +43,7 @@ import edu.android.mainmen.Adapter.SectionsPageAdapter;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
+import edu.android.mainmen.Search.SearchActivity;
 import edu.android.mainmen.Upload.FirebaseUploadActivity;
 import edu.android.mainmen.ReviewFragment.ReviewChinaFragment;
 import edu.android.mainmen.ReviewFragment.ReviewJapanFragment;
@@ -173,9 +172,7 @@ public class MainActivity extends AppCompatActivity
             finish();
             android.os.Process.killProcess(android.os.Process.myPid());
             System.exit(0);
-
         }
-
     }
 
     @Override
@@ -201,7 +198,6 @@ public class MainActivity extends AppCompatActivity
 //        if (id == R.id.action_settings) {
 //            return true;
 //        }
-
 
     }
 
@@ -277,8 +273,8 @@ public class MainActivity extends AppCompatActivity
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FoodListFragment(), "종류");
-        adapter.addFragment(new ReadReviewFragment(), "전체");
+        adapter.addFragment(new FoodListFragment(), "홈");
+        adapter.addFragment(new ReadReviewFragment(), "리뷰");
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");
         adapter.addFragment(new ReviewWesternFragment(), "피자/양식");
@@ -382,6 +378,7 @@ public class MainActivity extends AppCompatActivity
                 .show();
 
     }
+
     private void loginUser(final String email, final String password) {
         auth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -396,4 +393,4 @@ public class MainActivity extends AppCompatActivity
                 });
     }
 
-}
+}// end MainActivity

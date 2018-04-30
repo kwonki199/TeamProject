@@ -40,7 +40,8 @@
         <activity android:name=".Upload.FirebaseUploadActivity" />
         <activity android:name=".Upload.MapsActivity" />
         <activity android:name=".DrawerMenu.MyWritingActivity" />
-        <activity android:name=".SearchActivity" />
+        <activity android:name=".Search.SearchActivity" />
+
         <activity android:name=".ReviewFragment.DetailViewActivity2"/>
 
 
@@ -79,7 +80,7 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBLOpelo4l6yKdCApN_d5uUehocuiw7Uuk" />
 
-
+        <activity android:name=".Search.SearchDetailActivity"></activity>
     </application>
 
 </manifest>

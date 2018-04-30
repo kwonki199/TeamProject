@@ -3,6 +3,7 @@ package edu.android.mainmen.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
+import edu.android.mainmen.Search.SearchActivity;
 import edu.android.mainmen.ReviewFragment.DetailViewActivity2;
 
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
@@ -96,26 +98,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             }
         }
 
-        ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(context, DetailViewActivity2.class);
-                intent.putExtra("location",firebaseData.get(position).Location);
-                intent.putExtra("id",firebaseData.get(position).userId);
-                intent.putExtra("title",firebaseData.get(position).title);
-                intent.putExtra("desc",firebaseData.get(position).description);
-                intent.putExtra("rating",firebaseData.get(position).ratingScore);
-                intent.putExtra("images",firebaseData.get(position).imageUrl);
-                intent.putExtra("heartCount",firebaseData.get(position).starCount);
-
-                context.startActivity(intent);
-
-
-            }
-        });
-
-
 
         ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,16 +106,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             }
         });
 
-//        ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent =new Intent(context, SearchActivity.class);
-//                context.startActivity(intent);
-//            }
-//        });
-  }
-
-
+        ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent =new Intent(context, SearchActivity.class);
+                context.startActivity(intent);
+            }
+        });
+    }
 
     //글 삭제
     private void delete_content(final int position) {

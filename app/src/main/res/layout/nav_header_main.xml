@@ -24,8 +24,8 @@
         android:id="@+id/header_user_Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/user_Email"
         android:paddingTop="8dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1"/>
+        android:text="@string/user_Email"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 </LinearLayout>
