@@ -144,9 +144,14 @@ public class MainActivity extends AppCompatActivity
         WriteReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
-                startActivity(intent);
+                FirebaseUser user = auth.getCurrentUser();
+                if (user != null) {
+                    Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
+                    startActivity(intent);
+                }else{
+                    alertLoginButtons();
+//                Toast.makeText(this, "로그인이 필요합니다~ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

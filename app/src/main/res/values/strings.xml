@@ -44,13 +44,14 @@
     <string name="title_activity_maps2">Map</string>
 
     <string name="notice1">ver0.4 공지사항</string>
-    <string name="notice2">\n\n현재 댓글기능/세부검색/디테일리뷰 \n
-                            구현중입니다 \n\n
+    <string name="notice2">\n\n
+                            4/30 해야할것. \n
+                           댓글기능/세부검색/디테일리뷰 \n\n
                            회원가입 ,리뷰작성시\n
                            작성안한 항목잡기 필요.\n\n
                            UI 디자인 필요 사용자가 이용하기 편하게\n\n
-                           이용해주셔서 감사합니다\n
-                                - 맛뷰 개발팀\n\n
+                           해야함.\n
+                             동희   - \n\n
                    </string>
 
     <!--스피너 값-->

@@ -14,6 +14,7 @@ public class TutorialActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tutorial);
         hideActionbar();
@@ -21,12 +22,15 @@ public class TutorialActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(TutorialActivity.this,MainActivity.class);
+                Intent intent = new Intent(TutorialActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
-    }
+
+    }// onCreate
+
+
     private void hideActionbar() {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
