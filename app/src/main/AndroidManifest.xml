@@ -41,6 +41,10 @@
         <activity android:name=".Upload.MapsActivity" />
         <activity android:name=".DrawerMenu.MyWritingActivity" />
         <activity android:name=".SearchActivity" />
+        <activity android:name=".ReviewFragment.DetailViewActivity2"/>
+
+
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
