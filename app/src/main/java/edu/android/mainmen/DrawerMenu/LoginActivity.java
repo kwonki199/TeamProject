@@ -1,16 +1,15 @@
 package edu.android.mainmen.DrawerMenu;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -56,10 +55,12 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
     private EditText editTextEmail;
     private EditText editTextPassword;
 
-    private Button emailLogin;
+    private Button sign_in;
     private Button resisterBtn;
 
     private TextView header_email;
+
+    private NavigationView navigationView;
 
 
 
@@ -96,14 +97,15 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
         });
 
-        emailLogin = findViewById(R.id.email_login_button);
+        sign_in = findViewById(R.id.email_login_button);
         editTextEmail = findViewById(R.id.edittext_email);
         editTextPassword = findViewById(R.id.edittext_password);
         resisterBtn = findViewById(R.id.resister_button);
 
         header_email = findViewById(R.id.header_user_Email);
+
         // 로그인 버튼
-        emailLogin.setOnClickListener(new View.OnClickListener() {
+        sign_in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 createUser(editTextEmail.getText().toString(), editTextPassword.getText().toString());
@@ -165,6 +167,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             }
         };
 
+        navigationView = findViewById(R.id.nav_view);
+
+
+
 
     }// end onCreate
 
@@ -200,8 +206,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                         } else {
                             Log.i("firebase-test", "onComplete NOT successful");
                             loginUser(email, password);
-
-
                             Toast.makeText(LoginActivity.this,"환영합니다.", Toast.LENGTH_LONG).show();
 
                             finish();

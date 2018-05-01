@@ -1,13 +1,18 @@
 package edu.android.mainmen;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
+import android.drm.DrmStore;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -37,6 +42,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.lang.reflect.Field;
 import java.security.MessageDigest;
 
 import edu.android.mainmen.Adapter.SectionsPageAdapter;
@@ -85,6 +91,7 @@ public class MainActivity extends AppCompatActivity
     private BottomNavigationView navigation;
     private Toolbar toolbar;
     private TabLayout tabLayout;
+    private AppBarLayout appBarLayout;
 
 
     @Override
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity
         // 바텀네비게이션
         navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationViewHelper.removeShiftMode(navigation);
 
 
         //액션바
@@ -119,32 +127,34 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(mViewPager);
 
 
+
+
         // 탭과 옆으로 드로잉할때 연결시키기.
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
 
         // drawer
-        navigationView = findViewById(R.id.nav_view);
-
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View view = navigationView.getHeaderView(0);
-
-        header_email = (TextView) view.findViewById(R.id.header_user_Email);
-
-//       // drawer에 사용자 아이디 나타냄
         FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
+
+        }
+
+
+
+//      drawer에 사용자 아이디 나타냄
+        header_email = (TextView) view.findViewById(R.id.header_user_Email);
+        FirebaseUser user1 = auth.getCurrentUser();
+        if (user1 != null) {
             header_email.setText(auth.getCurrentUser().getEmail());
         } else {
             header_email.setText("로그인이 되어있지 않습니다.");
@@ -153,6 +163,22 @@ public class MainActivity extends AppCompatActivity
 
         email = findViewById(R.id.alert_username);
         password = findViewById(R.id.alert_password);
+
+
+
+//        ActionBar actionBar = getSupportActionBar();
+//        if (mViewPager.getCurrentItem()==0) {
+//            actionBar.hide();
+//        }else {
+//            actionBar.show();
+//        }
+
+
+        //홈화면에서 앱바 숨기기.
+//
+
+
+
 
     }// end onCrete
 
@@ -203,33 +229,32 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        TextView tv = findViewById(R.id.info);
+
 
         int id = item.getItemId();
 
+        FirebaseUser user = auth.getCurrentUser();
+
 
         if (id == R.id.nav_membershipInformation) { // 로그인
-            FirebaseUser user = auth.getCurrentUser();
             if (user == null) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }else{
-                Toast.makeText(this, "로그인중입니다~~~ ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "로그인상태입니다.", Toast.LENGTH_SHORT).show();
                 header_email.setText(auth.getCurrentUser().getEmail());
+//                item.setVisible(false);
             }
-
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
-            FirebaseUser user = auth.getCurrentUser();
             if (user != null) {
-            Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
+                startActivity(intent);
+                header_email.setText(auth.getCurrentUser().getEmail());
             }else{
                 alertLoginButtons();
             }
 
-
         } else if (id == R.id.nav_writings) { // 내가 쓴글
-            FirebaseUser user = auth.getCurrentUser();
             if (user != null) {
                 Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
                 startActivity(intent);
@@ -242,13 +267,11 @@ public class MainActivity extends AppCompatActivity
             // 아직 즐겨찾기 구현안됨
 
         } else if (id == R.id.nav_logout) { // 로그아웃
-            FirebaseUser user = auth.getCurrentUser();
             if (user != null) {
                 auth.signOut();
                 header_email.setText("로그인이 되어있지 않습니다.");
-                Toast.makeText(this, "로그아웃되었습니다.~~~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
             }else {
-
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.nav_coupon) {
@@ -256,12 +279,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_game) {
             Intent intent = new Intent(MainActivity.this, RouletteActivity.class);
             startActivity(intent);
-
         } else if (id == R.id.nav_heart) {
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -283,11 +304,12 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
     }
 
+
     // 탭과 프래그먼트 연동
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
-        mViewPager.setCurrentItem(position + 1);
+        mViewPager.setCurrentItem(position );
     }
 
 
@@ -428,6 +450,31 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+
+
+    static class BottomNavigationViewHelper {
+
+        @SuppressLint("RestrictedApi")
+        static void removeShiftMode(BottomNavigationView view) {
+            BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
+            try {
+                Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
+                shiftingMode.setAccessible(true);
+                shiftingMode.setBoolean(menuView, false);
+                shiftingMode.setAccessible(false);
+                for (int i = 0; i < menuView.getChildCount(); i++) {
+                    BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+                    item.setShiftingMode(false);
+                    // set once again checked value, so view will be updated
+                    item.setChecked(item.getItemData().isChecked());
+                }
+            } catch (NoSuchFieldException e) {
+                Log.e("ERROR NO SUCH FIELD", "Unable to get shift mode field");
+            } catch (IllegalAccessException e) {
+                Log.e("ERROR ILLEGAL ALG", "Unable to change value of shift mode");
+            }
+        }
+    }
 
 
 }// end MainActivity
