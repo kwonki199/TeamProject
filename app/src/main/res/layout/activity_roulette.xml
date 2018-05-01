@@ -7,27 +7,28 @@
 
     <ImageView
         android:id="@+id/iv_bg"
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
         app:srcCompat="@drawable/ic_roulette_bg" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginTop="465dp"
+        android:gravity="center"
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         android:textSize="28dp" />
 
     <ImageView
         android:id="@+id/iv_roulette"
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="0dp"
@@ -37,10 +38,12 @@
 
     <ImageView
         android:id="@+id/iv_arrow"
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="450dp"
+        android:layout_height="450dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="0dp"
+        android:layout_marginEnd="0dp"
         app:srcCompat="@drawable/ic_arrow" />
 
     <ImageButton
@@ -49,14 +52,14 @@
         android:layout_height="120dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="190dp"
+        android:layout_marginBottom="170dp"
         android:background="#00FFFFFF"
         app:srcCompat="@drawable/start" />
 
     <ImageView
         android:id="@+id/roulette_title"
         android:layout_width="wrap_content"
-        android:layout_height="170dp"
+        android:layout_height="130dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         app:srcCompat="@drawable/ic_roulette_title" />
