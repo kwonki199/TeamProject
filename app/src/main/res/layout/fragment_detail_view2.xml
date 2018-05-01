@@ -145,12 +145,5 @@
             android:text="Count"
             android:textSize="14sp" />
 
-        <ImageView
-            android:id="@+id/item_delete_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:srcCompat="@drawable/ic_garbage" />
-
     </LinearLayout>
 </LinearLayout>
