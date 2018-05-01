@@ -52,15 +52,14 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private FirebaseDatabase database;
     private ImageView imageView;
-    private EditText title;
-    private EditText description;
-    private Button upload_Button;
+    private EditText title , description , uploadStore;
+    private Button upload_Button , cancelBtn ;
     private String imagePath;
     private TextView addLocation;
     private Spinner spinner;
     private RatingBar rb;
     private int spinnerPosition;
-    private Button cancelBtn;
+
 
 
     @Override
@@ -87,6 +86,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         spinner = findViewById(R.id.selectCategorySp);
         rb = findViewById(R.id.rb);
         cancelBtn = findViewById(R.id.cancelBtn);
+        uploadStore = findViewById(R.id.upload_store);
 
 
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -218,6 +218,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 allFoodDTO.imageName = file.getLastPathSegment();
                 allFoodDTO.ratingScore = rb.getRating();
                 allFoodDTO.food = Foodmenu;
+                allFoodDTO.storename = uploadStore.getText().toString();
 
 
 //                allFoodDTO.usex = database.getReference().child("users").orderByChild("usersex").equalTo("남성").toString();

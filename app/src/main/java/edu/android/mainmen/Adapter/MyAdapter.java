@@ -26,9 +26,12 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
 
+import org.w3c.dom.Comment;
+
 import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
+import edu.android.mainmen.DrawerMenu.CommentActivity;
 import edu.android.mainmen.R;
 import edu.android.mainmen.Search.SearchActivity;
 import edu.android.mainmen.ReviewFragment.DetailViewActivity2;
@@ -193,11 +196,11 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                 if (firebaseData.stars.containsKey(auth.getCurrentUser().getUid())) {
                     // Unstar the post and remove self from stars
-                    firebaseData.starCount = firebaseData.starCount - 1;
+                    firebaseData.starCount = firebaseData.starCount + 1;
                     firebaseData.stars.remove(auth.getCurrentUser().getUid());
                 } else {
                     // Star the post and add self to stars
-                    firebaseData.starCount = firebaseData.starCount + 1;
+                    firebaseData.starCount = firebaseData.starCount - 1;
                     firebaseData.stars.put(auth.getCurrentUser().getUid(), true);
                 }
 

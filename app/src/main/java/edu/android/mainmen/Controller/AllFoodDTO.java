@@ -19,6 +19,7 @@ public class AllFoodDTO {
     public int starCount = 0;   // 좋아요 카운트
     public Map<String, Boolean> stars = new HashMap<>();    // 좋아요 기능
     public String usex;         // 성별
+    public String storename;    // 음식점이름
 
 
 }
