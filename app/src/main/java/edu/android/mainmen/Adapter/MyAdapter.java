@@ -145,7 +145,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View v) {
 
                 selectedPosition = position;
-                String ID = firebaseData.get(position).userId;
+                String ID = firebaseData.get(position).uid;
                 String title = firebaseData.get(position).title;
                 String desc = firebaseData.get(position).description;
 
