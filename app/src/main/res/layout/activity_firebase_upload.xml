@@ -93,6 +93,8 @@
                 android:hint="음식이름을 입력하세요."
                 android:textSize="12sp" />
 
+
+
         </LinearLayout>
 
 
