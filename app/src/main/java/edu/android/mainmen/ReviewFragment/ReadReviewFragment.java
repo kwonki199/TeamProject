@@ -59,9 +59,11 @@ public class ReadReviewFragment extends Fragment {
     private FirebaseAuth auth;
 
 
+
     public ReadReviewFragment() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -78,7 +80,6 @@ public class ReadReviewFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         final MyAdapter reviewRecyclerViewAdapter = new MyAdapter(getActivity(), allFoodDTOS, auth, database, storage, uidLists);
         recyclerView.setAdapter(reviewRecyclerViewAdapter);
-
 
         database.getReference().child(FOOD).addValueEventListener(new ValueEventListener() {
             @Override

@@ -31,9 +31,8 @@
             android:title="로그아웃" />
     </group>
 
-    <group>
-    <item android:title="이벤트">
-        <menu>
+    <group android:checkableBehavior="single"
+        android:id="@+id/navi2">
             <item
                 android:id="@+id/nav_coupon"
                 android:icon="@drawable/ic_card_giftcard_black_24dp"
@@ -46,8 +45,7 @@
                 android:id="@+id/nav_heart"
                 android:icon="@drawable/ic_favorite_black_24dp"
                 android:title="오늘의 하트왕" />
-        </menu>
-    </item>
+
     </group>
 
 </menu>

@@ -1,7 +1,10 @@
 package edu.android.mainmen.ReviewFragment;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -65,62 +68,50 @@ public class DetailViewActivity2 extends AppCompatActivity {
         rb = findViewById(R.id.rb);
         deleteButton = (ImageView) findViewById(R.id.item_delete_image);
 
-        Intent intent =getIntent();
+        Intent intent = getIntent();
 
         String Location = getIntent().getStringExtra("location");
         String id = getIntent().getStringExtra("id");
         String title = getIntent().getStringExtra("title");
         String desc = getIntent().getStringExtra("desc");
         float rating = getIntent().getFloatExtra("rating", 0);
-
-        String image = getIntent().getStringExtra("images");
         int Star = getIntent().getIntExtra("heartCount", 0);
+        String imageUrl = intent.getStringExtra("images");
+        final int position = intent.getIntExtra("position", -1);
+
+
+//
+//        AllFoodDTO allFoodDTO = new AllFoodDTO(Location,id,title,desc,rating,Star,imageUrl,position);
+//        firebaseData.add(allFoodDTO);
+
 
         detailAdress.setText(Location);
         ID.setText(id);
         textView.setText(title);
         textView2.setText(desc);
         rb.setRating(rating);
-       imageView.setImageURI(Uri.parse(image));
+
+        Glide.with(this).load(imageUrl).into(imageView);
 
         heartCount.setText(Star + "명이 좋아합니다.");
 
 
 
-    }
 
 
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        textView.setText(firebaseData.get(position).title);
-        textView2.setText(firebaseData.get(position).description);
-        rb.setRating(firebaseData.get(position).ratingScore);
-        Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(imageView);
 
-        ID.setText(firebaseData.get(position).userId);
-        heartCount.setText(firebaseData.get(position).starCount + "명이 좋아합니다.");
+
         //좋아요 버튼
         starButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseUser user = auth.getCurrentUser();
-                if (user != null) {
+
+
                     onStarClicked(database.getReference().child(FOOD).child(uidLists.get(position)));
-                } else {
-                    Toast.makeText(context, "로그인해주세요.", Toast.LENGTH_SHORT).show();
-                }
+
             }
         });
 
-
-        FirebaseUser user = auth.getCurrentUser();
-        if (user != null) {
-            if (firebaseData.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
-                starButton.setImageResource(R.drawable.ic_heart2);
-
-            } else {
-                starButton.setImageResource(R.drawable.ic_heart1);
-            }
-        }
 
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -222,4 +213,20 @@ public class DetailViewActivity2 extends AppCompatActivity {
 
         }
     }
-}
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
