@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
     private EditText editTextName;
     private RadioButton rbtnMan,rbtnWoman;
     private RadioButton btn1,btn2,btn3, btn4;
-    private RadioGroup rbtnGroup;
+    private RadioGroup rbtnGroup,RbtnGroupSex;
 
     private FirebaseAuth.AuthStateListener mAuthListener;
 
@@ -64,7 +64,8 @@ public class RegisterActivity extends AppCompatActivity {
         editTextName = findViewById(R.id.sign_up_edittext_name);
         rbtnMan = findViewById(R.id.sign_up_rbtn_man);
         rbtnWoman = findViewById(R.id.sign_up_rbtn_woman);
-        rbtnGroup = findViewById(R.id.sign_up_rbtnGroup);
+        rbtnGroup = findViewById(R.id.sign_up_rbtnAge);
+        RbtnGroupSex = findViewById(R.id.sign_up_rbtnSex);
         signUp =  findViewById(R.id.sign_up_button);
         btn1 = findViewById(R.id.sign_up_age1);
         btn2 = findViewById(R.id.sign_up_age2);
@@ -76,9 +77,29 @@ public class RegisterActivity extends AppCompatActivity {
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editTextEmail.getText()==null || editTextPassword.getText()==null||editTextName.getText()==null){
-                    Toast.makeText(RegisterActivity.this, "작성안한곳이 있습니다.", Toast.LENGTH_SHORT).show();
+                if(("".equals(editTextEmail.getText().toString()))) {
+
+                    Toast.makeText(RegisterActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
                     return;
+
+                }else if (("".equals(editTextPassword.getText().toString()))) {
+
+                    Toast.makeText(RegisterActivity.this, "비밀번호를 입력 해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }else if(("".equals(editTextName.getText().toString()))) {
+                    Toast.makeText(RegisterActivity.this, "이름을 입력 해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }else if(RbtnGroupSex.getCheckedRadioButtonId() == -1){
+
+                    Toast.makeText(RegisterActivity.this, "성별을 선택 해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+
+                }else if(rbtnGroup.getCheckedRadioButtonId() == -1){
+
+                    Toast.makeText(RegisterActivity.this, "연령을 선택 해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+
                 }else {
                     String sex = null;
                     if (rbtnMan.isChecked()) { sex = "남성"; }
