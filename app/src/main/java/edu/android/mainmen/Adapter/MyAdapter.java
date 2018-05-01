@@ -33,9 +33,12 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
+import edu.android.mainmen.DrawerMenu.CommentActivity;
 import edu.android.mainmen.R;
 import edu.android.mainmen.Search.SearchActivity;
 import edu.android.mainmen.ReviewFragment.DetailViewActivity2;
@@ -51,7 +54,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private FirebaseDatabase database;
     private FirebaseStorage storage;
     private List<String> uidLists;
-
+    private int selectedPosition;
+    public final static String KEY_LIST = "FIREBASEDATA";
+    public final static String KEY_ID =  "ID";
+    public final static String KEY_DESC = "DESC";
 
 
     public MyAdapter(Context context, List<AllFoodDTO> firebaseData, FirebaseAuth auth, FirebaseDatabase database, FirebaseStorage storage, List<String> uidLists) {
@@ -134,6 +140,24 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
 
+        ((CustomViewHolder)holder).commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectedPosition = position;
+                String ID = firebaseData.get(position).userId;
+                String title = firebaseData.get(position).title;
+                String desc = firebaseData.get(position).description;
+
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra(KEY_ID, ID);
+                intent.putExtra(KEY_LIST, title);
+                intent.putExtra(KEY_DESC, desc);
+                context.startActivity(intent);
+            }
+        });
+
+
 //        ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
@@ -142,7 +166,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 //            }
 //        });
     }
-
 
     //글 삭제
     private void delete_content(final int position) {
@@ -221,6 +244,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ImageView starButton;
         TextView heartCount;
         RatingBar rb;
+        ImageView commentButton;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -232,6 +256,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             starButton = itemView.findViewById(R.id.item_heart_image);
             heartCount = itemView.findViewById(R.id.item_heart_count);
             rb = itemView.findViewById(R.id.rb);
+            commentButton = itemView.findViewById(R.id.comment_image);
 
         }
     }

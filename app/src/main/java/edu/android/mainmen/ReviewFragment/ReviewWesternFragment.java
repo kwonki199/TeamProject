@@ -45,7 +45,7 @@ public class ReviewWesternFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
-    private List<AllFoodDTO> firebaseData = new ArrayList<>();
+    private ArrayList<AllFoodDTO> firebaseData = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
     private FirebaseAuth auth;

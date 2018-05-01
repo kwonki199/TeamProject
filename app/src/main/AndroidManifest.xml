@@ -67,6 +67,7 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
+        <activity android:name=".DrawerMenu.CommentActivity" android:windowSoftInputMode="adjustNothing" />
 
         <!--
          The API key for Google Maps-based APIs is defined as a string resource.
