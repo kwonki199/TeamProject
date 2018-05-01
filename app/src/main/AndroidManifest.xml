@@ -28,7 +28,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".DrawerMenu.LoginActivity" />
         <activity android:name=".DrawerMenu.WelcomeActivity" />
         <activity android:name=".DrawerMenu.BookmarkActivity" />
@@ -61,7 +61,9 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".DrawerMenu.CommentActivity" android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".DrawerMenu.CommentActivity"
+            android:windowSoftInputMode="adjustNothing" />
 
         <!--
          The API key for Google Maps-based APIs is defined as a string resource.

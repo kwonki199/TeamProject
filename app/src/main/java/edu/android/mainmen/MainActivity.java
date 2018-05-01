@@ -8,10 +8,10 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.util.Log;
@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity
     //Tabbed
     private ViewPager mViewPager;
     private SectionsPageAdapter mSectionsPageAdapter;
-    private FloatingActionButton WriteReviewButton;
     //    private TextView header_name;
     private TextView header_email;
     private FirebaseAuth auth;
@@ -83,28 +82,44 @@ public class MainActivity extends AppCompatActivity
 
     private long lastTimeBackPressed = 0;
 
+    private BottomNavigationView navigation;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         alertNoticeButton();
         getAppKeyHash(); // hash 키 불러오기
 
+        //파이어베이스
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
 
+        // 바텀네비게이션
+        navigation = findViewById(R.id.bottomNavigationView);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+
         //액션바
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
+        //뷰페이저
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout =  findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
+
+        // 탭과 옆으로 드로잉할때 연결시키기.
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
@@ -113,14 +128,7 @@ public class MainActivity extends AppCompatActivity
         navigationView = findViewById(R.id.nav_view);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -142,26 +150,11 @@ public class MainActivity extends AppCompatActivity
             header_email.setText("로그인이 되어있지 않습니다.");
         }
 
-        // 업로드 버튼
-        WriteReviewButton = findViewById(R.id.fab);
-        WriteReviewButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseUser user = auth.getCurrentUser();
-                if (user != null) {
-                    Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
-                    startActivity(intent);
-                }else{
-                    alertLoginButtons();
-//                Toast.makeText(this, "로그인이 필요합니다~ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
         email = findViewById(R.id.alert_username);
         password = findViewById(R.id.alert_password);
 
-    }
+    }// end onCrete
 
     /* ↓ Back 버튼 누를 시 앱 종료 기능 */
     @Override
@@ -232,7 +225,6 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
             }else{
                 alertLoginButtons();
-//                Toast.makeText(this, "로그인이 필요합니다~ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -243,7 +235,6 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }else{
                 alertLoginLayout();
-//                Toast.makeText(this, "로그인이 필요합니다~ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
             }
 
         } else if (id == R.id.nav_bookmark) { // 즐겨찾기
@@ -260,8 +251,8 @@ public class MainActivity extends AppCompatActivity
 
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
             }
-
         } else if (id == R.id.nav_coupon) {
+
         } else if (id == R.id.nav_game) {
             Intent intent = new Intent(MainActivity.this, RouletteActivity.class);
             startActivity(intent);
@@ -277,16 +268,17 @@ public class MainActivity extends AppCompatActivity
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new FoodListFragment(), "홈");
-        adapter.addFragment(new ReadReviewFragment(), "리뷰");
+        adapter.addFragment(new FoodListFragment(), "홈");             // 0 포지션
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");
-        adapter.addFragment(new ReviewWesternFragment(), "피자/양식");
+        adapter.addFragment(new ReviewWesternFragment(), "피자/양식");  // 3 포지션
         adapter.addFragment(new ReviewJapanFragment(), "일식");
         adapter.addFragment(new ReviewChikenFragment(), "치킨");
         adapter.addFragment(new ReviewSnackBarFragment(), "분식");
         adapter.addFragment(new ReviewFastFoodFragment(), "패스트푸드");
-        adapter.addFragment(new ReviewBossamFragment(), "족발/보쌈");
+        adapter.addFragment(new ReviewBossamFragment(), "족발/보쌈");   // 9 포지션
+        adapter.addFragment(new ReadReviewFragment(), "전체리뷰");
+
 
         viewPager.setAdapter(adapter);
     }
@@ -396,5 +388,46 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
     }
+
+    // 바텀네비게이션
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+            = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+
+                    //홈
+                case R.id.navigation_home:
+
+                    mViewPager.setCurrentItem(0);
+                    return true;
+
+                    //전체리뷰
+                case R.id.navigation_allsearch:
+                    mViewPager.setCurrentItem(10);
+                    return true;
+
+                    //글쓰기
+                case R.id.navigation_write:
+                    FirebaseUser user = auth.getCurrentUser();
+                    if (user != null) {
+                        Intent intent1 = new Intent(MainActivity.this, FirebaseUploadActivity.class);
+                        startActivity(intent1);
+                    } else {
+                        alertLoginButtons();
+                    }
+                    return true;
+
+                    //마이페이지지
+                case R.id.navigation_mypage:
+                    Toast.makeText(MainActivity.this, "마이페이지", Toast.LENGTH_SHORT).show();
+                    return true;
+            }
+            return false;
+        }
+    };
+
+
 
 }// end MainActivity
