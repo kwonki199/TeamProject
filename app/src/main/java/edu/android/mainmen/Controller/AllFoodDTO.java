@@ -22,4 +22,5 @@ public class AllFoodDTO {
     public String storename;    // 음식점이름
 
 
+
 }
