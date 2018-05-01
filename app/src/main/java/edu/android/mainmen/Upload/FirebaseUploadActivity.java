@@ -59,6 +59,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private Spinner spinner;
     private RatingBar rb;
     private int spinnerPosition;
+    private EditText upload_store;
 
 
 
@@ -87,6 +88,8 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         rb = findViewById(R.id.rb);
         cancelBtn = findViewById(R.id.cancelBtn);
         uploadStore = findViewById(R.id.upload_store);
+        upload_store = findViewById(R.id.upload_store);
+
 
 
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -139,11 +142,12 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 }else  if(imagePath == null) {
                     Toast.makeText(FirebaseUploadActivity.this, "사진을 넣어 주세요.", Toast.LENGTH_SHORT).show();
 
+                }else if(("".equals(upload_store.getText().toString()))){
+                    Toast.makeText(FirebaseUploadActivity.this, "음식점 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+
                 }else if(("".equals(title.getText().toString()))) {
                     Toast.makeText(FirebaseUploadActivity.this, "음식 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
-
-                }else if(("버튼을 클릭하여 위치를 지정해주세요.".equals(addLocation.getText().toString()))){
-                    Toast.makeText(FirebaseUploadActivity.this, "위치를 입력해주세요.", Toast.LENGTH_SHORT).show();
 
                 }else if(("".equals(description.getText().toString()))){
                     Toast.makeText(FirebaseUploadActivity.this, "리뷰 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();

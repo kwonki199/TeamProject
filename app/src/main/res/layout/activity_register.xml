@@ -95,7 +95,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <RadioGroup
-            android:id="@+id/sign_up_rbtnGroup"
+            android:id="@+id/sign_up_rbtnSex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -135,7 +135,7 @@
         </RadioGroup>
 
         <RadioGroup
-            android:id="@+id/sign_up_rbtnGroup2"
+            android:id="@+id/sign_up_rbtnAge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -145,7 +145,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sign_up_rbtnGroup">
+            app:layout_constraintTop_toBottomOf="@+id/sign_up_rbtnSex">
 
             <TextView
                 android:layout_width="65dp"

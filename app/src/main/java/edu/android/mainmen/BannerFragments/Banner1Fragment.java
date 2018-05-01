@@ -1,4 +1,4 @@
-package edu.android.mainmen.ReviewFragment;
+package edu.android.mainmen.BannerFragments;
 
 
 import android.os.Bundle;
@@ -12,11 +12,10 @@ import edu.android.mainmen.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DetailView2 extends Fragment {
+public class Banner1Fragment extends Fragment {
 
 
-
-    public DetailView2() {
+    public Banner1Fragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +24,7 @@ public class DetailView2 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detail_view2, container, false);
+        return inflater.inflate(R.layout.fragment_banner1, container, false);
     }
 
 }

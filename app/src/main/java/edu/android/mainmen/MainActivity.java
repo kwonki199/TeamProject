@@ -45,7 +45,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import java.lang.reflect.Field;
 import java.security.MessageDigest;
 
+import edu.android.mainmen.Adapter.SectionsBannerPageAdapter;
 import edu.android.mainmen.Adapter.SectionsPageAdapter;
+import edu.android.mainmen.BannerFragments.Banner1Fragment;
+import edu.android.mainmen.BannerFragments.Banner2Fragment;
+import edu.android.mainmen.BannerFragments.Banner3Fragment;
+import edu.android.mainmen.BannerFragments.BannerMainFragment;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
@@ -91,6 +96,8 @@ public class MainActivity extends AppCompatActivity
     private BottomNavigationView navigation;
     private Toolbar toolbar;
     private TabLayout tabLayout;
+    private SectionsBannerPageAdapter sectionsBannerPageAdapter;
+    private ViewPager mViewPager2;
     private AppBarLayout appBarLayout;
 
 
@@ -121,10 +128,24 @@ public class MainActivity extends AppCompatActivity
         //뷰페이저
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
 
+
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
         tabLayout =  findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
+
+
+        //베너 뷰페이저
+
+        sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
+
+        mViewPager2 = findViewById(R.id.containerBanner);
+
+
+
+        setupBannerViewPager(mViewPager2);
+
+
 
 
 
@@ -299,6 +320,18 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ReviewFastFoodFragment(), "패스트푸드");
         adapter.addFragment(new ReviewBossamFragment(), "족발/보쌈");   // 9 포지션
         adapter.addFragment(new ReadReviewFragment(), "전체리뷰");
+
+
+        viewPager.setAdapter(adapter);
+    }
+
+    private void setupBannerViewPager(ViewPager viewPager) {
+        SectionsBannerPageAdapter adapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
+        adapter.addFragment(new BannerMainFragment());
+        adapter.addFragment(new Banner1Fragment());             // 0 포지션
+        adapter.addFragment(new Banner2Fragment());
+        adapter.addFragment(new Banner3Fragment());
+
 
 
         viewPager.setAdapter(adapter);

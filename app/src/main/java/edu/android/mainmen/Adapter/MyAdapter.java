@@ -3,7 +3,6 @@ package edu.android.mainmen.Adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,15 +25,12 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
 
-import org.w3c.dom.Comment;
-
 import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.DrawerMenu.CommentActivity;
 import edu.android.mainmen.R;
-import edu.android.mainmen.Search.SearchActivity;
-import edu.android.mainmen.ReviewFragment.DetailViewActivity2;
+import edu.android.mainmen.DetailViewActivity2;
 
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
 
@@ -109,6 +105,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, DetailViewActivity2.class);
+
+
                 intent.putExtra("location", allFoodDTOList.get(position).Location);
                 intent.putExtra("id", allFoodDTOList.get(position).userId);
                 intent.putExtra("title", allFoodDTOList.get(position).title);
@@ -116,9 +114,15 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("rating", allFoodDTOList.get(position).ratingScore);
                 intent.putExtra("images", allFoodDTOList.get(position).imageUrl);
                 intent.putExtra("heartCount",allFoodDTOList.get(position).starCount);
+                intent.putExtra("StoreName",allFoodDTOList.get(position).storename);
                 intent.putExtra("position",position);
 
+
+
+
                 context.startActivity(intent);
+
+
 
 
             }
@@ -149,13 +153,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra(KEY_ID, ID);
                 intent.putExtra(KEY_LIST, title);
                 intent.putExtra(KEY_DESC, desc);
-                context.startActivity(intent);
+
+
             }
         });
     }
 
     //글 삭제
-    private void delete_content(final int position) {
+    public void delete_content(final int position) {
 
         storage.getReference().child("images/").child(allFoodDTOList.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
