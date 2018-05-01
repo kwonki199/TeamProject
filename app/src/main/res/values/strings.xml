@@ -8,9 +8,11 @@
     <string name="action_settings">Settings</string>
 
     <string name="main_name">Main</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_home_nav">Home</string>
+    <string name="title_allsearch_nav">전체리뷰</string>
+    <string name="title_write_nav">글쓰기</string>
+    <string name="title_mypage_nav">마이페이지</string>
+
     <string name="title_profile">Profile</string>
 
     <string name="prompt_loginId">아이디</string>
@@ -45,13 +47,13 @@
 
     <string name="notice1">ver0.4 공지사항</string>
     <string name="notice2">\n\n
-                            4/30 해야할것. \n
-                           댓글기능/세부검색/디테일리뷰 \n\n
-                           회원가입 ,리뷰작성시\n
-                           작성안한 항목잡기 필요.\n\n
+                            남은기간할것 \n
+                            수정기능 \n\n
+                           회원가입 ,리뷰작성시 에러잡기\n
+                           바텀네비게이션 추가해서 홈넣기\n\n
                            UI 디자인 필요 사용자가 이용하기 편하게\n\n
-                           해야함.\n
-                             동희   - \n\n
+                           안정화 ( 노에러 구현 )\n
+                                          동희   - \n\n
                    </string>
 
     <!--스피너 값-->
@@ -64,15 +66,16 @@
         <item>메뉴를 선택해주세요</item>
         <item>한식</item>
         <item>중식</item>
-        <item>양식</item>
+        <item>피자/양식</item>
         <item>일식</item>
-        <!--<item>치킨</item>-->
-        <!--<item>피자</item>-->
-        <!--<item>패스트푸드</item>-->
-        <!--<item>족발/보쌈</item>-->
+        <item>치킨</item>
+        <item>분식</item>
+        <item>패스트푸드</item>
+        <item>족발/보쌈</item>
 
     </string-array>
     <string name="title_activity_maps_test">Map</string>
+    <string name="title_activity_main2">Main2Activity</string>
 
 
 </resources>

@@ -42,6 +42,15 @@ import static edu.android.mainmen.Upload.FirebaseUploadActivity.*;
  */
 public class ReadReviewFragment extends Fragment {
 
+    public static final String KOREA = "korea";
+    public static final String CHINA = "china";
+    public static final String WESTERN = "western";
+    public static final String JAPAN = "japan";
+    public static final String CHIKEN = "chiken";
+    public static final String SNACKBAR = "snackbar";
+    public static final String FASTFOOD = "fastfood";
+    public static final String BOSSAM = "bossam";
+
     private RecyclerView recyclerView;
     private List<AllFoodDTO> allFoodDTOS = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
@@ -61,7 +70,7 @@ public class ReadReviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_review, container, false);
+        View view = inflater.inflate(R.layout.fragment_review, container, false);
 
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
@@ -77,7 +86,7 @@ public class ReadReviewFragment extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 allFoodDTOS.clear();
                 uidLists.clear();
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
                     String uidKey = snapshot.getKey();
                     allFoodDTOS.add(allFoodDTO);

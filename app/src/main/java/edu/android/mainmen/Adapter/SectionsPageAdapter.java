@@ -23,6 +23,11 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
         mFragmentTitleList.add(title);
     }
 
+    public void addOnlyFragment(Fragment fragment) {
+        mFragmentList.add(fragment);
+    }
+
+
 
 
     public SectionsPageAdapter(FragmentManager fm) {
@@ -44,4 +49,8 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return mFragmentList.size();
     }
+
+
 }
+
+

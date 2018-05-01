@@ -10,11 +10,12 @@
         android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:orientation="horizontal"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginTop="8dp">
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:id="@+id/linearLayout2"
@@ -62,26 +63,37 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginTop="16dp"
-            android:layout_weight="1">
+            android:layout_weight="1"
+            android:orientation="vertical">
 
             <Spinner
                 android:id="@+id/selectCategorySp"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
                 android:layout_marginBottom="20dp"
-                android:layout_marginTop="55dp"
+                android:layout_marginTop="20dp"
                 android:prompt="@string/category_prompt" />
+
+            <EditText
+                android:id="@+id/upload_store"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="음식점이름을 넣어주세요."
+                android:inputType="text"
+                android:textSize="12sp" />
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/upload_title"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
-                android:textSize="12sp"
-                android:hint="음식이름을 입력하세요." />
+                android:hint="음식이름을 입력하세요."
+                android:textSize="12sp" />
+
+
 
         </LinearLayout>
 

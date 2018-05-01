@@ -17,7 +17,6 @@
             android:layout_width="110dp"
             android:layout_height="110dp"
             android:layout_gravity="center"
-            android:layout_marginTop="8dp"
             android:layout_weight="1"
             app:srcCompat="@android:drawable/sym_def_app_icon" />
 

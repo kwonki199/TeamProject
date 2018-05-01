@@ -2,29 +2,17 @@ package edu.android.mainmen.ReviewFragment;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.MutableData;
-import com.google.firebase.database.Transaction;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 
@@ -41,7 +29,7 @@ import static edu.android.mainmen.ReviewFragment.ReadReviewFragment.*;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReviewJapanFragment extends Fragment {
+public class ReviewBossamFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
@@ -53,7 +41,7 @@ public class ReviewJapanFragment extends Fragment {
 
 
 
-    public ReviewJapanFragment() {
+    public ReviewBossamFragment() {
         // Required empty public constructor
     }
 
@@ -68,12 +56,12 @@ public class ReviewJapanFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         recyclerView = view.findViewById(R.id.recyclerView_Review2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final MyAdapter boardRecyclerViewAdapter = new MyAdapter(getActivity(),firebaseData, auth, database, storage, uidLists);
-        recyclerView.setAdapter(boardRecyclerViewAdapter);
+        final MyAdapter MyRecyclerViewAdapter = new MyAdapter(getActivity(),firebaseData, auth, database, storage, uidLists);
+        recyclerView.setAdapter(MyRecyclerViewAdapter);
 
 
 
-        database.getReference().child(FOOD).orderByChild("food").equalTo(JAPAN).addValueEventListener(new ValueEventListener() {
+        database.getReference().child(FOOD).orderByChild("food").equalTo(BOSSAM).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -85,7 +73,7 @@ public class ReviewJapanFragment extends Fragment {
                     String uidKey = snapshot.getKey();
                     uidLists.add(uidKey);
                 }
-                boardRecyclerViewAdapter.notifyDataSetChanged();
+                MyRecyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override

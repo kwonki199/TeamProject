@@ -33,57 +33,66 @@
             android:textStyle="bold" />
     </LinearLayout>
 
-
-    <ImageView
-
-        android:id="@+id/item_imageView"
-        android:layout_width="match_parent"
-        android:layout_height="248dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
-        app:srcCompat="@android:color/holo_blue_bright" />
-
-    <TextView
-        android:id="@+id/item_textView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textAlignment="textStart"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        android:layout_margin="8dp" >
 
-    <RatingBar
-        android:id="@+id/rb"
+        <ImageView
+            android:id="@+id/item_imageView"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            app:srcCompat="@android:color/holo_blue_bright" />
+    </LinearLayout>
 
-        style="?android:attr/ratingBarStyleIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top|center"
-        android:layout_marginEnd="8dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:orientation="vertical"
         android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
 
-        android:layout_marginTop="8dp"
-        android:isIndicator="true"
-        android:numStars="5"
-        android:rating="0" />
+        <TextView
+            android:id="@+id/item_textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/detailAdress"
-        android:layout_width="match_parent"
-        android:layout_height="31dp"
-        android:text="TextView" />
+        <RatingBar
+            android:id="@+id/rb"
+            style="?android:attr/ratingBarStyleIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="0" />
 
-    <TextView
-        android:id="@+id/item_textView2"
-        android:layout_width="match_parent"
-        android:layout_height="78dp"
-        android:text="TextView"
-        android:textAlignment="center" />
+        <TextView
+            android:id="@+id/detailAdress"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/item_textView2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:text="TextView" />
+    </LinearLayout>
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" >
 
         <ImageView
             android:id="@+id/comment_image"
@@ -93,6 +102,7 @@
             app:srcCompat="@drawable/ic_comment" />
 
         <ImageView
+
             android:id="@+id/item_heart_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -101,9 +111,9 @@
 
         <TextView
             android:id="@+id/item_heart_count"
-            android:layout_width="245dp"
+            android:layout_width="222dp"
             android:layout_height="match_parent"
-            android:layout_weight="0"
+            android:layout_margin="4dp"
             android:text="Count"
             android:textSize="14sp" />
 
@@ -111,7 +121,6 @@
             android:id="@+id/item_delete_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_margin="4dp"
             app:srcCompat="@drawable/ic_garbage" />
 

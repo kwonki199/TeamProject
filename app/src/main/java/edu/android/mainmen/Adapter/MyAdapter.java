@@ -2,11 +2,6 @@ package edu.android.mainmen.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.Image;
-import android.net.Uri;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.RecyclerView;
@@ -31,10 +26,8 @@ import com.google.firebase.database.MutableData;
 import com.google.firebase.database.Transaction;
 import com.google.firebase.storage.FirebaseStorage;
 
-import java.io.ByteArrayOutputStream;
-import java.io.Serializable;
-import java.io.Serializable;
-import java.util.ArrayList;
+import org.w3c.dom.Comment;
+
 import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
@@ -49,7 +42,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
     private Context context;
-    private List<AllFoodDTO> firebaseData;
+    private List<AllFoodDTO> allFoodDTOList;
     private FirebaseAuth auth;
     private FirebaseDatabase database;
     private FirebaseStorage storage;
@@ -60,9 +53,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public final static String KEY_DESC = "DESC";
 
 
-    public MyAdapter(Context context, List<AllFoodDTO> firebaseData, FirebaseAuth auth, FirebaseDatabase database, FirebaseStorage storage, List<String> uidLists) {
+    public MyAdapter(Context context, List<AllFoodDTO> allFoodDTOList, FirebaseAuth auth, FirebaseDatabase database, FirebaseStorage storage, List<String> uidLists) {
         this.context = context;
-        this.firebaseData = firebaseData;
+        this.allFoodDTOList = allFoodDTOList;
         this.auth = auth;
         this.database = database;
         this.storage = storage;
@@ -80,15 +73,15 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
-        ((CustomViewHolder) holder).textView.setText(firebaseData.get(position).title);
-        ((CustomViewHolder) holder).textView2.setText(firebaseData.get(position).description);
-        ((CustomViewHolder) holder).rb.setRating(firebaseData.get(position).ratingScore);
-        Glide.with(holder.itemView.getContext()).load(firebaseData.get(position).imageUrl).into(((CustomViewHolder) holder).imageView);
+        ((CustomViewHolder)holder).textView.setText(allFoodDTOList.get(position).title);
+        ((CustomViewHolder)holder).textView2.setText(allFoodDTOList.get(position).description);
+        ((CustomViewHolder)holder).rb.setRating(allFoodDTOList.get(position).ratingScore);
+        Glide.with(holder.itemView.getContext()).load(allFoodDTOList.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
 
-        ((CustomViewHolder) holder).ID.setText(firebaseData.get(position).userId);
-        ((CustomViewHolder) holder).heartCount.setText(firebaseData.get(position).starCount + "명이 좋아합니다.");
+        ((CustomViewHolder)holder).ID.setText(allFoodDTOList.get(position).userId);
+        ((CustomViewHolder)holder).heartCount.setText(allFoodDTOList.get(position).starCount+"명이 좋아합니다.");
         //좋아요 버튼
-        ((CustomViewHolder) holder).starButton.setOnClickListener(new View.OnClickListener() {
+        ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseUser user = auth.getCurrentUser();
@@ -102,8 +95,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
         FirebaseUser user = auth.getCurrentUser();
-        if (user != null) {
-            if (firebaseData.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
+        if(user!=null) {
+            if (allFoodDTOList.get(position).stars.containsKey(auth.getCurrentUser().getUid())) {
                 ((CustomViewHolder) holder).starButton.setImageResource(R.drawable.ic_heart2);
 
             } else {
@@ -116,13 +109,13 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, DetailViewActivity2.class);
-                intent.putExtra("location", firebaseData.get(position).Location);
-                intent.putExtra("id", firebaseData.get(position).userId);
-                intent.putExtra("title", firebaseData.get(position).title);
-                intent.putExtra("desc", firebaseData.get(position).description);
-                intent.putExtra("rating", firebaseData.get(position).ratingScore);
-                intent.putExtra("images", firebaseData.get(position).imageUrl);
-                intent.putExtra("heartCount", firebaseData.get(position).starCount);
+                intent.putExtra("location", allFoodDTOList.get(position).Location);
+                intent.putExtra("id", allFoodDTOList.get(position).userId);
+                intent.putExtra("title", allFoodDTOList.get(position).title);
+                intent.putExtra("desc", allFoodDTOList.get(position).description);
+                intent.putExtra("rating", allFoodDTOList.get(position).ratingScore);
+                intent.putExtra("images", allFoodDTOList.get(position).imageUrl);
+                intent.putExtra("heartCount",allFoodDTOList.get(position).starCount);
                 intent.putExtra("position",position);
 
                 context.startActivity(intent);
@@ -132,7 +125,8 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         });
 
 
-        ((CustomViewHolder) holder).deleteButton.setOnClickListener(new View.OnClickListener() {
+        // 삭제버튼
+        ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -140,14 +134,16 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             }
         });
 
+        // 이미지버튼
+
         ((CustomViewHolder)holder).commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 selectedPosition = position;
-                String ID = firebaseData.get(position).uid;
-                String title = firebaseData.get(position).title;
-                String desc = firebaseData.get(position).description;
+                String ID = allFoodDTOList.get(position).userId;
+                String title = allFoodDTOList.get(position).title;
+                String desc = allFoodDTOList.get(position).description;
 
                 Intent intent = new Intent(context, CommentActivity.class);
                 intent.putExtra(KEY_ID, ID);
@@ -156,21 +152,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 context.startActivity(intent);
             }
         });
-
-
-//        ((CustomViewHolder)holder).imageView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent =new Intent(context, SearchActivity.class);
-//                context.startActivity(intent);
-//            }
-//        });
     }
 
     //글 삭제
     private void delete_content(final int position) {
 
-        storage.getReference().child("images/").child(firebaseData.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+        storage.getReference().child("images/").child(allFoodDTOList.get(position).imageName).delete().addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 
@@ -209,11 +196,11 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
                 if (firebaseData.stars.containsKey(auth.getCurrentUser().getUid())) {
                     // Unstar the post and remove self from stars
-                    firebaseData.starCount = firebaseData.starCount - 1;
+                    firebaseData.starCount = firebaseData.starCount + 1;
                     firebaseData.stars.remove(auth.getCurrentUser().getUid());
                 } else {
                     // Star the post and add self to stars
-                    firebaseData.starCount = firebaseData.starCount + 1;
+                    firebaseData.starCount = firebaseData.starCount - 1;
                     firebaseData.stars.put(auth.getCurrentUser().getUid(), true);
                 }
 
@@ -234,7 +221,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public int getItemCount() {
-        return firebaseData.size();
+        return allFoodDTOList.size();
     }
 
     private class CustomViewHolder extends RecyclerView.ViewHolder {
@@ -252,7 +239,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imageView = (ImageView) itemView.findViewById(R.id.item_imageView);
             textView = (TextView) itemView.findViewById(R.id.item_textView);
             textView2 = (TextView) itemView.findViewById(R.id.item_textView2);
-            deleteButton = (ImageView) itemView.findViewById(R.id.item_delete_image);
+            deleteButton = (ImageView)itemView.findViewById(R.id.item_delete_image);
             starButton = itemView.findViewById(R.id.item_heart_image);
             heartCount = itemView.findViewById(R.id.item_heart_count);
             rb = itemView.findViewById(R.id.rb);

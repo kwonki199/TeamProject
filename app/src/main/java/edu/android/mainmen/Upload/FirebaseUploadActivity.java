@@ -44,11 +44,6 @@ import edu.android.mainmen.R;
 
 public class FirebaseUploadActivity extends AppCompatActivity {
     public static final String FOOD = "Food/";
-    public static final String FOODKOREAN = "KoreanFood";
-    public static final String FOODCHINESE = "ChineseFood";
-    public static final String FOODWESTERN = "WesternFood";
-    public static final String FOODJAPAN = "JapanFood";
-
 
     private static final String TAGSPINNER = "spinner";
     private static final int PLACE_PICKER_REQUEST = 1;
@@ -57,15 +52,14 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     private FirebaseStorage storage;
     private FirebaseDatabase database;
     private ImageView imageView;
-    private EditText title;
-    private EditText description;
-    private Button upload_Button;
+    private EditText title , description , uploadStore;
+    private Button upload_Button , cancelBtn ;
     private String imagePath;
     private TextView addLocation;
     private Spinner spinner;
     private RatingBar rb;
     private int spinnerPosition;
-    private Button cancelBtn;
+
 
 
     @Override
@@ -92,6 +86,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         spinner = findViewById(R.id.selectCategorySp);
         rb = findViewById(R.id.rb);
         cancelBtn = findViewById(R.id.cancelBtn);
+        uploadStore = findViewById(R.id.upload_store);
 
 
         rb.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
@@ -138,14 +133,34 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         upload_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (spinnerPosition != 0) {
+                if (spinnerPosition == 0) {
+
+                    Toast.makeText(FirebaseUploadActivity.this, "음식 카테고리를 선택해 주세요.", Toast.LENGTH_SHORT).show();
+                }else  if(imagePath == null) {
+                    Toast.makeText(FirebaseUploadActivity.this, "사진을 넣어 주세요.", Toast.LENGTH_SHORT).show();
+
+                }else if(("".equals(title.getText().toString()))) {
+                    Toast.makeText(FirebaseUploadActivity.this, "음식 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+                }else if(("버튼을 클릭하여 위치를 지정해주세요.".equals(addLocation.getText().toString()))){
+                    Toast.makeText(FirebaseUploadActivity.this, "위치를 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+                }else if(("".equals(description.getText().toString()))){
+                    Toast.makeText(FirebaseUploadActivity.this, "리뷰 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+
+                }else if(rb.getRating() == 0){
+                    Toast.makeText(FirebaseUploadActivity.this, "별점을 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+
+                }else{
+
                     upload(imagePath, spinnerPosition);
                     Log.i(TAGSPINNER, "position=" + spinnerPosition);
                     Toast.makeText(FirebaseUploadActivity.this, "업로드가 되었습니다.", Toast.LENGTH_SHORT).show();
                     finish();
 
-                } else {
-                    Toast.makeText(FirebaseUploadActivity.this, "메뉴를 선택해주세요.", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
@@ -180,7 +195,16 @@ public class FirebaseUploadActivity extends AppCompatActivity {
             foodmenu = "western";
         } else if (p == 4) {
             foodmenu = "japan";
-        } else {
+        }else if (p == 5) {
+            foodmenu = "chiken";
+        }else if (p == 6) {
+            foodmenu = "snackbar";
+        }else if (p == 7) {
+            foodmenu = "fastfood";
+        }else if (p == 8) {
+            foodmenu = "bossam";
+        }
+        else {
 
         }
 
@@ -214,6 +238,7 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 allFoodDTO.imageName = file.getLastPathSegment();
                 allFoodDTO.ratingScore = rb.getRating();
                 allFoodDTO.food = Foodmenu;
+                allFoodDTO.storename = uploadStore.getText().toString();
 
 
 //                allFoodDTO.usex = database.getReference().child("users").orderByChild("usersex").equalTo("남성").toString();
