@@ -133,14 +133,34 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         upload_Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (spinnerPosition != 0) {
+                if (spinnerPosition == 0) {
+
+                    Toast.makeText(FirebaseUploadActivity.this, "음식 카테고리를 선택해 주세요.", Toast.LENGTH_SHORT).show();
+                }else  if(imagePath == null) {
+                    Toast.makeText(FirebaseUploadActivity.this, "사진을 넣어 주세요.", Toast.LENGTH_SHORT).show();
+
+                }else if(("".equals(title.getText().toString()))) {
+                    Toast.makeText(FirebaseUploadActivity.this, "음식 이름을 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+                }else if(("버튼을 클릭하여 위치를 지정해주세요.".equals(addLocation.getText().toString()))){
+                    Toast.makeText(FirebaseUploadActivity.this, "위치를 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+                }else if(("".equals(description.getText().toString()))){
+                    Toast.makeText(FirebaseUploadActivity.this, "리뷰 내용을 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+
+                }else if(rb.getRating() == 0){
+                    Toast.makeText(FirebaseUploadActivity.this, "별점을 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+
+                }else{
+
                     upload(imagePath, spinnerPosition);
                     Log.i(TAGSPINNER, "position=" + spinnerPosition);
                     Toast.makeText(FirebaseUploadActivity.this, "업로드가 되었습니다.", Toast.LENGTH_SHORT).show();
                     finish();
 
-                } else {
-                    Toast.makeText(FirebaseUploadActivity.this, "메뉴를 선택해주세요.", Toast.LENGTH_SHORT).show();
+
                 }
             }
         });
