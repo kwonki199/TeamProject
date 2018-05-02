@@ -9,18 +9,13 @@ import android.view.ViewGroup;
 
 import edu.android.mainmen.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BannerMainFragment extends Fragment {
+public class Banner5Fragment extends Fragment {
 
 
-
-    //Tabbed
-
-
-    public BannerMainFragment() {
+    public Banner5Fragment() {
         // Required empty public constructor
     }
 
@@ -28,15 +23,8 @@ public class BannerMainFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_banner1, container, false);
-
-
-        return view;
-
-
+        return inflater.inflate(R.layout.fragment_banner5, container, false);
     }
-
 
 }

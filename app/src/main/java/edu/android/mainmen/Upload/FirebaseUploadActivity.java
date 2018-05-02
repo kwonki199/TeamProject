@@ -32,7 +32,10 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -156,12 +159,15 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 }else if(rb.getRating() == 0){
                     Toast.makeText(FirebaseUploadActivity.this, "별점을 입력해주세요.", Toast.LENGTH_SHORT).show();
 
-
                 }else{
 
                     upload(imagePath, spinnerPosition);
                     Log.i(TAGSPINNER, "position=" + spinnerPosition);
                     Toast.makeText(FirebaseUploadActivity.this, "업로드가 되었습니다.", Toast.LENGTH_SHORT).show();
+                    //리뷰포인트 넣기.
+//                    FirebaseDatabase.getInstance().getReference().child("users").child(auth.getCurrentUser().getUid()).child("reviewPoint").setValue(+50);
+                    String uid = auth.getCurrentUser().getUid();
+                    database.getReference().child("users").child(uid).child("reviewPoint").setValue(+ 50);
                     finish();
 
 
@@ -245,7 +251,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                 allFoodDTO.storename = uploadStore.getText().toString();
 
 
-//                allFoodDTO.usex = database.getReference().child("users").orderByChild("usersex").equalTo("남성").toString();
                 database.getReference().child(FOOD).push().setValue(allFoodDTO);
 
             }
@@ -271,8 +276,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
                     imageView.setImageURI(null);
 
                 }
-
-
 
 
         } else if (requestCode == PLACE_PICKER_REQUEST) {
@@ -303,7 +306,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
 
 
     // 경로 저장
-
     public String getPath(Uri uri) {
 
         String[] proj = {MediaStore.Images.Media.DATA};
@@ -327,14 +329,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
         startActivityForResult(intent, GALLERY_CODE);
     }
 
-
-    // 맵 (일단 사용안함)
-
-//    public void findByMyLocation(View view) {
-//        Intent intent = new Intent(this, MapsActivity.class);
-//        startActivity(intent);
-//    }
-    // 맵
 
     public void findByMyLocation(View view) {
         Intent intent = new Intent(this, MapsActivity.class);

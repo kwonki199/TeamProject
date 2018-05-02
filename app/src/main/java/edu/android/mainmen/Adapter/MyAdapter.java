@@ -72,7 +72,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ((CustomViewHolder)holder).textView.setText(allFoodDTOList.get(position).title);
         ((CustomViewHolder)holder).textView2.setText(allFoodDTOList.get(position).description);
         ((CustomViewHolder)holder).rb.setRating(allFoodDTOList.get(position).ratingScore);
+        ((CustomViewHolder)holder).textStoreName.setText(allFoodDTOList.get(position).storename);
+
         Glide.with(holder.itemView.getContext()).load(allFoodDTOList.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
+
 
         ((CustomViewHolder)holder).ID.setText(allFoodDTOList.get(position).userId);
         ((CustomViewHolder)holder).heartCount.setText(allFoodDTOList.get(position).starCount+"명이 좋아합니다.");
@@ -121,7 +124,9 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
                 context.startActivity(intent);
-                
+
+
+
             }
         });
 
@@ -140,6 +145,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ((CustomViewHolder)holder).commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 selectedPosition = position;
                 String ID = allFoodDTOList.get(position).userId;
                 String title = allFoodDTOList.get(position).title;
@@ -191,23 +197,23 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                AllFoodDTO firebaseData = mutableData.getValue(AllFoodDTO.class);
-                if (firebaseData == null) {
+                AllFoodDTO allFoodDTOList = mutableData.getValue(AllFoodDTO.class);
+                if (allFoodDTOList == null) {
                     return Transaction.success(mutableData);
                 }
 
-                if (firebaseData.stars.containsKey(auth.getCurrentUser().getUid())) {
+                if (allFoodDTOList.stars.containsKey(auth.getCurrentUser().getUid())) {
                     // Unstar the post and remove self from stars
-                    firebaseData.starCount = firebaseData.starCount + 1;
-                    firebaseData.stars.remove(auth.getCurrentUser().getUid());
+                    allFoodDTOList.starCount = allFoodDTOList.starCount + 1;
+                    allFoodDTOList.stars.remove(auth.getCurrentUser().getUid());
                 } else {
                     // Star the post and add self to stars
-                    firebaseData.starCount = firebaseData.starCount - 1;
-                    firebaseData.stars.put(auth.getCurrentUser().getUid(), true);
+                    allFoodDTOList.starCount = allFoodDTOList.starCount - 1;
+                    allFoodDTOList.stars.put(auth.getCurrentUser().getUid(), true);
                 }
 
                 // Set value and report transaction success
-                mutableData.setValue(firebaseData);
+                mutableData.setValue(allFoodDTOList);
                 return Transaction.success(mutableData);
             }
 
@@ -234,6 +240,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView heartCount;
         RatingBar rb;
         ImageView commentButton;
+        TextView textStoreName;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -245,6 +252,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             starButton = itemView.findViewById(R.id.item_heart_image);
             heartCount = itemView.findViewById(R.id.item_heart_count);
             rb = itemView.findViewById(R.id.rb);
+            textStoreName = itemView.findViewById(R.id.detailStoreName);
             commentButton = itemView.findViewById(R.id.comment_image);
 
         }

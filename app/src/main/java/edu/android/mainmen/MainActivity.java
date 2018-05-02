@@ -1,5 +1,6 @@
 package edu.android.mainmen;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,10 +9,12 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.internal.BottomNavigationItemView;
+import android.support.design.internal.BottomNavigationMenuView;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.util.Log;
@@ -25,6 +28,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,14 +41,15 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.lang.reflect.Field;
 import java.security.MessageDigest;
 
 import edu.android.mainmen.Adapter.SectionsBannerPageAdapter;
 import edu.android.mainmen.Adapter.SectionsPageAdapter;
-import edu.android.mainmen.BannerFragments.Banner1Fragment;
 import edu.android.mainmen.BannerFragments.Banner2Fragment;
 import edu.android.mainmen.BannerFragments.Banner3Fragment;
-import edu.android.mainmen.BannerFragments.BannerMainFragment;
+import edu.android.mainmen.BannerFragments.Banner4Fragment;
+import edu.android.mainmen.BannerFragments.Banner1Fragment;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
@@ -92,6 +97,9 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private SectionsBannerPageAdapter sectionsBannerPageAdapter;
     private ViewPager mViewPager2;
+    private AppBarLayout appBarLayout;
+    private FirebaseUser user;
+    private Button headerSignin , headerSignout;
 
 
     @Override
@@ -105,10 +113,12 @@ public class MainActivity extends AppCompatActivity
         //파이어베이스
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
         // 바텀네비게이션
         navigation = findViewById(R.id.bottomNavigationView);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        BottomNavigationViewHelper.removeShiftMode(navigation);
 
 
         //액션바
@@ -116,28 +126,19 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         //뷰페이저
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-
-
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
         tabLayout =  findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
 
+
         //베너 뷰페이저
-
         sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
-
         mViewPager2 = findViewById(R.id.containerBanner);
-
-
-
         setupBannerViewPager(mViewPager2);
-
-
 
 
         // 탭과 옆으로 드로잉할때 연결시키기.
@@ -146,38 +147,62 @@ public class MainActivity extends AppCompatActivity
 
 
         // drawer
-        navigationView = findViewById(R.id.nav_view);
-
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View view = navigationView.getHeaderView(0);
-
-        header_email = (TextView) view.findViewById(R.id.header_user_Email);
-
-//       // drawer에 사용자 아이디 나타냄
         FirebaseUser user = auth.getCurrentUser();
         if (user != null) {
+
+        }
+
+
+        //헤더에 사용자 아이디 나타냄
+        email = findViewById(R.id.alert_username);
+        password = findViewById(R.id.alert_password);
+        header_email = (TextView) view.findViewById(R.id.header_user_Email);
+        FirebaseUser user1 = auth.getCurrentUser();
+        if (user1 != null) {
             header_email.setText(auth.getCurrentUser().getEmail());
         } else {
             header_email.setText("로그인이 되어있지 않습니다.");
         }
 
 
-        email = findViewById(R.id.alert_username);
-        password = findViewById(R.id.alert_password);
+        appBarLayout = findViewById(R.id.appBarLayout);
+        //홈화면에서 앱바 숨기기.
+//        mViewPager.getCurrentItem() == 0
+//        if (tabLayout.getSelectedTabPosition()==0) {
+//            appBarLayout.setVisibility(view.GONE);
+//        }else{
+//            tabLayout.setVisibility(view.VISIBLE);
+//        }
+
+//        headerSignin = findViewById(R.id.header_sign_in);
+//        headerSignout = findViewById(R.id.header_sign_out);
+//        headerSignin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseUser user = auth.getCurrentUser();
+//                if (user == null) {
+//                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                    startActivity(intent);
+//                }else{
+//                    Toast.makeText(MainActivity.this, "로그인상태입니다.", Toast.LENGTH_SHORT).show();
+//                    header_email.setText(auth.getCurrentUser().getEmail());
+////                item.setVisible(false);
+//                }
+//            }
+//        });
 
     }// end onCrete
 
-    /* ↓ Back 버튼 누를 시 앱 종료 기능 */
+
     @Override
     public void onBackPressed() {
 
@@ -196,7 +221,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-
         return true;
     }
 
@@ -224,33 +248,31 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        TextView tv = findViewById(R.id.info);
+
 
         int id = item.getItemId();
 
+        FirebaseUser user = auth.getCurrentUser();
 
         if (id == R.id.nav_membershipInformation) { // 로그인
-            FirebaseUser user = auth.getCurrentUser();
             if (user == null) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
             }else{
-                Toast.makeText(this, "로그인중입니다~~~ ㅎㅎㅎ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "로그인상태입니다.", Toast.LENGTH_SHORT).show();
                 header_email.setText(auth.getCurrentUser().getEmail());
+//                item.setVisible(false);
             }
-
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
-            FirebaseUser user = auth.getCurrentUser();
             if (user != null) {
-            Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
-            startActivity(intent);
+                Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
+                startActivity(intent);
+                header_email.setText(auth.getCurrentUser().getEmail());
             }else{
                 alertLoginButtons();
             }
 
-
         } else if (id == R.id.nav_writings) { // 내가 쓴글
-            FirebaseUser user = auth.getCurrentUser();
             if (user != null) {
                 Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
                 startActivity(intent);
@@ -263,13 +285,11 @@ public class MainActivity extends AppCompatActivity
             // 아직 즐겨찾기 구현안됨
 
         } else if (id == R.id.nav_logout) { // 로그아웃
-            FirebaseUser user = auth.getCurrentUser();
             if (user != null) {
                 auth.signOut();
                 header_email.setText("로그인이 되어있지 않습니다.");
-                Toast.makeText(this, "로그아웃되었습니다.~~~", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
             }else {
-
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.nav_coupon) {
@@ -277,12 +297,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_game) {
             Intent intent = new Intent(MainActivity.this, RouletteActivity.class);
             startActivity(intent);
-
         } else if (id == R.id.nav_heart) {
         }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
@@ -299,29 +317,36 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ReviewFastFoodFragment(), "패스트푸드");
         adapter.addFragment(new ReviewBossamFragment(), "족발/보쌈");   // 9 포지션
         adapter.addFragment(new ReadReviewFragment(), "전체리뷰");
-
-
-
         viewPager.setAdapter(adapter);
     }
 
     private void setupBannerViewPager(ViewPager viewPager) {
         SectionsBannerPageAdapter adapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new BannerMainFragment());
-        adapter.addFragment(new Banner1Fragment());             // 0 포지션
-        adapter.addFragment(new Banner2Fragment());
+        adapter.addFragment(new Banner1Fragment());
+        adapter.addFragment(new Banner2Fragment());             // 0 포지션
         adapter.addFragment(new Banner3Fragment());
-
-
+        adapter.addFragment(new Banner4Fragment());
+        adapter.addFragment(new Banner4Fragment());
 
         viewPager.setAdapter(adapter);
     }
+
 
     // 탭과 프래그먼트 연동
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
-        mViewPager.setCurrentItem(position + 1);
+
+        mViewPager.setCurrentItem(position +1);
+
+        if(position == 0){
+
+            mViewPager.setCurrentItem(position +9);
+        }else{
+
+            mViewPager.setCurrentItem(position);
+        }
+
     }
 
 
@@ -349,7 +374,6 @@ public class MainActivity extends AppCompatActivity
                 .setMessage(R.string.notice2)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
                         dialog.cancel();
                     }
                 }).show();
@@ -455,14 +479,36 @@ public class MainActivity extends AppCompatActivity
 
                     //마이페이지지
                 case R.id.navigation_mypage:
-                    Intent intent = new Intent(MainActivity.this, MyInfoActivity.class);
-                    startActivity(intent);
+                    Toast.makeText(MainActivity.this, "마이페이지", Toast.LENGTH_SHORT).show();
                     return true;
             }
             return false;
         }
     };
 
+    static class BottomNavigationViewHelper {
+
+         @SuppressLint("RestrictedApi")
+         static void removeShiftMode(BottomNavigationView view) {
+            BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
+            try {
+                Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
+                shiftingMode.setAccessible(true);
+                shiftingMode.setBoolean(menuView, false);
+                shiftingMode.setAccessible(false);
+                for (int i = 0; i < menuView.getChildCount(); i++) {
+                    BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+                    item.setShiftingMode(false);
+                    // set once again checked value, so view will be updated
+                    item.setChecked(item.getItemData().isChecked());
+                }
+            } catch (NoSuchFieldException e) {
+                Log.e("ERROR NO SUCH FIELD", "Unable to get shift mode field");
+            } catch (IllegalAccessException e) {
+                Log.e("ERROR ILLEGAL ALG", "Unable to change value of shift mode");
+            }
+        }
+    }
 
 
 }// end MainActivity

@@ -5,6 +5,7 @@ public class User {
     public String usersex;
     public String userage;
     public String uid;
+    public int reviewPoint = 0; // 포인트
 
 
     public String getUsername() {

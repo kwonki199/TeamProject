@@ -78,28 +78,21 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(("".equals(editTextEmail.getText().toString()))) {
-
                     Toast.makeText(RegisterActivity.this, "이메일을 입력해주세요.", Toast.LENGTH_SHORT).show();
                     return;
 
                 }else if (("".equals(editTextPassword.getText().toString()))) {
-
                     Toast.makeText(RegisterActivity.this, "비밀번호를 입력 해주세요.", Toast.LENGTH_SHORT).show();
                     return;
                 }else if(("".equals(editTextName.getText().toString()))) {
                     Toast.makeText(RegisterActivity.this, "이름을 입력 해주세요.", Toast.LENGTH_SHORT).show();
                     return;
-
                 }else if(RbtnGroupSex.getCheckedRadioButtonId() == -1){
-
                     Toast.makeText(RegisterActivity.this, "성별을 선택 해주세요.", Toast.LENGTH_SHORT).show();
                     return;
-
                 }else if(rbtnGroup.getCheckedRadioButtonId() == -1){
-
                     Toast.makeText(RegisterActivity.this, "연령을 선택 해주세요.", Toast.LENGTH_SHORT).show();
                     return;
-
                 }else {
                     String sex = null;
                     if (rbtnMan.isChecked()) { sex = "남성"; }
@@ -114,8 +107,9 @@ public class RegisterActivity extends AppCompatActivity {
                     } else if (btn4.isChecked()) {
                         age = "40대 이상";
                     }
+
                     createUser(editTextEmail.getText().toString(), editTextPassword.getText().toString(),editTextName.getText().toString(),sex,age);
-//                    header_email.setText(mAuth.getCurrentUser().getEmail());
+
                 }
             }
         });
