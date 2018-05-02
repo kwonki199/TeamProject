@@ -485,7 +485,6 @@ public class MainActivity extends AppCompatActivity
                     Intent intent = new Intent(MainActivity.this, MyInfoActivity.class);
                     startActivity(intent);
 
-
                     return true;
             }
             return false;

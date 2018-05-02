@@ -2,6 +2,7 @@ package edu.android.mainmen;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -114,53 +115,12 @@ public class MyInfoActivity extends AppCompatActivity {
                 }
             });
             
-            holder.likeBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MyInfoActivity.this, "좋아요 관리 버튼", Toast.LENGTH_SHORT).show();
-                }
-            });
 
             holder.noticeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MyInfoActivity.this, "공지사항 버튼", Toast.LENGTH_SHORT).show();
-                }
-            });
-
-            holder.nameChangeBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
-                    alert.setTitle("이름 변경");
-                    alert.setMessage("변경할 이름을 입력해주세요");
-
-                    final EditText name = new EditText(context);
-                    alert.setView(name);
-                    String str = name.getText().toString();
-
-
-                    alert.setPositiveButton("수정", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            String username = name.getText().toString();
-                            Toast.makeText(context, username, Toast.LENGTH_SHORT).show();
-//                            allUserDTOS.set(position, allUserDTOS.get(position).setUsername(username));
-
-//                            FirebaseDatabase.getInstance().getReference().child("users").orderByChild("uid")
-//                                    .equalTo(auth.getCurrentUser().getUid()).setValue(username);
-                            Toast.makeText(context, "수정되었습니다.", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-
-                    alert.setNegativeButton("취소",new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-
-                        }
-                    });
-
-                    alert.show();
-
+                    Intent intent = new Intent(MyInfoActivity.this, NoticeActivity.class);
+                    startActivity(intent);
                 }
             });
 
@@ -192,9 +152,7 @@ public class MyInfoActivity extends AppCompatActivity {
                 textUserAge = itemView.findViewById(R.id.textUserAge);
                 couponBtn = itemView.findViewById(R.id.CouponBtn);
                 managementReviewBtn = itemView.findViewById(R.id.managementReviewBtn);
-                likeBtn = itemView.findViewById(R.id.likeBtn);
                 noticeBtn = itemView.findViewById(R.id.noticeBtn);
-                nameChangeBtn = itemView.findViewById(R.id.nameChangeBtn);
                 cancelBtn = itemView.findViewById(R.id.myInfo_cancelBtn);
             }
         }

@@ -79,7 +79,8 @@
             android:value="AIzaSyBLOpelo4l6yKdCApN_d5uUehocuiw7Uuk" />
 
         <activity android:name=".Search.SearchDetailActivity" />
-        <activity android:name=".MyInfoActivity"></activity>
+        <activity android:name=".MyInfoActivity" />
+        <activity android:name=".NoticeActivity"></activity>
     </application>
 
 </manifest>

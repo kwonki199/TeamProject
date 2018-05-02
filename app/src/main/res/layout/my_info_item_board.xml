@@ -26,7 +26,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
+                android:layout_marginBottom="40dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="48dp"
                 android:layout_marginTop="8dp"
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.6"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="이메일"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -104,15 +104,6 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/nameChangeBtn"
-                android:layout_marginRight="10dp"
-                android:layout_width="2dp"
-                android:layout_height="35dp"
-                android:layout_weight="1"
-                android:text="수정"
-                android:textSize="13sp" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -139,14 +130,6 @@
                 android:text="남/여"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp" />
-            <Button
-                android:id="@+id/userSexChangeBtn"
-                android:layout_marginRight="10dp"
-                android:layout_width="2dp"
-                android:layout_height="35dp"
-                android:layout_weight="1"
-                android:text="수정"
-                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -176,60 +159,61 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:textSize="16sp" />
 
-            <Button
-                android:id="@+id/ageChangeBtn"
-                android:layout_marginRight="10dp"
-                android:layout_width="2dp"
-                android:layout_height="35dp"
-                android:layout_weight="1"
-                android:text="수정"
-                android:textSize="13sp" />
-
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="right"
             android:layout_marginTop="16dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/CouponBtn"
-                android:layout_marginLeft="64dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginRight="32dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_card_giftcard_black_24dp" />
 
             <ImageView
                 android:id="@+id/managementReviewBtn"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="64dp"
+                android:layout_marginRight="32dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/com_facebook_button_icon_blue" />
 
-
             <ImageView
-                android:id="@+id/likeBtn"
-                android:layout_marginLeft="32dp"
-                android:layout_marginTop="40dp"
+                android:id="@+id/empty"
+                android:layout_marginTop="67dp"
+                android:layout_marginRight="16dp"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 app:srcCompat="@drawable/ic_like" />
+
 
         </LinearLayout>
 
 
         <Button
-            android:layout_marginTop="16dp"
+            android:id="@+id/workBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:text="작  업  현  황"
+            android:textSize="16sp" />
+
+        <Button
             android:id="@+id/noticeBtn"
+            android:layout_marginTop="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="16sp"
-            android:text="공  지  사  항" />
+            android:text="공  지  사  항"
+            android:textSize="16sp" />
 
 
     </LinearLayout>
