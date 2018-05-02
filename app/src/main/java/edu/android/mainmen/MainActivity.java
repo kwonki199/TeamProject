@@ -50,6 +50,8 @@ import edu.android.mainmen.BannerFragments.Banner2Fragment;
 import edu.android.mainmen.BannerFragments.Banner3Fragment;
 import edu.android.mainmen.BannerFragments.Banner4Fragment;
 import edu.android.mainmen.BannerFragments.Banner1Fragment;
+import edu.android.mainmen.BannerFragments.Banner5Fragment;
+import edu.android.mainmen.BannerFragments.Banner6Fragment;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
@@ -326,7 +328,8 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new Banner2Fragment());             // 0 포지션
         adapter.addFragment(new Banner3Fragment());
         adapter.addFragment(new Banner4Fragment());
-        adapter.addFragment(new Banner4Fragment());
+        adapter.addFragment(new Banner5Fragment());
+        adapter.addFragment(new Banner6Fragment());
 
         viewPager.setAdapter(adapter);
     }
