@@ -334,7 +334,6 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
     }
 
-
     // 탭과 프래그먼트 연동
     @Override
     public void onHomeSelected(int position) {
