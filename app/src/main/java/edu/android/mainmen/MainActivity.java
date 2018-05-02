@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity
         setupBannerViewPager(mViewPager2);
 
 
+
         // 탭과 옆으로 드로잉할때 연결시키기.
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
@@ -322,6 +323,7 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
     }
 
+    // 배너 뷰페이저
     private void setupBannerViewPager(ViewPager viewPager) {
         SectionsBannerPageAdapter adapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new Banner1Fragment());
@@ -334,7 +336,8 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
     }
 
-    // 탭과 프래그먼트 연동
+
+    // 탭과 프래그먼트 클릭연동
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
@@ -495,6 +498,7 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+    //바텀네비게이션 고정
     static class BottomNavigationViewHelper {
 
          @SuppressLint("RestrictedApi")
@@ -518,6 +522,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
 
 
 }// end MainActivity
