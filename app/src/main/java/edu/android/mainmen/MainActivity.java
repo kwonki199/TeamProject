@@ -1,5 +1,6 @@
 package edu.android.mainmen;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,7 +15,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.util.Log;
@@ -46,11 +46,10 @@ import java.security.MessageDigest;
 
 import edu.android.mainmen.Adapter.SectionsBannerPageAdapter;
 import edu.android.mainmen.Adapter.SectionsPageAdapter;
-import edu.android.mainmen.BannerFragments.Banner1Fragment;
 import edu.android.mainmen.BannerFragments.Banner2Fragment;
 import edu.android.mainmen.BannerFragments.Banner3Fragment;
 import edu.android.mainmen.BannerFragments.Banner4Fragment;
-import edu.android.mainmen.BannerFragments.BannerMainFragment;
+import edu.android.mainmen.BannerFragments.Banner1Fragment;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
@@ -101,6 +100,7 @@ public class MainActivity extends AppCompatActivity
     private AppBarLayout appBarLayout;
     private FirebaseUser user;
     private Button headerSignin , headerSignout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -322,10 +322,10 @@ public class MainActivity extends AppCompatActivity
 
     private void setupBannerViewPager(ViewPager viewPager) {
         SectionsBannerPageAdapter adapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
-        adapter.addFragment(new BannerMainFragment());
-        adapter.addFragment(new Banner1Fragment());             // 0 포지션
-        adapter.addFragment(new Banner2Fragment());
+        adapter.addFragment(new Banner1Fragment());
+        adapter.addFragment(new Banner2Fragment());             // 0 포지션
         adapter.addFragment(new Banner3Fragment());
+        adapter.addFragment(new Banner4Fragment());
         adapter.addFragment(new Banner4Fragment());
 
         viewPager.setAdapter(adapter);
@@ -486,6 +486,29 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+    static class BottomNavigationViewHelper {
+
+         @SuppressLint("RestrictedApi")
+         static void removeShiftMode(BottomNavigationView view) {
+            BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
+            try {
+                Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
+                shiftingMode.setAccessible(true);
+                shiftingMode.setBoolean(menuView, false);
+                shiftingMode.setAccessible(false);
+                for (int i = 0; i < menuView.getChildCount(); i++) {
+                    BottomNavigationItemView item = (BottomNavigationItemView) menuView.getChildAt(i);
+                    item.setShiftingMode(false);
+                    // set once again checked value, so view will be updated
+                    item.setChecked(item.getItemData().isChecked());
+                }
+            } catch (NoSuchFieldException e) {
+                Log.e("ERROR NO SUCH FIELD", "Unable to get shift mode field");
+            } catch (IllegalAccessException e) {
+                Log.e("ERROR ILLEGAL ALG", "Unable to change value of shift mode");
+            }
+        }
+    }
 
 
 }// end MainActivity
