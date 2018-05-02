@@ -121,7 +121,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("position",position);
 
 
+
+
                 context.startActivity(intent);
+
 
 
             }
@@ -152,6 +155,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra(KEY_ID, ID);
                 intent.putExtra(KEY_LIST, title);
                 intent.putExtra(KEY_DESC, desc);
+                context.startActivity(intent);
 
 
             }

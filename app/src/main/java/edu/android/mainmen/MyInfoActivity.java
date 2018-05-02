@@ -2,6 +2,7 @@ package edu.android.mainmen;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -87,11 +88,18 @@ public class MyInfoActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             holder.textEmail.setText(auth.getCurrentUser().getEmail());
             holder.textUserName.setText(allUserDTOS.get(position).getUsername());
             holder.textUserAge.setText(allUserDTOS.get(position).getUserage());
             holder.textUserSex.setText(allUserDTOS.get(position).getUsersex());
+
+            holder.cancelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
             holder.couponBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -107,17 +115,12 @@ public class MyInfoActivity extends AppCompatActivity {
                 }
             });
             
-            holder.likeBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(MyInfoActivity.this, "좋아요 관리 버튼", Toast.LENGTH_SHORT).show();
-                }
-            });
 
             holder.noticeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MyInfoActivity.this, "공지사항 버튼", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MyInfoActivity.this, NoticeActivity.class);
+                    startActivity(intent);
                 }
             });
 
@@ -137,7 +140,8 @@ public class MyInfoActivity extends AppCompatActivity {
             ImageView managementReviewBtn;
             ImageView likeBtn;
             Button noticeBtn;
-
+            Button nameChangeBtn;
+            Button cancelBtn;
 
 
             public ViewHolder(View itemView) {
@@ -148,8 +152,8 @@ public class MyInfoActivity extends AppCompatActivity {
                 textUserAge = itemView.findViewById(R.id.textUserAge);
                 couponBtn = itemView.findViewById(R.id.CouponBtn);
                 managementReviewBtn = itemView.findViewById(R.id.managementReviewBtn);
-                likeBtn = itemView.findViewById(R.id.likeBtn);
                 noticeBtn = itemView.findViewById(R.id.noticeBtn);
+                cancelBtn = itemView.findViewById(R.id.myInfo_cancelBtn);
             }
         }
     }
