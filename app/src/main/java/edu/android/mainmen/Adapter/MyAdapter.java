@@ -72,7 +72,10 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ((CustomViewHolder)holder).textView.setText(allFoodDTOList.get(position).title);
         ((CustomViewHolder)holder).textView2.setText(allFoodDTOList.get(position).description);
         ((CustomViewHolder)holder).rb.setRating(allFoodDTOList.get(position).ratingScore);
+        ((CustomViewHolder)holder).textStoreName.setText(allFoodDTOList.get(position).storename);
+
         Glide.with(holder.itemView.getContext()).load(allFoodDTOList.get(position).imageUrl).into(((CustomViewHolder)holder).imageView);
+
 
         ((CustomViewHolder)holder).ID.setText(allFoodDTOList.get(position).userId);
         ((CustomViewHolder)holder).heartCount.setText(allFoodDTOList.get(position).starCount+"명이 좋아합니다.");
@@ -237,6 +240,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         TextView heartCount;
         RatingBar rb;
         ImageView commentButton;
+        TextView textStoreName;
 
         public CustomViewHolder(View itemView) {
             super(itemView);
@@ -248,6 +252,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             starButton = itemView.findViewById(R.id.item_heart_image);
             heartCount = itemView.findViewById(R.id.item_heart_count);
             rb = itemView.findViewById(R.id.rb);
+            textStoreName = itemView.findViewById(R.id.detailStoreName);
             commentButton = itemView.findViewById(R.id.comment_image);
 
         }

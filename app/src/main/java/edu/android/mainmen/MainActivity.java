@@ -321,7 +321,15 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
-        mViewPager.setCurrentItem(position + 1);
+
+        if(position == 0){
+
+            mViewPager.setCurrentItem(position +9);
+        }else{
+
+            mViewPager.setCurrentItem(position);
+        }
+
     }
 
 
