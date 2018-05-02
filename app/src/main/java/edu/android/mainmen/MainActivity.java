@@ -280,6 +280,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ReadReviewFragment(), "전체리뷰");
 
 
+
         viewPager.setAdapter(adapter);
     }
 
@@ -421,7 +422,8 @@ public class MainActivity extends AppCompatActivity
 
                     //마이페이지지
                 case R.id.navigation_mypage:
-                    Toast.makeText(MainActivity.this, "마이페이지", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, MyInfoActivity.class);
+                    startActivity(intent);
                     return true;
             }
             return false;
