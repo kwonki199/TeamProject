@@ -6,46 +6,46 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_membershipInformation"
-            android:icon="@drawable/ic_sentiment_very_satisfied_black_24dp"
+            android:icon="@drawable/ic_happy"
             android:title="로그인" />
-
         <item
             android:id="@+id/nav_mywritings"
-            android:icon="@drawable/ic_edit_black_24dp"
+            android:icon="@drawable/ic_edit"
             android:title="리뷰 작성" />
-
         <item
             android:id="@+id/nav_writings"
-            android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
+            android:icon="@drawable/ic_notepad"
             android:title="내가 작성한 글보기" />
-
-        <item
-            android:id="@+id/nav_bookmark"
-            android:icon="@drawable/ic_bookmark_border_black_24dp"
-            android:title="즐겨 찾기" />
-
-
         <item
             android:id="@+id/nav_logout"
-            android:icon="@drawable/ic_chrome_reader_mode_black_24dp"
+            android:icon="@drawable/ic_exit"
             android:title="로그아웃" />
-    </group>
+        <!--<item-->
+            <!--android:id="@+id/nav_bookmark"-->
+            <!--android:icon="@drawable/ic_bookmark_border_black_24dp"-->
+            <!--android:title="즐겨 찾기" />-->
 
+    </group>
     <group android:checkableBehavior="single"
         android:id="@+id/navi2">
             <item
                 android:id="@+id/nav_coupon"
-                android:icon="@drawable/ic_card_giftcard_black_24dp"
-                android:title="내 쿠폰" />
+                android:icon="@drawable/ic_gift"
+                android:title="쿠폰함" />
             <item
                 android:id="@+id/nav_game"
-                android:icon="@drawable/ic_videogame_asset_black_24dp"
+                android:icon="@drawable/ic_roulette2"
                 android:title="미니게임" />
             <item
                 android:id="@+id/nav_heart"
-                android:icon="@drawable/ic_favorite_black_24dp"
-                android:title="오늘의 하트왕" />
+                android:icon="@drawable/ic_like2"
+                android:title="이달의 하트왕" />
+            <item
+                android:id="@+id/nav_event"
+                android:icon="@drawable/ic_calendar"
+                android:title="이벤트" />
 
     </group>
+
 
 </menu>

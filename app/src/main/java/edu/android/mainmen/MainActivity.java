@@ -283,9 +283,9 @@ public class MainActivity extends AppCompatActivity
                 alertLoginLayout();
             }
 
-        } else if (id == R.id.nav_bookmark) { // 즐겨찾기
-
-            // 아직 즐겨찾기 구현안됨
+//        } else if (id == R.id.nav_bookmark) { // 즐겨찾기
+//
+//            // 아직 즐겨찾기 구현안됨
 
         } else if (id == R.id.nav_logout) { // 로그아웃
             if (user != null) {
