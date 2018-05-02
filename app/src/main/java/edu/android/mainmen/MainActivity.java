@@ -481,8 +481,13 @@ public class MainActivity extends AppCompatActivity
 
                     //마이페이지지
                 case R.id.navigation_mypage:
-                    Intent intent = new Intent(MainActivity.this, MyInfoActivity.class);
-                    startActivity(intent);
+                    FirebaseUser user1 = auth.getCurrentUser();
+                    if (user1 != null) {
+                        Intent intent = new Intent(MainActivity.this, MyInfoActivity.class);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(MainActivity.this, "로그인 후 이용하십시오", Toast.LENGTH_SHORT).show();
+                    }
 
                     return true;
             }
