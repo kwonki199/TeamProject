@@ -50,9 +50,11 @@ import edu.android.mainmen.BannerFragments.Banner2Fragment;
 import edu.android.mainmen.BannerFragments.Banner3Fragment;
 import edu.android.mainmen.BannerFragments.Banner4Fragment;
 import edu.android.mainmen.BannerFragments.Banner1Fragment;
+import edu.android.mainmen.BannerFragments.Banner5Fragment;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
+import edu.android.mainmen.Post.Post1Activity;
 import edu.android.mainmen.ReviewFragment.ReviewBossamFragment;
 import edu.android.mainmen.ReviewFragment.ReviewChikenFragment;
 import edu.android.mainmen.ReviewFragment.ReviewFastFoodFragment;
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity
         sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         mViewPager2 = findViewById(R.id.containerBanner);
         setupBannerViewPager(mViewPager2);
+
 
 
         // 탭과 옆으로 드로잉할때 연결시키기.
@@ -320,19 +323,20 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
     }
 
+    // 배너 뷰페이저
     private void setupBannerViewPager(ViewPager viewPager) {
         SectionsBannerPageAdapter adapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new Banner1Fragment());
         adapter.addFragment(new Banner2Fragment());             // 0 포지션
         adapter.addFragment(new Banner3Fragment());
         adapter.addFragment(new Banner4Fragment());
-        adapter.addFragment(new Banner4Fragment());
+        adapter.addFragment(new Banner5Fragment());
 
         viewPager.setAdapter(adapter);
     }
 
 
-    // 탭과 프래그먼트 연동
+    // 탭과 프래그먼트 클릭연동
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
@@ -479,13 +483,20 @@ public class MainActivity extends AppCompatActivity
 
                     //마이페이지지
                 case R.id.navigation_mypage:
-                    Toast.makeText(MainActivity.this, "마이페이지", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user3 = auth.getCurrentUser();
+                    if (user3 != null) {
+                        Intent intent1 = new Intent(MainActivity.this, Post1Activity.class);
+                        startActivity(intent1);
+                    } else {
+                        alertLoginButtons();
+                    }
                     return true;
             }
             return false;
         }
     };
 
+    //바텀네비게이션 고정
     static class BottomNavigationViewHelper {
 
          @SuppressLint("RestrictedApi")
@@ -509,6 +520,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
 
 
 }// end MainActivity

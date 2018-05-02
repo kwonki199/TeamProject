@@ -79,7 +79,11 @@
             android:value="AIzaSyBLOpelo4l6yKdCApN_d5uUehocuiw7Uuk" />
 
         <activity android:name=".Search.SearchDetailActivity" />
-        <activity android:name=".MyInfoActivity"></activity>
+        <activity android:name=".MyInfoActivity" />
+        <activity
+            android:name=".Post.Post1Activity"
+            android:label="@string/title_activity_scrolling_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
