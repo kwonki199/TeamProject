@@ -72,7 +72,7 @@ public class DetailViewActivity2 extends AppCompatActivity {
         String id = getIntent().getStringExtra("id");
         final String title = getIntent().getStringExtra("title");
         String desc = getIntent().getStringExtra("desc");
-
+        float rating = getIntent().getFloatExtra("rating", 0);
 
         String imageUrl = intent.getStringExtra("images");
         String storeName = getIntent().getStringExtra("StoreName");
@@ -85,7 +85,7 @@ public class DetailViewActivity2 extends AppCompatActivity {
         ID.setText(id);
         textView.setText(title);
         textView2.setText(desc);
-
+        rb.setRating(rating);
         Glide.with(this).load(imageUrl).into(imageView);
 
 
