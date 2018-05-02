@@ -87,11 +87,18 @@ public class MyInfoActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             holder.textEmail.setText(auth.getCurrentUser().getEmail());
             holder.textUserName.setText(allUserDTOS.get(position).getUsername());
             holder.textUserAge.setText(allUserDTOS.get(position).getUserage());
             holder.textUserSex.setText(allUserDTOS.get(position).getUsersex());
+
+            holder.cancelBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
 
             holder.couponBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,6 +128,42 @@ public class MyInfoActivity extends AppCompatActivity {
                 }
             });
 
+            holder.nameChangeBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    AlertDialog.Builder alert = new AlertDialog.Builder(context);
+                    alert.setTitle("이름 변경");
+                    alert.setMessage("변경할 이름을 입력해주세요");
+
+                    final EditText name = new EditText(context);
+                    alert.setView(name);
+                    String str = name.getText().toString();
+
+
+                    alert.setPositiveButton("수정", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+                            String username = name.getText().toString();
+                            Toast.makeText(context, username, Toast.LENGTH_SHORT).show();
+//                            allUserDTOS.set(position, allUserDTOS.get(position).setUsername(username));
+
+//                            FirebaseDatabase.getInstance().getReference().child("users").orderByChild("uid")
+//                                    .equalTo(auth.getCurrentUser().getUid()).setValue(username);
+                            Toast.makeText(context, "수정되었습니다.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+                    alert.setNegativeButton("취소",new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int whichButton) {
+
+                        }
+                    });
+
+                    alert.show();
+
+                }
+            });
+
         }
 
         @Override
@@ -137,7 +180,8 @@ public class MyInfoActivity extends AppCompatActivity {
             ImageView managementReviewBtn;
             ImageView likeBtn;
             Button noticeBtn;
-
+            Button nameChangeBtn;
+            Button cancelBtn;
 
 
             public ViewHolder(View itemView) {
@@ -150,6 +194,8 @@ public class MyInfoActivity extends AppCompatActivity {
                 managementReviewBtn = itemView.findViewById(R.id.managementReviewBtn);
                 likeBtn = itemView.findViewById(R.id.likeBtn);
                 noticeBtn = itemView.findViewById(R.id.noticeBtn);
+                nameChangeBtn = itemView.findViewById(R.id.nameChangeBtn);
+                cancelBtn = itemView.findViewById(R.id.myInfo_cancelBtn);
             }
         }
     }

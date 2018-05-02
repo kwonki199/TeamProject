@@ -12,16 +12,44 @@
 
 
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/linear1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="64dp"
-            android:gravity="center"
-            android:text="회원정보"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp">
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="48dp"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:text="회원 정보"
+                android:textSize="24sp"
+                android:gravity="center"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/myInfo_cancelBtn"
+                android:layout_marginTop="5dp"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:text="X"
+                android:layout_marginEnd="8dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                />
+
+        </LinearLayout>
 
 
         <LinearLayout
@@ -33,7 +61,7 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.6"
                 android:gravity="center"
                 android:text="이메일"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
@@ -42,7 +70,6 @@
 
             <TextView
                 android:id="@+id/textEmail"
-                android:layout_marginRight="100dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"

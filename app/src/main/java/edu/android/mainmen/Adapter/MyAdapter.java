@@ -121,10 +121,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
                 context.startActivity(intent);
-
-
-
-
+                
             }
         });
 
@@ -143,7 +140,6 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ((CustomViewHolder)holder).commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 selectedPosition = position;
                 String ID = allFoodDTOList.get(position).userId;
                 String title = allFoodDTOList.get(position).title;
@@ -153,6 +149,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra(KEY_ID, ID);
                 intent.putExtra(KEY_LIST, title);
                 intent.putExtra(KEY_DESC, desc);
+                context.startActivity(intent);
 
 
             }

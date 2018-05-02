@@ -101,6 +101,9 @@ public class CommentActivity extends AppCompatActivity {
                     allCommentDTOS.add(allCommentDTO);
                     deleteKeys.add(allCommentDTO.DeleteKey);
                 }
+                ///////////////////////////////////////////////////////////////////////
+                FirebaseDatabase.getInstance().getReference().child("Comment").child("Comment").setValue("testresult");
+                ///////////////////////////////////////////////////////////////////////
                 adapter.notifyDataSetChanged();
             }
 
