@@ -51,6 +51,8 @@ import edu.android.mainmen.BannerFragments.Banner3Fragment;
 import edu.android.mainmen.BannerFragments.Banner4Fragment;
 import edu.android.mainmen.BannerFragments.Banner1Fragment;
 import edu.android.mainmen.BannerFragments.Banner5Fragment;
+import edu.android.mainmen.BannerFragments.Banner6Fragment;
+import edu.android.mainmen.BannerFragments.Banner5Fragment;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
@@ -331,6 +333,7 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new Banner3Fragment());
         adapter.addFragment(new Banner4Fragment());
         adapter.addFragment(new Banner5Fragment());
+        adapter.addFragment(new Banner6Fragment());
 
         viewPager.setAdapter(adapter);
     }
@@ -483,13 +486,7 @@ public class MainActivity extends AppCompatActivity
 
                     //마이페이지지
                 case R.id.navigation_mypage:
-                    FirebaseUser user3 = auth.getCurrentUser();
-                    if (user3 != null) {
-                        Intent intent1 = new Intent(MainActivity.this, Post1Activity.class);
-                        startActivity(intent1);
-                    } else {
-                        alertLoginButtons();
-                    }
+                    Toast.makeText(MainActivity.this, "마이페이지", Toast.LENGTH_SHORT).show();
                     return true;
             }
             return false;
