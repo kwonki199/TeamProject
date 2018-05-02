@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ReviewFragment.DetailViewActivity2">
+    tools:context=".DetailViewActivity2">
 
     <fragment
         android:id="@+id/fragment2"
-        android:name="edu.android.mainmen.ReviewFragment.DetailView2"
+        android:name="edu.android.mainmen.ReviewFragment.DetailViewFragment2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"

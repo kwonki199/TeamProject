@@ -49,13 +49,7 @@
                 android:onClick="getGallery"
                 android:text="사진선택"
                 android:textColor="@android:color/white"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.08"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.32" />
+                android:textStyle="bold" />
 
 
         </LinearLayout>
@@ -183,7 +177,7 @@
             android:layout_height="30dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="4dp"
-            android:text="버튼을 클릭하여 위치를 지정해주세요."
+            android:hint="버튼을 클릭하여 위치를 지정해주세요."
             android:textSize="14sp" />
 
     </LinearLayout>

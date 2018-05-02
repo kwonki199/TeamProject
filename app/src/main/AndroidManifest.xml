@@ -39,7 +39,7 @@
         <activity android:name=".Upload.MapsActivity" />
         <activity android:name=".DrawerMenu.MyWritingActivity" />
         <activity android:name=".Search.SearchActivity" />
-        <activity android:name=".ReviewFragment.DetailViewActivity2" />
+        <activity android:name=".DetailViewActivity2" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

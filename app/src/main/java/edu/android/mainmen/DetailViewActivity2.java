@@ -1,4 +1,4 @@
-package edu.android.mainmen.ReviewFragment;
+package edu.android.mainmen;
 
 import android.Manifest;
 import android.content.Context;
@@ -31,6 +31,7 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.List;
 
+import edu.android.mainmen.Adapter.MyAdapter;
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
@@ -38,7 +39,7 @@ import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
 
 public class DetailViewActivity2 extends AppCompatActivity {
 
-    TextView ID, textView, textView2, detailAdress;
+    TextView ID, textView, textView2, detailAdress,detailStoreName;
     ImageView imageView;
     ImageView deleteButton;
     ImageView starButton;
@@ -52,6 +53,7 @@ public class DetailViewActivity2 extends AppCompatActivity {
     private FirebaseDatabase database;
     private FirebaseStorage storage;
     private List<String> uidLists;
+    //private DatabaseReference myRef = database.getReference("Food");
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,36 +68,34 @@ public class DetailViewActivity2 extends AppCompatActivity {
         starButton = findViewById(R.id.item_heart_image);
         heartCount = findViewById(R.id.item_heart_count);
         rb = findViewById(R.id.rb);
+        detailStoreName = (TextView)findViewById(R.id.detailStoreName);
         deleteButton = (ImageView) findViewById(R.id.item_delete_image);
 
         Intent intent = getIntent();
 
         String Location = getIntent().getStringExtra("location");
         String id = getIntent().getStringExtra("id");
-        String title = getIntent().getStringExtra("title");
+        final String title = getIntent().getStringExtra("title");
         String desc = getIntent().getStringExtra("desc");
         float rating = getIntent().getFloatExtra("rating", 0);
         int Star = getIntent().getIntExtra("heartCount", 0);
         String imageUrl = intent.getStringExtra("images");
+        String storeName = getIntent().getStringExtra("StoreName");
         final int position = intent.getIntExtra("position", -1);
 
 
-//
-//        AllFoodDTO allFoodDTO = new AllFoodDTO(Location,id,title,desc,rating,Star,imageUrl,position);
-//        firebaseData.add(allFoodDTO);
 
 
-        detailAdress.setText(Location);
+        detailStoreName.setText(storeName);
+
         ID.setText(id);
         textView.setText(title);
         textView2.setText(desc);
         rb.setRating(rating);
-
         Glide.with(this).load(imageUrl).into(imageView);
-
         heartCount.setText(Star + "명이 좋아합니다.");
 
-
+        detailAdress.setText(Location);
 
 
 
@@ -107,17 +107,17 @@ public class DetailViewActivity2 extends AppCompatActivity {
             public void onClick(View view) {
 
 
-                    onStarClicked(database.getReference().child(FOOD).child(uidLists.get(position)));
+                onStarClicked(database.getReference().child(FOOD).child(uidLists.get(position)));
 
             }
         });
 
 
-
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                delete_content(position);
+              finish();
+
             }
         });
 
@@ -215,7 +215,7 @@ public class DetailViewActivity2 extends AppCompatActivity {
     }
 
 
-    }
+}
 
 
 
