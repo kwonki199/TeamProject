@@ -31,7 +31,9 @@ import com.google.firebase.storage.FirebaseStorage;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 import edu.android.mainmen.Controller.AllCommentDTO;
@@ -101,10 +103,8 @@ public class CommentActivity extends AppCompatActivity {
                     allCommentDTOS.add(allCommentDTO);
                     deleteKeys.add(allCommentDTO.DeleteKey);
                 }
-                ///////////////////////////////////////////////////////////////////////
-                FirebaseDatabase.getInstance().getReference().child("Comment").child("Comment").setValue("testresult");
-                ///////////////////////////////////////////////////////////////////////
                 adapter.notifyDataSetChanged();
+
             }
 
             @Override
