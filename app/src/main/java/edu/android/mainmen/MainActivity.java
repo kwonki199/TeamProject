@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.drm.DrmStore;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
@@ -16,7 +15,6 @@ import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.util.Base64;
 import android.util.Log;
@@ -30,6 +28,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -99,7 +98,8 @@ public class MainActivity extends AppCompatActivity
     private SectionsBannerPageAdapter sectionsBannerPageAdapter;
     private ViewPager mViewPager2;
     private AppBarLayout appBarLayout;
-
+    private FirebaseUser user;
+    private Button headerSignin , headerSignout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity
         //파이어베이스
         database = FirebaseDatabase.getInstance();
         auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 
         // 바텀네비게이션
         navigation = findViewById(R.id.bottomNavigationView);
@@ -124,30 +125,19 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         //뷰페이저
         mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-
-
         mViewPager = findViewById(R.id.container);
         setupViewPager(mViewPager);
         tabLayout =  findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
 
+
         //베너 뷰페이저
-
         sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
-
         mViewPager2 = findViewById(R.id.containerBanner);
-
-
-
         setupBannerViewPager(mViewPager2);
-
-
-
-
 
 
         // 탭과 옆으로 드로잉할때 연결시키기.
@@ -171,8 +161,9 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-
-//      drawer에 사용자 아이디 나타냄
+        //헤더에 사용자 아이디 나타냄
+        email = findViewById(R.id.alert_username);
+        password = findViewById(R.id.alert_password);
         header_email = (TextView) view.findViewById(R.id.header_user_Email);
         FirebaseUser user1 = auth.getCurrentUser();
         if (user1 != null) {
@@ -182,28 +173,35 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        email = findViewById(R.id.alert_username);
-        password = findViewById(R.id.alert_password);
-
-
-
-//        ActionBar actionBar = getSupportActionBar();
-//        if (mViewPager.getCurrentItem()==0) {
-//            actionBar.hide();
-//        }else {
-//            actionBar.show();
+        appBarLayout = findViewById(R.id.appBarLayout);
+        //홈화면에서 앱바 숨기기.
+//        mViewPager.getCurrentItem() == 0
+//        if (tabLayout.getSelectedTabPosition()==0) {
+//            appBarLayout.setVisibility(view.GONE);
+//        }else{
+//            tabLayout.setVisibility(view.VISIBLE);
 //        }
 
-
-        //홈화면에서 앱바 숨기기.
-//
-
-
-
+//        headerSignin = findViewById(R.id.header_sign_in);
+//        headerSignout = findViewById(R.id.header_sign_out);
+//        headerSignin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                FirebaseUser user = auth.getCurrentUser();
+//                if (user == null) {
+//                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+//                    startActivity(intent);
+//                }else{
+//                    Toast.makeText(MainActivity.this, "로그인상태입니다.", Toast.LENGTH_SHORT).show();
+//                    header_email.setText(auth.getCurrentUser().getEmail());
+////                item.setVisible(false);
+//                }
+//            }
+//        });
 
     }// end onCrete
 
-    /* ↓ Back 버튼 누를 시 앱 종료 기능 */
+
     @Override
     public void onBackPressed() {
 
@@ -222,7 +220,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main, menu);
-
         return true;
     }
 
@@ -255,7 +252,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         FirebaseUser user = auth.getCurrentUser();
-
 
         if (id == R.id.nav_membershipInformation) { // 로그인
             if (user == null) {
@@ -320,8 +316,6 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ReviewFastFoodFragment(), "패스트푸드");
         adapter.addFragment(new ReviewBossamFragment(), "족발/보쌈");   // 9 포지션
         adapter.addFragment(new ReadReviewFragment(), "전체리뷰");
-
-
         viewPager.setAdapter(adapter);
     }
 
@@ -332,8 +326,6 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new Banner2Fragment());
         adapter.addFragment(new Banner3Fragment());
 
-
-
         viewPager.setAdapter(adapter);
     }
 
@@ -342,7 +334,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
-        mViewPager.setCurrentItem(position );
+
+        mViewPager.setCurrentItem(position +1);
     }
 
 
@@ -370,7 +363,6 @@ public class MainActivity extends AppCompatActivity
                 .setMessage(R.string.notice2)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-
                         dialog.cancel();
                     }
                 }).show();
@@ -476,7 +468,14 @@ public class MainActivity extends AppCompatActivity
 
                     //마이페이지지
                 case R.id.navigation_mypage:
-                    Toast.makeText(MainActivity.this, "마이페이지", Toast.LENGTH_SHORT).show();
+                    FirebaseUser user3 = auth.getCurrentUser();
+                    if (user3 != null) {
+
+//                        Intent intent2 = new Intent(MainActivity.this, Main2Activity.class);
+//                        startActivity(intent2);
+                    }else {
+                    alertLoginButtons();
+                }
                     return true;
             }
             return false;

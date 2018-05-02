@@ -118,11 +118,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("position",position);
 
 
-
-
                 context.startActivity(intent);
-
-
 
 
             }
@@ -194,23 +190,23 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         postRef.runTransaction(new Transaction.Handler() {
             @Override
             public Transaction.Result doTransaction(MutableData mutableData) {
-                AllFoodDTO firebaseData = mutableData.getValue(AllFoodDTO.class);
-                if (firebaseData == null) {
+                AllFoodDTO allFoodDTOList = mutableData.getValue(AllFoodDTO.class);
+                if (allFoodDTOList == null) {
                     return Transaction.success(mutableData);
                 }
 
-                if (firebaseData.stars.containsKey(auth.getCurrentUser().getUid())) {
+                if (allFoodDTOList.stars.containsKey(auth.getCurrentUser().getUid())) {
                     // Unstar the post and remove self from stars
-                    firebaseData.starCount = firebaseData.starCount + 1;
-                    firebaseData.stars.remove(auth.getCurrentUser().getUid());
+                    allFoodDTOList.starCount = allFoodDTOList.starCount + 1;
+                    allFoodDTOList.stars.remove(auth.getCurrentUser().getUid());
                 } else {
                     // Star the post and add self to stars
-                    firebaseData.starCount = firebaseData.starCount - 1;
-                    firebaseData.stars.put(auth.getCurrentUser().getUid(), true);
+                    allFoodDTOList.starCount = allFoodDTOList.starCount - 1;
+                    allFoodDTOList.stars.put(auth.getCurrentUser().getUid(), true);
                 }
 
                 // Set value and report transaction success
-                mutableData.setValue(firebaseData);
+                mutableData.setValue(allFoodDTOList);
                 return Transaction.success(mutableData);
             }
 
