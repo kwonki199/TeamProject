@@ -134,28 +134,26 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //뷰페이저
-
-            appBarLayout = findViewById(R.id.appBarLayout);
-            tabLayout = findViewById(R.id.tabs);
-            SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
-            mViewPager = findViewById(R.id.container);
-            appBarLayout.setVisibility(View.GONE);
-
+        appBarLayout = findViewById(R.id.appBarLayout);
+        tabLayout =  findViewById(R.id.tabs);
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+        mViewPager = findViewById(R.id.container);
+        appBarLayout.setVisibility(View.GONE);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
-
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
                     appBarLayout.setVisibility(View.GONE);
+                    mViewPager2.setVisibility(View.VISIBLE);
                 } else {
                     appBarLayout.setVisibility(View.VISIBLE);
+                    mViewPager2.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -398,6 +396,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    //다이얼로그창 원버튼
     public void alertNoticeButton() {
 
         new AlertDialog.Builder(MainActivity.this)
@@ -410,6 +409,7 @@ public class MainActivity extends AppCompatActivity
                 }).show();
     }
 
+    //다이얼로그창 투버튼
     public void alertLoginButtons() {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("로그인이 필요합니다")
@@ -434,6 +434,7 @@ public class MainActivity extends AppCompatActivity
 
     private EditText email, password;
 
+    //다이얼로그창 로그인
     public void alertLoginLayout(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -508,7 +509,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     return true;
 
-                //마이페이지지
+                    //마이페이지
                 case R.id.navigation_mypage:
                     FirebaseUser user1 = auth.getCurrentUser();
                     if (user1 != null) {
