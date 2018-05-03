@@ -321,6 +321,10 @@ public class MainActivity extends AppCompatActivity
             Intent intent = new Intent(MainActivity.this, RouletteActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_heart) {
+            
+        } else if (id == R.id.nav_event) {
+            Intent intent = new Intent(MainActivity.this, EventActivity.class);
+            startActivity(intent);
         }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
