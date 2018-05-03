@@ -124,6 +124,14 @@ public class MyInfoActivity extends AppCompatActivity {
                 }
             });
 
+            holder.workBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MyInfoActivity.this, WorkLogActivity.class);
+                    startActivity(intent);
+                }
+            });
+
         }
 
         @Override
@@ -138,10 +146,9 @@ public class MyInfoActivity extends AppCompatActivity {
             TextView textUserAge;
             ImageView couponBtn;
             ImageView managementReviewBtn;
-            ImageView likeBtn;
             Button noticeBtn;
-            Button nameChangeBtn;
             Button cancelBtn;
+            Button workBtn;
 
 
             public ViewHolder(View itemView) {
@@ -154,6 +161,7 @@ public class MyInfoActivity extends AppCompatActivity {
                 managementReviewBtn = itemView.findViewById(R.id.managementReviewBtn);
                 noticeBtn = itemView.findViewById(R.id.noticeBtn);
                 cancelBtn = itemView.findViewById(R.id.myInfo_cancelBtn);
+                workBtn = itemView.findViewById(R.id.workBtn);
             }
         }
     }
