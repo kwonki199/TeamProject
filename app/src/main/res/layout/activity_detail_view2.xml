@@ -11,16 +11,16 @@
         android:name="edu.android.mainmen.Review.DetailViewFragment2"
         android:layout_width="match_parent"
         android:layout_height="405dp"
-        app:layout_constraintBottom_toTopOf="@+id/fragment4"
+        app:layout_constraintBottom_toTopOf="@+id/commentRecyclerView1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <fragment
-        android:id="@+id/fragment4"
-        android:name="edu.android.mainmen.Review.DetailCommentFragment"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/commentRecyclerView1"
         android:layout_width="match_parent"
-        android:layout_height="103dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
