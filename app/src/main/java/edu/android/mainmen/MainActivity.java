@@ -2,6 +2,7 @@ package edu.android.mainmen;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -101,7 +102,8 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager2;
     private AppBarLayout appBarLayout;
     private FirebaseUser user;
-    private Button headerSignin , headerSignout;
+    private Button headerSignin, headerSignout;
+    public static Context context;
 
 
     @Override
@@ -111,6 +113,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         alertNoticeButton();
         getAppKeyHash(); // hash 키 불러오기
+
+        context = this;
+
 
         //파이어베이스
         database = FirebaseDatabase.getInstance();
@@ -128,11 +133,13 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //뷰페이저
-        appBarLayout = findViewById(R.id.appBarLayout);
-        tabLayout =  findViewById(R.id.tabs);
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager(), appBarLayout);
-        mViewPager = findViewById(R.id.container);
-        appBarLayout.setVisibility(View.GONE);
+
+            appBarLayout = findViewById(R.id.appBarLayout);
+            tabLayout = findViewById(R.id.tabs);
+            SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+            mViewPager = findViewById(R.id.container);
+            appBarLayout.setVisibility(View.GONE);
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -141,9 +148,9 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onPageSelected(int position) {
-                if (position==0) {
+                if (position == 0) {
                     appBarLayout.setVisibility(View.GONE);
-                }else{
+                } else {
                     appBarLayout.setVisibility(View.VISIBLE);
                 }
             }
@@ -198,12 +205,12 @@ public class MainActivity extends AppCompatActivity
             header_email.setText("로그인이 되어있지 않습니다.");
         }
 
+        if(user != null){
+            hideItem();
 
+        }else{
 
-
-
-
-
+        }
 
 
     }// end onCrete
@@ -260,6 +267,14 @@ public class MainActivity extends AppCompatActivity
 
         FirebaseUser user = auth.getCurrentUser();
 
+
+
+        if(user == null){
+
+
+
+        }
+
         if (id == R.id.nav_membershipInformation) { // 로그인
             if (user == null) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -295,7 +310,9 @@ public class MainActivity extends AppCompatActivity
                 auth.signOut();
                 header_email.setText("로그인이 되어있지 않습니다.");
                 Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-            }else {
+                showItem();
+
+            } else {
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.nav_coupon) {
@@ -312,7 +329,7 @@ public class MainActivity extends AppCompatActivity
 
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager(),appBarLayout);
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "홈");             // 0 포지션
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");
@@ -463,18 +480,18 @@ public class MainActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
 
-                    //홈
+                //홈
                 case R.id.navigation_home:
 
                     mViewPager.setCurrentItem(0);
                     return true;
 
-                    //전체리뷰
+                //전체리뷰
                 case R.id.navigation_allsearch:
                     mViewPager.setCurrentItem(10);
                     return true;
 
-                    //글쓰기
+                //글쓰기
                 case R.id.navigation_write:
                     FirebaseUser user = auth.getCurrentUser();
                     if (user != null) {
@@ -485,7 +502,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     return true;
 
-                    //마이페이지지
+                //마이페이지지
                 case R.id.navigation_mypage:
                     FirebaseUser user1 = auth.getCurrentUser();
                     if (user1 != null) {
@@ -504,8 +521,8 @@ public class MainActivity extends AppCompatActivity
     //바텀네비게이션 고정
     static class BottomNavigationViewHelper {
 
-         @SuppressLint("RestrictedApi")
-         static void removeShiftMode(BottomNavigationView view) {
+        @SuppressLint("RestrictedApi")
+        static void removeShiftMode(BottomNavigationView view) {
             BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
             try {
                 Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
@@ -527,5 +544,23 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
+
+ public void hideItem()
+    {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_membershipInformation).setVisible(false);
+        context = this;
+
+    }
+
+
+    private void showItem()
+    {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_membershipInformation).setVisible(true);
+    }
 
 }// end MainActivity

@@ -9,19 +9,16 @@
         android:id="@+id/iv_bg"
         android:layout_width="450dp"
         android:layout_height="450dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/iv_roulette"
         app:srcCompat="@drawable/ic_roulette_bg" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignBottom="@+id/iv_bg"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="32dp"
         android:gravity="center"
         android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
@@ -31,10 +28,8 @@
         android:id="@+id/iv_roulette"
         android:layout_width="450dp"
         android:layout_height="450dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/iv_arrow"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/ic_roulette" />
 
@@ -43,9 +38,8 @@
         android:layout_width="450dp"
         android:layout_height="450dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginBottom="0dp"
-        android:layout_marginEnd="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="18dp"
         app:srcCompat="@drawable/ic_arrow" />
 
     <ImageButton
@@ -54,7 +48,7 @@
         android:layout_height="120dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="170dp"
+        android:layout_marginBottom="182dp"
         android:background="#00FFFFFF"
         app:srcCompat="@drawable/start" />
 
@@ -64,15 +58,18 @@
         android:layout_height="130dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginTop="27dp"
         app:srcCompat="@drawable/ic_roulette_title" />
 
     <Button
         android:id="@+id/rouletteCloseBtn"
-        android:layout_width="34dp"
-        android:layout_height="35dp"
+        android:layout_width="32dp"
+        android:layout_height="30dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
+        android:layout_marginEnd="18dp"
         android:background="@android:color/transparent"
-        android:text="X" />
+        android:text="X"
+        android:textStyle="bold" />
 
 </RelativeLayout>

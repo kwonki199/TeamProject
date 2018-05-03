@@ -78,7 +78,18 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
         ((CustomViewHolder)holder).ID.setText(allFoodDTOList.get(position).userId);
-        ((CustomViewHolder)holder).heartCount.setText(allFoodDTOList.get(position).starCount +"명이 좋아합니다.");
+       if(allFoodDTOList.get(position).starCount == 0){
+
+
+           ((CustomViewHolder)holder).heartCount.setText("-"+allFoodDTOList.get(position).starCount +"명이 좋아합니다.");
+       }else{
+
+
+           ((CustomViewHolder)holder).heartCount.setText(allFoodDTOList.get(position).starCount +"명이 좋아합니다.");
+
+       }
+
+
         //좋아요 버튼
         ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +131,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("StoreName",allFoodDTOList.get(position).storename);
                 intent.putExtra("position",position);
 
-
+                intent.putExtra(KEY_ID, allFoodDTOList.get(position).userId);
 
 
                 context.startActivity(intent);

@@ -23,24 +23,14 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mFragmentList = new ArrayList<>();
     private List<String> mFragmentTitleList = new ArrayList<>();
-    private AppBarLayout appBarLayout;
-    private TabLayout tabLayout;
 
     public void addFragment(Fragment fragment, String title) {
         mFragmentList.add(fragment);
         mFragmentTitleList.add(title);
     }
 
-    public void addOnlyFragment(Fragment fragment) {
-        mFragmentList.add(fragment);
-    }
-
-
-
-
-    public SectionsPageAdapter(FragmentManager fm, AppBarLayout a) {
+        public SectionsPageAdapter(FragmentManager fm) {
         super(fm);
-        this.appBarLayout = a;
     }
 
 
@@ -52,11 +42,7 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-
 //        Log.i(MainActivity.TAG, "SectionsPageAdapter getItem: position=" + position);
-
-
-
         return mFragmentList.get(position);
     }
 
