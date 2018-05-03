@@ -44,7 +44,7 @@ public class Post5Activity extends AppCompatActivity {
 
         private Context context;
         private LayoutInflater layoutInflater;
-        private Integer[] images = {R.drawable.b1, R.drawable.b2, R.drawable.b3};
+        private Integer[] images = {R.drawable.teen1, R.drawable.teen2, R.drawable.teen3};
 
         public ScrollingPostPageAdapter(Context context) {
             this.context = context;
