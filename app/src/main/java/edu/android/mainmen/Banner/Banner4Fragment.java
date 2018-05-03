@@ -1,4 +1,4 @@
-package edu.android.mainmen.BannerFragments;
+package edu.android.mainmen.Banner;
 
 
 import android.content.Intent;
@@ -14,6 +14,8 @@ import edu.android.mainmen.R;
 /**
  * A simple {@link Fragment} subclass.
  */
+
+// 이 달의 하트왕 배너
 public class Banner4Fragment extends Fragment {
 
     private ImageView bannerImageView4;
@@ -32,7 +34,7 @@ public class Banner4Fragment extends Fragment {
         bannerImageView4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Post1Activity.class);
+                Intent intent = new Intent(getContext(), HeartKingActivity.class);
                 startActivity(intent);
             }
         });

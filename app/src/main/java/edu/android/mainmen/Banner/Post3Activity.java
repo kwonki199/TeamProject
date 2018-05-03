@@ -1,4 +1,4 @@
-package edu.android.mainmen.BannerFragments;
+package edu.android.mainmen.Banner;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,12 +9,12 @@ import android.view.View;
 
 import edu.android.mainmen.R;
 
-public class Post2Activity extends AppCompatActivity {
+public class Post3Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scrolling_post2);
+        setContentView(R.layout.activity_scrolling_post3);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 

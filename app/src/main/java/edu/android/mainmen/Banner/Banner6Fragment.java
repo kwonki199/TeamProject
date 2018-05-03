@@ -1,4 +1,4 @@
-package edu.android.mainmen.BannerFragments;
+package edu.android.mainmen.Banner;
 
 
 import android.content.Intent;

@@ -1,4 +1,4 @@
-package edu.android.mainmen.BannerFragments;
+package edu.android.mainmen.Banner;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
