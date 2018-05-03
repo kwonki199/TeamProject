@@ -80,7 +80,8 @@
 
         <activity android:name=".Search.SearchDetailActivity" />
         <activity android:name=".MyInfoActivity" />
-        <activity android:name=".NoticeActivity"></activity>
+        <activity android:name=".NoticeActivity" />
+        <activity android:name=".NoticeDetailActivity"></activity>
     </application>
 
 </manifest>

@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
 
     <LinearLayout
+        android:id="@+id/selectedView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@drawable/border">
 
-    <TextView
-        android:padding="8dp"
-        android:id="@+id/text_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView" />
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:layout_gravity="center"
+            android:id="@+id/noticeTitleText"
+            android:layout_width="match_parent"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="공지사항 제목" />
+
+
 
     <TextView
-        android:padding="16dp"
-        android:id="@+id/text_comment"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/noticeText"
         android:layout_width="match_parent"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:layout_height="wrap_content"
-        android:text="댓글 내용" />
+        android:text="댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용댓글 내용" />
 
 
 </LinearLayout>

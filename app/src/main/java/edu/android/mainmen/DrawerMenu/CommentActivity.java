@@ -55,12 +55,12 @@ public class CommentActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
 //    private FirebaseStorage storage;
     private List<AllCommentDTO> allCommentDTOS = new ArrayList<>();
-    String ID;
-    String title;
-    String desc;
-    String FoodKey;
-    String deleteKey;
-    List<String> deleteKeys = new ArrayList<>();
+    private String ID;
+    private String title;
+    private String desc;
+    private String FoodKey;
+    private String deleteKey;
+    private List<String> deleteKeys = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,17 +93,17 @@ public class CommentActivity extends AppCompatActivity {
             }
         });
 
-        database.getReference().child("Comment").orderByChild("FoodId").equalTo(FoodKey).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                allCommentDTOS.clear();
-                deleteKeys.clear();
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    AllCommentDTO allCommentDTO = snapshot.getValue(AllCommentDTO.class);
-                    allCommentDTOS.add(allCommentDTO);
-                    deleteKeys.add(allCommentDTO.DeleteKey);
-                }
-                adapter.notifyDataSetChanged();
+                       database.getReference().child("Comment").orderByChild("FoodId").equalTo(FoodKey).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        allCommentDTOS.clear();
+                        deleteKeys.clear();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            AllCommentDTO allCommentDTO = snapshot.getValue(AllCommentDTO.class);
+                            allCommentDTOS.add(allCommentDTO);
+                            deleteKeys.add(allCommentDTO.DeleteKey);
+                        }
+                        adapter.notifyDataSetChanged();
 
             }
 
