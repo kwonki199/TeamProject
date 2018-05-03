@@ -28,64 +28,147 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="백종원"
+                    android:textSize="20dp"
+                    android:text="[맛터뷰] 프랜차이즈 업계 '큰손'\n백종원  더본 코리아 대표를 만나다
+                    \n"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView10"
                     android:layout_width="match_parent"
                     android:layout_height="174dp"
-                    app:srcCompat="@drawable/tae1" />
+                    app:srcCompat="@drawable/interview4" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 12313123" />
+                    android:textAlignment="center"
+                    android:textSize="11dp"
+                    android:text="백종원 '더본코리아' 대표\n" />
 
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="
+그가 보자마자 나에게 호빵을 건넸다.\n
+“이런 호빵 본 적 있나요?”\n
+지난 2일 저녁 6시. 서울 논현동 ‘본가 논현점’\n
+에서 그를 만났다. 백종원(50) ‘더본코리아’\n
+대표가 내민 호빵은 속이 짜장이었다.\n
+짜장호빵,곧 편의점에서 선보일 신메뉴라고 했다.\n
+그는‘먹방’,‘쿡방’ 시대에 아이돌 스타에 버금가는\n
+인기를 얻었다. 치솟는 인기만큼\n
+갖은 논란이 그의 이름에 따라 붙기도 하지만\n
+명실상부 프랜차이즈 업계 '큰손'\n
+백종원 대표를 맛뷰가 찾아가 보았다.\n\n\n
+Q. 외식업을 선택한 이유는요.\n\n
+▷ 전 음식을 너무 좋아해요. 먹는 것을 워낙\n
+   좋아해서 독학으로 요리를 배웠어요.\n
+   만들어보니까 재미있고, '이렇게 만들면\n
+   싸게 팔아도 되는데 왜 비싸게 팔지?'\n
+   라는 의문이 생겼죠. 내가 좋아하는 일을\n
+   하면서 사람들에게 보다 합리적인 가격에\n
+   음식을 파는 게 행복 아닐까요.\n\n\n
+Q. 먹는 즐거움은 무엇에 비유할 수 있나요.\n\n
+▷ 아이들(배우 소유진 씨와 사이에\n
+   낳은 세 살 용희 군과 두 살 서현 양)\n
+   보는즐거움이죠. 게임보다도 먹는 게\n
+   더 좋아요(그는 틈날 때 '와우' '포켓몬고'\n
+   등을 즐기는 게임마니아이기도 하다).\n\n\n
+Q. 인생에서 가장 맛있었던 음식은 뭡니까.\n\n\
+▷ 군대 가서 훈련 받을 때 첫 번째 먹었던\n
+   음식이죠. 학사장교 출신인데 뺑뺑이 치고\n
+   난 후 극도로 배고플 때 먹은 음식의 맛을\n
+   잊을 수 없어요. 역시 시장이 최고의\n
+   반찬이에요.\n\n\n
+Q. 가장 최악의 음식은요.\n\n
+▷ 그야 당연히 배부를 때 먹은 음식이죠.\n\n\n
+Q. 색다른 음식을 개발하는 재주가 남다르네요.\n\n
+▷ 이미 다 있던 거예요. 이제 오징어 입은\n
+   편의점에서도 팔아요. 오징어 입에 한\n
+   마리 맛이 다 들어가 있어요. 다만 이빨을\n
+   잘 빼내고 먹어야 해요. 편육은 어릴 때부터\n
+   제사 지내고 남으면 프라이팬에 데워 먹었죠.\n
+   기름이 사방팔방 튀니까 뚜껑이 있어야 해요.\n\n
+" />
                 <ImageView
                     android:id="@+id/imageView11"
                     android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae2" />
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/card_margin"
-            android:layout_marginLeft="@dimen/card_margin"
-            android:layout_marginRight="@dimen/card_margin">
-
-            <LinearLayout
-                style="@style/Widget.CardContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                    android:layout_height="140dp"
+                    app:srcCompat="@drawable/interview6" />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="11dp"
+                    android:textAlignment="center"
+                    android:text="백종원 신메뉴, 여심 사로잡는 카레 순두부\n\n" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="123123"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
+                    android:textSize="16dp"
+                    android:text="
+Q. 가맹점 관리 원칙은 무엇인가요.\n\n
+▷ 소셜네트워크서비스(SNS)에서 '맛없다'는\n
+   지적이 나오면 바로 체크해요. 프랜차이즈는\n
+   100m를 가장 늦게 달리는 사람을 잘 끌고\n
+   가는 사업이라고 생각해요. 레시피를\n
+   알려줘도 잘 못 따라 하는 가맹점도 있어요.\n
+   그분들이 제대로 하도록 유도해 평균치를\n
+   맞춰야죠.\n\n\n
+Q. 대외 활동이 많아 가맹점 관리가 안 된다는\n
+   지적도 나오는데요.\n\n
+▷ 필드(현장) 관리는 브랜드 담당자가\n
+   하고 있죠. 제 역할은 따로 있고요.\n
+   경영의 큰 방향을 결정하죠.\n
+   매장 1345곳을 매일 찾아다니기는 힘들어요.\n\n\n
+Q. 해외 시장을 어떻게 공략할 계획인지요.\n\n
+▷ 중국과 동남아시아에서 자리가 잡히면\n
+   유럽에 갈 겁니다. 인력 때문에 매장을\n
+   유지하는 게 어려워요. 다들 힘들어서\n
+   그런지 외식업을 안 하려고 해요.\n
+   다행히 최근 셰프라는 직종이 인기를 끌면서\n
+   요리사를 꿈꾸는 사람들이 늘었어요.\n
+   이사장을 맡고 있는 예화여고에 조리학과를\n
+   개설할까 고민 중입니다.\n\n\n
+Q. 아내의 요리 실력은 어떤가요.\n\n
+▷ 솔직히 맛있겠어요? 내가 가르쳐주는\n
+   선생님인데. 그래도 일반적인 주부보다\n
+   잘하고 계속 늘고 있어요.\n\n"/>
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae3" />
+                    android:layout_height="140dp"
+                    app:srcCompat="@drawable/interview5" />
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 1231231" />
-
-                <ImageView
-                    android:id="@+id/imageView13"
+                    android:textSize="11dp"
+                    android:textAlignment="center"
+                    android:text="백종원 대표는 2013년 배우 소유진 씨와 결혼해 1남1녀를 두고 있다.    \n\n                     \n" />
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae4" />
-
-
+                    android:layout_height="wrap_content"
+                    android:textSize="16dp"
+                    android:text="
+Q. 건강 관리는 어떻게 하나요.\n\n
+▷ 하루 2시간씩 운동해요. 많이 먹으니까요.\n\n\n
+Q. 앞으로 어떻게 살고 싶나요.\n\n
+▷ 우리 음식이 가장 저렴하면서도 뭔가\n
+   필요한 음식의 기준이 됐으면 합니다.\n
+   음식이 너무 비싸면 안 돼요. 점주들도\n
+   책임감을 느끼면서 같이 가도록 소통해야죠.\n
+   제가 떠나도 돌아갈 수 있도록 회사 규모도\n
+   키우고요. 대부분 사업가의 꿈이기도 하죠.\n\n\n
+백종원 대표는 현재 우리나라 프랜차이저계\n
+'큰손'이다. 이제는 중국을 비롯해 미국\n
+일본 인도네시아 싱가포르 말레이시아\n
+베트남 필리핀 호주 등에 매장 76개가\n
+진출해 있다. 앞으로 그의 행보가 기대된다.\n\n\n
+[김태욱 기자 taetae1027@naver.com]\n
+[무단전재 및 재배포 금지]
+"/>
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
@@ -97,34 +180,23 @@
             android:layout_marginLeft="@dimen/card_margin"
             android:layout_marginRight="@dimen/card_margin">
 
-            <LinearLayout
-                style="@style/Widget.CardContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        </android.support.v7.widget.CardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="123123"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin">
 
-                <ImageView
-                    android:id="@+id/imageView14"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae5" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" 123123123"/>
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="163dp"
-                    app:srcCompat="@drawable/tae6" />
+        </android.support.v7.widget.CardView>
 
-
-            </LinearLayout>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin">
 
         </android.support.v7.widget.CardView>
 
@@ -140,65 +212,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="1231231"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="153dp"
-                    app:srcCompat="@drawable/tae7" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" 12312312" />
-                <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="177dp"
-                    app:srcCompat="@drawable/tae8" />
-
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/card_margin"
-            android:layout_marginLeft="@dimen/card_margin"
-            android:layout_marginRight="@dimen/card_margin">
-
-            <LinearLayout
-                style="@style/Widget.CardContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="123123"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                <ImageView
-                    android:id="@+id/imageView18"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae9" />
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" 123123123" />
-
-                <ImageView
-                    android:id="@+id/imageView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae10" />
 
             </LinearLayout>
 

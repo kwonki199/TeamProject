@@ -5,37 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".NoticeActivity">
-
-
-    <TextView
-        android:id="@+id/notice_textview_close"
+    <LinearLayout
+        android:id="@+id/linear1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        android:layout_weight="1"
-        android:text="X"
-        android:textAlignment="textEnd"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="0dp"
-        android:layout_height="33dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:gravity="center"
-        android:text="공지사항"
-        android:textSize="24dp"
-        app:layout_constraintBottom_toTopOf="@+id/noticeRecyclerView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/notice_textview_close" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp">
+
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:text="공지사항"
+            android:textSize="24sp"
+            android:gravity="center"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/notice_textview_close"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="X"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/noticeRecyclerView"
@@ -49,6 +57,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/linear1" />
 
 </android.support.constraint.ConstraintLayout>
