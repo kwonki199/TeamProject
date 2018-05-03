@@ -99,8 +99,9 @@
             android:label="@string/title_activity_scrolling_6"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Banner.HeartKingActivity" />
-        <activity android:name=".Tutorial2Activity"></activity>
-        <activity android:name=".WorkLogActivity"></activity>
+        <activity android:name=".Tutorial2Activity" />
+        <activity android:name=".WorkLogActivity" />
+        <activity android:name=".EventActivity"></activity>
     </application>
 
 </manifest>
