@@ -80,7 +80,27 @@
     <string name="title_activity_test_post">TestPostActivity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_scrolling_test">ScrollingTestActivity</string>
+    <string name="title_activity_scrolling_1">맛뷰와 백종원이 만나다</string>
+    <string name="title_activity_scrolling_2">태슐랭</string>
+    <string name="title_activity_scrolling_5">10대의 취향저격</string>
+    <string name="title_activity_scrolling_6">남성의 취향저격</string>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
