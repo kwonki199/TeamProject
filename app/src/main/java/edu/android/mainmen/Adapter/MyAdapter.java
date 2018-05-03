@@ -120,7 +120,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("StoreName",allFoodDTOList.get(position).storename);
                 intent.putExtra("position",position);
 
-
+                intent.putExtra(KEY_ID, allFoodDTOList.get(position).userId);
 
 
                 context.startActivity(intent);
@@ -142,24 +142,24 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         // 이미지버튼
 
-        ((CustomViewHolder)holder).commentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                selectedPosition = position;
-                String ID = allFoodDTOList.get(position).userId;
-                String title = allFoodDTOList.get(position).title;
-                String desc = allFoodDTOList.get(position).description;
-
-                Intent intent = new Intent(context, CommentActivity.class);
-                intent.putExtra(KEY_ID, ID);
-                intent.putExtra(KEY_LIST, title);
-                intent.putExtra(KEY_DESC, desc);
-                context.startActivity(intent);
-
-
-            }
-        });
+//        ((CustomViewHolder)holder).commentButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                selectedPosition = position;
+//                String ID = allFoodDTOList.get(position).userId;
+//                String title = allFoodDTOList.get(position).title;
+//                String desc = allFoodDTOList.get(position).description;
+//
+//                Intent intent = new Intent(context, CommentActivity.class);
+//                intent.putExtra(KEY_ID, ID);
+//                intent.putExtra(KEY_LIST, title);
+//                intent.putExtra(KEY_DESC, desc);
+//                context.startActivity(intent);
+//
+//
+//            }
+//        });
     }
 
     //글 삭제
@@ -239,7 +239,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ImageView starButton;
         TextView heartCount;
         RatingBar rb;
-        ImageView commentButton;
+//        ImageView commentButton;
         TextView textStoreName;
 
         public CustomViewHolder(View itemView) {
@@ -253,7 +253,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             heartCount = itemView.findViewById(R.id.item_heart_count);
             rb = itemView.findViewById(R.id.rb);
             textStoreName = itemView.findViewById(R.id.detailStoreName);
-            commentButton = itemView.findViewById(R.id.comment_image);
+//            commentButton = itemView.findViewById(R.id.comment_image);
 
         }
     }
