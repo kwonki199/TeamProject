@@ -53,6 +53,7 @@ import edu.android.mainmen.Banner.Banner4Fragment;
 import edu.android.mainmen.Banner.Banner1Fragment;
 import edu.android.mainmen.Banner.Banner5Fragment;
 import edu.android.mainmen.Banner.Banner6Fragment;
+import edu.android.mainmen.Banner.HeartKingActivity;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
@@ -168,6 +169,22 @@ public class MainActivity extends AppCompatActivity
         sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         mViewPager2 = findViewById(R.id.containerBanner);
         setupBannerViewPager(mViewPager2);
+        mViewPager2.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
 
 
@@ -303,12 +320,14 @@ public class MainActivity extends AppCompatActivity
             }else {
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
             }
-        } else if (id == R.id.nav_coupon) {
+        } else if (id == R.id.nav_coupon) { // 쿠폰
 
-        } else if (id == R.id.nav_game) {
+        } else if (id == R.id.nav_game) { // 룰렛
             Intent intent = new Intent(MainActivity.this, RouletteActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_heart) {
+        } else if (id == R.id.nav_heart) { //하트왕
+            Intent intent = new Intent(MainActivity.this, HeartKingActivity.class);
+            startActivity(intent);
         }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
@@ -380,6 +399,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+    //다이얼로그창 원버튼
     public void alertNoticeButton() {
 
         new AlertDialog.Builder(MainActivity.this)
@@ -392,6 +412,7 @@ public class MainActivity extends AppCompatActivity
                 }).show();
     }
 
+    //다이얼로그창 투버튼
     public void alertLoginButtons() {
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("로그인이 필요합니다")
@@ -416,6 +437,7 @@ public class MainActivity extends AppCompatActivity
 
     private EditText email, password;
 
+    //다이얼로그창 로그인
     public void alertLoginLayout(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -490,7 +512,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     return true;
 
-                    //마이페이지지
+                    //마이페이지
                 case R.id.navigation_mypage:
                     FirebaseUser user1 = auth.getCurrentUser();
                     if (user1 != null) {

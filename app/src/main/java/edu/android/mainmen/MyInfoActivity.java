@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.android.mainmen.Controller.AllFoodDTO;
+import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.Model.User;
 
 public class MyInfoActivity extends AppCompatActivity {
@@ -117,7 +118,8 @@ public class MyInfoActivity extends AppCompatActivity {
             holder.managementReviewBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MyInfoActivity.this, "리뷰 관리 버튼", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MyInfoActivity.this, MyWritingActivity.class);
+                    startActivity(intent);
                 }
             });
             

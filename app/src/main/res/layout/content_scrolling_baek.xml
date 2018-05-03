@@ -31,11 +31,10 @@
                     android:text="백종원"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                <ImageView
-                    android:id="@+id/imageView10"
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPagerBaek1"
                     android:layout_width="match_parent"
-                    android:layout_height="174dp"
-                    app:srcCompat="@drawable/tae1" />
+                    android:layout_height="174dp" />
 
                 <TextView
                     android:layout_width="match_parent"

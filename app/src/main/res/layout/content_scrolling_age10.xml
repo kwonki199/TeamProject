@@ -31,11 +31,10 @@
                     android:text="취향저격10대맛집"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
-                <ImageView
-                    android:id="@+id/imageView10"
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/viewPager10Age1"
                     android:layout_width="match_parent"
-                    android:layout_height="174dp"
-                    app:srcCompat="@drawable/tae1" />
+                    android:layout_height="174dp" />
 
                 <TextView
                     android:layout_width="match_parent"
