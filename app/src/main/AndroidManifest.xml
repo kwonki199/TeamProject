@@ -80,6 +80,8 @@
 
         <activity android:name=".Search.SearchDetailActivity" />
         <activity android:name=".MyInfoActivity" />
+        <activity android:name=".NoticeActivity" />
+        <activity android:name=".NoticeDetailActivity"></activity>
         <activity
             android:name=".Banner.Post1Activity"
             android:label="@string/title_activity_scrolling_1"
