@@ -325,7 +325,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_event) {
             Intent intent = new Intent(MainActivity.this, EventActivity.class);
             startActivity(intent);
+        } else if (id ==  R.id.nav_warning) {
+            Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_android) {
+            Intent intent = new Intent(MainActivity.this, WorkLogActivity.class);
+            startActivity(intent);
         }
+
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         return true;
