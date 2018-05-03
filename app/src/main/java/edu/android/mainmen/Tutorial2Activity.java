@@ -19,8 +19,8 @@ public class Tutorial2Activity extends AppCompatActivity {
 
     int currentPage = 0;
     Timer timer;
-    final long DELAY_MS =500;//delay in milliseconds before task is to be executed
-    final long PERIOD_MS = 3000; // time in milliseconds between successive task execution
+    final long DELAY_MS =1000;//delay in milliseconds before task is to be executed
+    final long PERIOD_MS = 10000; // time in milliseconds between successive task execution
 
     private ViewPager viewPager;
     private Button btn;
@@ -53,7 +53,7 @@ public class Tutorial2Activity extends AppCompatActivity {
         final Handler handler = new Handler();
         final Runnable Update = new Runnable() {
             public void run() {
-                if (currentPage == 3) {
+                if (currentPage == 5) {
                     currentPage = 0;
                 }
                 viewPager.setCurrentItem(currentPage++, true);

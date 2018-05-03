@@ -50,7 +50,7 @@ public class TutorialActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 5000);
+        }, 3500);
 
         int[] imgs = {R.drawable.ic_h1, R.drawable.ic_h2,R.drawable.ic_h3,
                 R.drawable.ic_h4, R.drawable.ic_h5,R.drawable.ic_h6,
