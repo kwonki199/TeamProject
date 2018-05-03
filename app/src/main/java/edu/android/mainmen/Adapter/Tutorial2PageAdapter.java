@@ -27,7 +27,7 @@ public class Tutorial2PageAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer[] images = {R.drawable.b1, R.drawable.b2, R.drawable.b3};
+    private Integer[] images = {R.drawable.iv_t1, R.drawable.iv_t2, R.drawable.iv_t3,R.drawable.iv_t4,R.drawable.iv_t5};
 
     public Tutorial2PageAdapter(Context context) {
         this.context = context;
