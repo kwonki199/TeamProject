@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,11 +19,12 @@ import edu.android.mainmen.R;
 
 public class RouletteActivity extends AppCompatActivity {
 
-    ImageButton btnStart;
-    TextView textView;
-    ImageView iv_roulette;
+    private ImageButton btnStart;
+    private TextView textView;
+    private ImageView iv_roulette;
 
-    Random r;
+    private Random r;
+    private Button closeBtn;
 
     int degree = 0, degree_old = 0;
 
@@ -34,6 +36,8 @@ public class RouletteActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_roulette);
 
+        hideActionBar();
+
         // 뒤로가기 버튼 이거랑 아래꺼
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
@@ -41,6 +45,13 @@ public class RouletteActivity extends AppCompatActivity {
         btnStart = (ImageButton) findViewById(R.id.btnStart);
         textView = (TextView) findViewById(R.id.textView);
         iv_roulette = (ImageView) findViewById(R.id.iv_roulette);
+        closeBtn = findViewById(R.id.rouletteCloseBtn);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         r = new Random();
 
@@ -203,5 +214,13 @@ public class RouletteActivity extends AppCompatActivity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void hideActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            actionBar.hide();
+        }
     }
 }

@@ -1,4 +1,4 @@
-package edu.android.mainmen.ReviewFragment;
+package edu.android.mainmen.Review;
 
 
 import android.os.Bundle;
@@ -24,12 +24,12 @@ import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
-import static edu.android.mainmen.ReviewFragment.ReadReviewFragment.*;
+import static edu.android.mainmen.Review.ReviewFragment.*;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReviewChikenFragment extends Fragment {
+public class ReviewBossamFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
@@ -41,7 +41,7 @@ public class ReviewChikenFragment extends Fragment {
 
 
 
-    public ReviewChikenFragment() {
+    public ReviewBossamFragment() {
         // Required empty public constructor
     }
 
@@ -61,7 +61,7 @@ public class ReviewChikenFragment extends Fragment {
 
 
 
-        database.getReference().child(FOOD).orderByChild("food").equalTo(CHIKEN).addValueEventListener(new ValueEventListener() {
+        database.getReference().child(FOOD).orderByChild("food").equalTo(BOSSAM).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

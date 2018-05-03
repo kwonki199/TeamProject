@@ -1,4 +1,4 @@
-package edu.android.mainmen.ReviewFragment;
+package edu.android.mainmen.Review;
 
 
 import android.os.Bundle;
@@ -24,12 +24,13 @@ import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
 
 import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
-import static edu.android.mainmen.ReviewFragment.ReadReviewFragment.*;
+import static edu.android.mainmen.Review.ReviewFragment.*;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReviewFastFoodFragment extends Fragment {
+public class ReviewChinaFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
@@ -41,7 +42,7 @@ public class ReviewFastFoodFragment extends Fragment {
 
 
 
-    public ReviewFastFoodFragment() {
+    public ReviewChinaFragment() {
         // Required empty public constructor
     }
 
@@ -56,12 +57,12 @@ public class ReviewFastFoodFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         recyclerView = view.findViewById(R.id.recyclerView_Review2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final MyAdapter MyRecyclerViewAdapter = new MyAdapter(getActivity(),firebaseData, auth, database, storage, uidLists);
-        recyclerView.setAdapter(MyRecyclerViewAdapter);
+        final MyAdapter boardRecyclerViewAdapter = new MyAdapter(getActivity(),firebaseData, auth, database, storage, uidLists);
+        recyclerView.setAdapter(boardRecyclerViewAdapter);
 
 
 
-        database.getReference().child(FOOD).orderByChild("food").equalTo(FASTFOOD).addValueEventListener(new ValueEventListener() {
+        database.getReference().child(FOOD).orderByChild("food").equalTo(CHINA).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
@@ -73,7 +74,7 @@ public class ReviewFastFoodFragment extends Fragment {
                     String uidKey = snapshot.getKey();
                     uidLists.add(uidKey);
                 }
-                MyRecyclerViewAdapter.notifyDataSetChanged();
+                boardRecyclerViewAdapter.notifyDataSetChanged();
             }
 
             @Override

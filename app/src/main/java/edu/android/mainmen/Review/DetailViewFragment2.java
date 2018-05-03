@@ -1,4 +1,4 @@
-package edu.android.mainmen.ReviewFragment;
+package edu.android.mainmen.Review;
 
 
 import android.os.Bundle;

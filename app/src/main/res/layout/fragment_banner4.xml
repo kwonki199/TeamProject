@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BannerFragments.Banner4Fragment">
+    tools:context=".Banner.Banner4Fragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ImageView

@@ -1,10 +1,11 @@
-package edu.android.mainmen.ReviewFragment;
+package edu.android.mainmen.Banner;
 
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,26 +23,28 @@ import java.util.List;
 import edu.android.mainmen.Adapter.MyAdapter;
 import edu.android.mainmen.Controller.AllFoodDTO;
 import edu.android.mainmen.R;
+import edu.android.mainmen.Search.SearchActivity;
 
-import static edu.android.mainmen.Upload.FirebaseUploadActivity.FOOD;
-import static edu.android.mainmen.ReviewFragment.ReadReviewFragment.*;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ReviewBossamFragment extends Fragment {
+public class HeartKingFragment extends Fragment {
 
 
     private RecyclerView recyclerView;
-    private List<AllFoodDTO> firebaseData = new ArrayList<>();
+    private List<AllFoodDTO> allFoodDTOList = new ArrayList<>();
     private List<String> uidLists = new ArrayList<>();
     private FirebaseDatabase database;
     private FirebaseAuth auth;
     private FirebaseStorage storage;
+    private List<String> uidListsDetail = new ArrayList<>();
 
 
 
-    public ReviewBossamFragment() {
+
+
+    public HeartKingFragment() {
         // Required empty public constructor
     }
 
@@ -56,31 +59,36 @@ public class ReviewBossamFragment extends Fragment {
         storage = FirebaseStorage.getInstance();
         recyclerView = view.findViewById(R.id.recyclerView_Review2);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        final MyAdapter MyRecyclerViewAdapter = new MyAdapter(getActivity(),firebaseData, auth, database, storage, uidLists);
+        final MyAdapter MyRecyclerViewAdapter = new MyAdapter(getActivity(),allFoodDTOList, auth, database, storage, uidLists);
         recyclerView.setAdapter(MyRecyclerViewAdapter);
 
 
 
-        database.getReference().child(FOOD).orderByChild("food").equalTo(BOSSAM).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            database.getReference()
+                    .child("Food")
+                    .orderByChild("starCount")
+                    .limitToFirst(1)
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            allFoodDTOList.clear();
+                            uidLists.clear();
+                            for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                                AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
+                                allFoodDTOList.add(allFoodDTO);
+                                String uidKey = snapshot.getKey();
+                                uidLists.add(uidKey);
+                            }
+                            MyRecyclerViewAdapter.notifyDataSetChanged();
+                        }
 
-                firebaseData.clear();
-                uidLists.clear();
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    AllFoodDTO allFoodDTO = snapshot.getValue(AllFoodDTO.class);
-                    firebaseData.add(allFoodDTO);
-                    String uidKey = snapshot.getKey();
-                    uidLists.add(uidKey);
-                }
-                MyRecyclerViewAdapter.notifyDataSetChanged();
-            }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
 
-            }
-        });
+
 
         return view;
     }

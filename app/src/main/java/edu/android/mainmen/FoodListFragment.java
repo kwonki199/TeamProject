@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import java.util.List;
 
@@ -49,7 +47,7 @@ public class FoodListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view=inflater.inflate(R.layout.fragment_list_food, container, false);
-        recycler = view.findViewById(R.id.recyclerView);
+        recycler = view.findViewById(R.id.commentRecyclerView1);
         dataset = kindsOfFoodDao.getInstance().getFoodList();
         recycler.setHasFixedSize(true);
         recycler.setLayoutManager(new GridLayoutManager(getContext(), 3));
