@@ -64,10 +64,7 @@ public class DetailViewActivity2 extends AppCompatActivity {
     private List<String> uidLists;
     private RecyclerView recyclerView;
     private List<AllCommentDTO> allCommentDTOS = new ArrayList<>();
-    String ID2;
-    String title2;
-    String desc2;
-    String FoodKey;
+    private String FoodKey;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,10 +105,8 @@ public class DetailViewActivity2 extends AppCompatActivity {
 
         detailAdress.setText(Location);
 
-        ID2  = intent.getStringExtra(KEY_ID);
-        title2 = intent.getStringExtra(KEY_LIST);
-        desc2 = intent.getStringExtra(KEY_DESC);
-        FoodKey = ID2 + title2 + desc2;
+
+        FoodKey = id + title + desc;
 
         // 댓글 구현
         recyclerView = findViewById(R.id.commentRecyclerView1);
@@ -140,6 +135,10 @@ public class DetailViewActivity2 extends AppCompatActivity {
             }
         });
 
+
+        //////////////////////////////////////////
+
+
     }
 
     private void hideActionBar() {
@@ -165,13 +164,13 @@ public class DetailViewActivity2 extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             holder.textId.setText(allCommentDTOS.get(position).ID);
             holder.textComment.setText(allCommentDTOS.get(position).Comment);
-            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                }
-            });
+//            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//
+//                }
+//            });
         }
 
 
@@ -184,13 +183,13 @@ public class DetailViewActivity2 extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
             TextView textId;
             TextView textComment;
-            ImageView deleteButton;
+//            ImageView deleteButton;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 textId = itemView.findViewById(R.id.text_id);
                 textComment = itemView.findViewById(R.id.text_comment);
-                deleteButton = itemView.findViewById(R.id.item_delete_image);
+//                deleteButton = itemView.findViewById(R.id.item_delete_image);
 
             }
         }
