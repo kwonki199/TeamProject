@@ -81,7 +81,7 @@
         <activity android:name=".Search.SearchDetailActivity" />
         <activity android:name=".MyInfoActivity" />
         <activity android:name=".NoticeActivity" />
-        <activity android:name=".NoticeDetailActivity"></activity>
+        <activity android:name=".NoticeDetailActivity" />
         <activity
             android:name=".Banner.Post1Activity"
             android:label="@string/title_activity_scrolling_1"
@@ -99,9 +99,8 @@
             android:label="@string/title_activity_scrolling_6"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NoticeActivity" />
-
-        <activity android:name=".Banner.HeartKingActivity"></activity>
-
+        <activity android:name=".Banner.HeartKingActivity" />
+        <activity android:name=".WorkLogActivity"></activity>
     </application>
 
 </manifest>

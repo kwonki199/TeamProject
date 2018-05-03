@@ -65,7 +65,9 @@ public class DetailViewActivity2 extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<AllCommentDTO> allCommentDTOS = new ArrayList<>();
     private String FoodKey;
-
+    private String id;
+    private String desc;
+    private String title;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,9 +88,9 @@ public class DetailViewActivity2 extends AppCompatActivity {
         Intent intent = getIntent();
 
         String Location = getIntent().getStringExtra("location");
-        String id = getIntent().getStringExtra("id");
-        final String title = getIntent().getStringExtra("title");
-        String desc = getIntent().getStringExtra("desc");
+        id = getIntent().getStringExtra("id");
+        title = getIntent().getStringExtra("title");
+        desc = getIntent().getStringExtra("desc");
         float rating = getIntent().getFloatExtra("rating", 0);
 
         String imageUrl = intent.getStringExtra("images");
@@ -135,10 +137,6 @@ public class DetailViewActivity2 extends AppCompatActivity {
             }
         });
 
-
-        //////////////////////////////////////////
-
-
     }
 
     private void hideActionBar() {
@@ -164,13 +162,7 @@ public class DetailViewActivity2 extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             holder.textId.setText(allCommentDTOS.get(position).ID);
             holder.textComment.setText(allCommentDTOS.get(position).Comment);
-//            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//
-//                }
-//            });
+
         }
 
 
@@ -183,13 +175,11 @@ public class DetailViewActivity2 extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
             TextView textId;
             TextView textComment;
-//            ImageView deleteButton;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 textId = itemView.findViewById(R.id.text_id);
                 textComment = itemView.findViewById(R.id.text_comment);
-//                deleteButton = itemView.findViewById(R.id.item_delete_image);
 
             }
         }
