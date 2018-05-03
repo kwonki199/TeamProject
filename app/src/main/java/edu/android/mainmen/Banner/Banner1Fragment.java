@@ -1,4 +1,4 @@
-package edu.android.mainmen.BannerFragments;
+package edu.android.mainmen.Banner;
 
 
 import android.content.Intent;
@@ -11,13 +11,18 @@ import android.widget.ImageView;
 
 import edu.android.mainmen.R;
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Banner3Fragment extends Fragment {
+public class Banner1Fragment extends Fragment {
 
-    private ImageView bannerImageView3;
-    public Banner3Fragment() {
+    private ImageView bannerImageView1;
+
+    //Tabbed
+
+
+    public Banner1Fragment() {
         // Required empty public constructor
     }
 
@@ -25,10 +30,11 @@ public class Banner3Fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_banner3, container, false);
-        bannerImageView3 = view.findViewById(R.id.bannerImageView3);
-        bannerImageView3.setOnClickListener(new View.OnClickListener() {
+        View view = inflater.inflate(R.layout.fragment_banner1, container, false);
+        bannerImageView1 = view.findViewById(R.id.bannerImageView1);
+        bannerImageView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), Post1Activity.class);
@@ -36,7 +42,11 @@ public class Banner3Fragment extends Fragment {
             }
         });
 
+
         return view;
+
+
     }
+
 
 }
