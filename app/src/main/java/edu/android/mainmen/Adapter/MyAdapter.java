@@ -131,35 +131,35 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         });
 
 
-        // 삭제버튼
-        ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                delete_content(position);
-            }
-        });
-
-        // 이미지버튼
-
-//        ((CustomViewHolder)holder).commentButton.setOnClickListener(new View.OnClickListener() {
+//        // 삭제버튼
+//        ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //
-//                selectedPosition = position;
-//                String ID = allFoodDTOList.get(position).userId;
-//                String title = allFoodDTOList.get(position).title;
-//                String desc = allFoodDTOList.get(position).description;
-//
-//                Intent intent = new Intent(context, CommentActivity.class);
-//                intent.putExtra(KEY_ID, ID);
-//                intent.putExtra(KEY_LIST, title);
-//                intent.putExtra(KEY_DESC, desc);
-//                context.startActivity(intent);
-//
-//
+//                delete_content(position);
 //            }
 //        });
+
+        // 이미지버튼
+
+        ((CustomViewHolder)holder).commentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                selectedPosition = position;
+                String ID = allFoodDTOList.get(position).userId;
+                String title = allFoodDTOList.get(position).title;
+                String desc = allFoodDTOList.get(position).description;
+
+                Intent intent = new Intent(context, CommentActivity.class);
+                intent.putExtra(KEY_ID, ID);
+                intent.putExtra(KEY_LIST, title);
+                intent.putExtra(KEY_DESC, desc);
+                context.startActivity(intent);
+
+
+            }
+        });
     }
 
     //글 삭제
@@ -239,7 +239,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ImageView starButton;
         TextView heartCount;
         RatingBar rb;
-//        ImageView commentButton;
+        ImageView commentButton;
         TextView textStoreName;
 
         public CustomViewHolder(View itemView) {
@@ -248,12 +248,12 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imageView = (ImageView) itemView.findViewById(R.id.item_imageView);
             textView = (TextView) itemView.findViewById(R.id.item_textView);
             textView2 = (TextView) itemView.findViewById(R.id.item_textView2);
-            deleteButton = (ImageView)itemView.findViewById(R.id.item_delete_image);
+//            deleteButton = (ImageView)itemView.findViewById(R.id.item_delete_image);
             starButton = itemView.findViewById(R.id.item_heart_image);
             heartCount = itemView.findViewById(R.id.item_heart_count);
             rb = itemView.findViewById(R.id.rb);
             textStoreName = itemView.findViewById(R.id.detailStoreName);
-//            commentButton = itemView.findViewById(R.id.comment_image);
+            commentButton = itemView.findViewById(R.id.comment_image);
 
         }
     }
