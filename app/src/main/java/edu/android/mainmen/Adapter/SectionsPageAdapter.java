@@ -53,7 +53,7 @@ public class SectionsPageAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        Log.i(MainActivity.TAG, "SectionsPageAdapter getItem: position=" + position);
+//        Log.i(MainActivity.TAG, "SectionsPageAdapter getItem: position=" + position);
 
 
 

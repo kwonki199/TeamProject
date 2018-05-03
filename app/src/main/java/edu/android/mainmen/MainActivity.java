@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, FoodListFragment.HomeSelectedCallback {
 
 
-    public static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity";
     private NavigationView navigationView;
     //Tabbed
     private ViewPager mViewPager;
