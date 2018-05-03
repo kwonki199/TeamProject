@@ -78,7 +78,18 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 
         ((CustomViewHolder)holder).ID.setText(allFoodDTOList.get(position).userId);
-        ((CustomViewHolder)holder).heartCount.setText(allFoodDTOList.get(position).starCount +"명이 좋아합니다.");
+       if(allFoodDTOList.get(position).starCount == 0){
+
+
+           ((CustomViewHolder)holder).heartCount.setText("-"+allFoodDTOList.get(position).starCount +"명이 좋아합니다.");
+       }else{
+
+
+           ((CustomViewHolder)holder).heartCount.setText(allFoodDTOList.get(position).starCount +"명이 좋아합니다.");
+
+       }
+
+
         //좋아요 버튼
         ((CustomViewHolder)holder).starButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,14 +142,14 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         });
 
 
-//        // 삭제버튼
-//        ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                delete_content(position);
-//            }
-//        });
+        // 삭제버튼
+        ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                delete_content(position);
+            }
+        });
 
         // 이미지버튼
 
@@ -248,7 +259,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             imageView = (ImageView) itemView.findViewById(R.id.item_imageView);
             textView = (TextView) itemView.findViewById(R.id.item_textView);
             textView2 = (TextView) itemView.findViewById(R.id.item_textView2);
-//            deleteButton = (ImageView)itemView.findViewById(R.id.item_delete_image);
+            deleteButton = (ImageView)itemView.findViewById(R.id.item_delete_image);
             starButton = itemView.findViewById(R.id.item_heart_image);
             heartCount = itemView.findViewById(R.id.item_heart_count);
             rb = itemView.findViewById(R.id.rb);

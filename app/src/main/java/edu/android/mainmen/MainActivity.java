@@ -133,11 +133,13 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //뷰페이저
-        appBarLayout = findViewById(R.id.appBarLayout);
-        tabLayout = findViewById(R.id.tabs);
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager(), appBarLayout);
-        mViewPager = findViewById(R.id.container);
-        appBarLayout.setVisibility(View.GONE);
+
+            appBarLayout = findViewById(R.id.appBarLayout);
+            tabLayout = findViewById(R.id.tabs);
+            SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+            mViewPager = findViewById(R.id.container);
+            appBarLayout.setVisibility(View.GONE);
+
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -163,10 +165,12 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(mViewPager);
 
 
+
         //베너 뷰페이저
         sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         mViewPager2 = findViewById(R.id.containerBanner);
         setupBannerViewPager(mViewPager2);
+
 
 
         // 탭과 옆으로 드로잉할때 연결시키기.
@@ -275,19 +279,17 @@ public class MainActivity extends AppCompatActivity
             if (user == null) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
-
-            } else {
+            }else{
                 Toast.makeText(this, "로그인상태입니다.", Toast.LENGTH_SHORT).show();
                 header_email.setText(auth.getCurrentUser().getEmail());
-
-
+                item.setVisible(false);
             }
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
             if (user != null) {
                 Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
                 startActivity(intent);
                 header_email.setText(auth.getCurrentUser().getEmail());
-            } else {
+            }else{
                 alertLoginButtons();
             }
 
@@ -295,7 +297,7 @@ public class MainActivity extends AppCompatActivity
             if (user != null) {
                 Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
                 startActivity(intent);
-            } else {
+            }else{
                 alertLoginLayout();
             }
 
@@ -312,7 +314,6 @@ public class MainActivity extends AppCompatActivity
 
             } else {
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
-
             }
         } else if (id == R.id.nav_coupon) {
 
@@ -321,14 +322,14 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_heart) {
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager(), appBarLayout);
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "홈");             // 0 포지션
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");
@@ -361,12 +362,12 @@ public class MainActivity extends AppCompatActivity
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
 
-        mViewPager.setCurrentItem(position + 1);
+        mViewPager.setCurrentItem(position +1);
 
-        if (position == 0) {
+        if(position == 0){
 
-            mViewPager.setCurrentItem(position + 9);
-        } else {
+            mViewPager.setCurrentItem(position +9);
+        }else{
 
             mViewPager.setCurrentItem(position);
         }
@@ -427,7 +428,7 @@ public class MainActivity extends AppCompatActivity
 
     private EditText email, password;
 
-    public void alertLoginLayout() {
+    public void alertLoginLayout(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
@@ -443,7 +444,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // your sign in code here
-                        loginUser(email.getText().toString(), password.getText().toString());
+                        loginUser(email.getText().toString(),password.getText().toString());
                         finish();
                     }
                 })
