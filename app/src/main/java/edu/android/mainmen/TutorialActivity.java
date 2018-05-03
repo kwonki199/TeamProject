@@ -2,6 +2,7 @@ package edu.android.mainmen;
 
 import android.content.Intent;
 import android.drm.DrmStore;
+import android.os.Handler;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +28,16 @@ public class TutorialActivity extends AppCompatActivity {
             }
         });
 
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                Intent intent = new Intent(TutorialActivity.this,
+                        MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 2000);
 
 
 

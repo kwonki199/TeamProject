@@ -120,12 +120,7 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 intent.putExtra("StoreName",allFoodDTOList.get(position).storename);
                 intent.putExtra("position",position);
 
-
-
-
                 context.startActivity(intent);
-
-
 
             }
         });
