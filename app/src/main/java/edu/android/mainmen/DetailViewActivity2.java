@@ -1,11 +1,13 @@
 package edu.android.mainmen;
 
 import android.Manifest;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -68,10 +71,16 @@ public class DetailViewActivity2 extends AppCompatActivity {
     private String id;
     private String desc;
     private String title;
+    private ScrollView scrollView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view2);
+
+        scrollView = findViewById(R.id.groupsScrollView);
+
+        //scrollView.pageScroll(View.FOCUS_UP);
+        MoveSmoothScrollTop();
 
         hideActionBar();
 
@@ -185,6 +194,49 @@ public class DetailViewActivity2 extends AppCompatActivity {
         }
 
     }
+
+    private void MoveSmoothScrollTop() {
+        int targetScrollY = 0;
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB)
+
+        {
+
+            ValueAnimator realSmoothScrollAnimation = ValueAnimator.ofInt(scrollView.getScrollY(), targetScrollY );
+
+            realSmoothScrollAnimation.setDuration(500);
+
+            realSmoothScrollAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener()
+
+            {
+
+                public void onAnimationUpdate(ValueAnimator animation)
+
+                {
+
+                    int scrollTo = (Integer) animation.getAnimatedValue();
+
+                    scrollView.scrollTo(0, scrollTo);
+
+                }
+
+            });
+
+            realSmoothScrollAnimation.start();
+
+        }
+
+        else
+
+        {
+
+            scrollView.smoothScrollTo(0, targetScrollY);
+
+        }
+
+    }
+
+
 
 }
 
