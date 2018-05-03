@@ -325,7 +325,14 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_event) {
             Intent intent = new Intent(MainActivity.this, EventActivity.class);
             startActivity(intent);
+        } else if (id ==  R.id.nav_warning) {
+            Intent intent = new Intent(MainActivity.this, NoticeActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_android) {
+            Intent intent = new Intent(MainActivity.this, WorkLogActivity.class);
+            startActivity(intent);
         }
+
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -516,7 +523,25 @@ public class MainActivity extends AppCompatActivity
                         Intent intent = new Intent(MainActivity.this, MyInfoActivity.class);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(MainActivity.this, "로그인 후 이용하십시오", Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(MainActivity.this)
+                                .setTitle("로그인이 필요합니다")
+                                .setMessage("로그인창으로 이동하시겠습니까?")
+                                .setIcon(R.drawable.logotest)
+                                .setPositiveButton("YES",
+                                        new DialogInterface.OnClickListener() {
+                                            @TargetApi(11)
+                                            public void onClick(DialogInterface dialog, int id) {
+                                                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                                                startActivity(intent);
+                                                dialog.cancel();
+                                            }
+                                        })
+                                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                    @TargetApi(11)
+                                    public void onClick(DialogInterface dialog, int id) {
+                                        dialog.cancel();
+                                    }
+                                }).show();
                     }
 
                     return true;
