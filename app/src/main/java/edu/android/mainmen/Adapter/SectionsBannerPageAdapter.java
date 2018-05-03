@@ -14,19 +14,13 @@ import java.util.List;
 
 public class SectionsBannerPageAdapter extends FragmentPagerAdapter {
 
+
     private List<Fragment> mFragmentList = new ArrayList<>();
 
     public void addFragment(Fragment fragment) {
         mFragmentList.add(fragment);
 
     }
-
-    public void addOnlyFragment(Fragment fragment) {
-        mFragmentList.add(fragment);
-    }
-
-
-
 
     public SectionsBannerPageAdapter(FragmentManager fm) {
         super(fm);

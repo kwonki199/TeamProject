@@ -36,16 +36,15 @@
 
             <Button
                 android:id="@+id/myInfo_cancelBtn"
-                android:layout_marginTop="5dp"
                 android:layout_width="80dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"
-                android:text="X"
                 android:layout_marginEnd="8dp"
-                android:background="@color/colorPrimary"
-                android:textColor="@android:color/white"
-                android:textStyle="bold"
-                />
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:text="X"
+                android:textColor="@android:color/darker_gray"
+                android:textStyle="bold" />
 
         </LinearLayout>
 

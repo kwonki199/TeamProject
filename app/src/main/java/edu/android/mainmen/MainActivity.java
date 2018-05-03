@@ -134,8 +134,8 @@ public class MainActivity extends AppCompatActivity
 
         //뷰페이저
         appBarLayout = findViewById(R.id.appBarLayout);
-        tabLayout = findViewById(R.id.tabs);
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager(), appBarLayout);
+        tabLayout =  findViewById(R.id.tabs);
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
         mViewPager = findViewById(R.id.container);
         appBarLayout.setVisibility(View.GONE);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -163,10 +163,12 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(mViewPager);
 
 
+
         //베너 뷰페이저
         sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         mViewPager2 = findViewById(R.id.containerBanner);
         setupBannerViewPager(mViewPager2);
+
 
 
         // 탭과 옆으로 드로잉할때 연결시키기.
@@ -201,12 +203,12 @@ public class MainActivity extends AppCompatActivity
             header_email.setText("로그인이 되어있지 않습니다.");
         }
 
-        if(user != null){
-            hideItem();
 
-        }else{
 
-        }
+
+
+
+
 
 
     }// end onCrete
@@ -263,31 +265,21 @@ public class MainActivity extends AppCompatActivity
 
         FirebaseUser user = auth.getCurrentUser();
 
-
-
-        if(user == null){
-
-
-
-        }
-
         if (id == R.id.nav_membershipInformation) { // 로그인
             if (user == null) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
-
-            } else {
+            }else{
                 Toast.makeText(this, "로그인상태입니다.", Toast.LENGTH_SHORT).show();
                 header_email.setText(auth.getCurrentUser().getEmail());
-
-
+                item.setVisible(false);
             }
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
             if (user != null) {
                 Intent intent = new Intent(MainActivity.this, FirebaseUploadActivity.class);
                 startActivity(intent);
                 header_email.setText(auth.getCurrentUser().getEmail());
-            } else {
+            }else{
                 alertLoginButtons();
             }
 
@@ -295,7 +287,7 @@ public class MainActivity extends AppCompatActivity
             if (user != null) {
                 Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
                 startActivity(intent);
-            } else {
+            }else{
                 alertLoginLayout();
             }
 
@@ -308,11 +300,8 @@ public class MainActivity extends AppCompatActivity
                 auth.signOut();
                 header_email.setText("로그인이 되어있지 않습니다.");
                 Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-                showItem();
-
-            } else {
+            }else {
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
-
             }
         } else if (id == R.id.nav_coupon) {
 
@@ -321,14 +310,14 @@ public class MainActivity extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_heart) {
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager(), appBarLayout);
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "홈");             // 0 포지션
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");
@@ -361,12 +350,12 @@ public class MainActivity extends AppCompatActivity
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
 
-        mViewPager.setCurrentItem(position + 1);
+        mViewPager.setCurrentItem(position +1);
 
-        if (position == 0) {
+        if(position == 0){
 
-            mViewPager.setCurrentItem(position + 9);
-        } else {
+            mViewPager.setCurrentItem(position +9);
+        }else{
 
             mViewPager.setCurrentItem(position);
         }
@@ -427,7 +416,7 @@ public class MainActivity extends AppCompatActivity
 
     private EditText email, password;
 
-    public void alertLoginLayout() {
+    public void alertLoginLayout(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
 
@@ -443,7 +432,7 @@ public class MainActivity extends AppCompatActivity
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
                         // your sign in code here
-                        loginUser(email.getText().toString(), password.getText().toString());
+                        loginUser(email.getText().toString(),password.getText().toString());
                         finish();
                     }
                 })
@@ -479,18 +468,18 @@ public class MainActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
 
-                //홈
+                    //홈
                 case R.id.navigation_home:
 
                     mViewPager.setCurrentItem(0);
                     return true;
 
-                //전체리뷰
+                    //전체리뷰
                 case R.id.navigation_allsearch:
                     mViewPager.setCurrentItem(10);
                     return true;
 
-                //글쓰기
+                    //글쓰기
                 case R.id.navigation_write:
                     FirebaseUser user = auth.getCurrentUser();
                     if (user != null) {
@@ -501,7 +490,7 @@ public class MainActivity extends AppCompatActivity
                     }
                     return true;
 
-                //마이페이지지
+                    //마이페이지지
                 case R.id.navigation_mypage:
                     FirebaseUser user1 = auth.getCurrentUser();
                     if (user1 != null) {
@@ -520,8 +509,8 @@ public class MainActivity extends AppCompatActivity
     //바텀네비게이션 고정
     static class BottomNavigationViewHelper {
 
-        @SuppressLint("RestrictedApi")
-        static void removeShiftMode(BottomNavigationView view) {
+         @SuppressLint("RestrictedApi")
+         static void removeShiftMode(BottomNavigationView view) {
             BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
             try {
                 Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
@@ -543,23 +532,5 @@ public class MainActivity extends AppCompatActivity
     }
 
 
-
-
- public void hideItem()
-    {
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        Menu nav_Menu = navigationView.getMenu();
-        nav_Menu.findItem(R.id.nav_membershipInformation).setVisible(false);
-        context = this;
-
-    }
-
-
-    private void showItem()
-    {
-        navigationView = (NavigationView) findViewById(R.id.nav_view);
-        Menu nav_Menu = navigationView.getMenu();
-        nav_Menu.findItem(R.id.nav_membershipInformation).setVisible(true);
-    }
 
 }// end MainActivity
