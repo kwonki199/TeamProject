@@ -53,6 +53,7 @@ import edu.android.mainmen.Banner.Banner4Fragment;
 import edu.android.mainmen.Banner.Banner1Fragment;
 import edu.android.mainmen.Banner.Banner5Fragment;
 import edu.android.mainmen.Banner.Banner6Fragment;
+import edu.android.mainmen.Banner.HeartKingActivity;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
@@ -316,12 +317,13 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
             }
         } else if (id == R.id.nav_coupon) {
-
+            Toast.makeText(this, "보관함에 쿠폰이 없습니다.", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_game) {
             Intent intent = new Intent(MainActivity.this, RouletteActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_heart) {
-            
+            Intent intent = new Intent(MainActivity.this, HeartKingActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_event) {
             Intent intent = new Intent(MainActivity.this, EventActivity.class);
             startActivity(intent);
