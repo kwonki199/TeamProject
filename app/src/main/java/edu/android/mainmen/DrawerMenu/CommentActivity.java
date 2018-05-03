@@ -76,7 +76,7 @@ public class CommentActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.commentRecyclerView1);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        final CommnetAdapter adapter = new CommnetAdapter();
+        final CommentAdapter adapter = new CommentAdapter();
         recyclerView.setAdapter(adapter);
         commentBtn = findViewById(R.id.comment_button);
         commentText = findViewById(R.id.comment_text);
@@ -135,7 +135,7 @@ public class CommentActivity extends AppCompatActivity {
     }
 
 
-    class CommnetAdapter extends RecyclerView.Adapter<CommnetAdapter.ViewHolder> {
+    class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
 
         @NonNull
         @Override
