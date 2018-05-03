@@ -131,6 +131,7 @@ public class MyInfoActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+            
 
             holder.noticeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override

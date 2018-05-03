@@ -119,11 +119,6 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 progress_spinner.show();
                 ((MainActivity)MainActivity.context).hideItem();
 
-
-
-
-
-
             }
         });
 
@@ -180,27 +175,10 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
 
 
 
-
     }// end onCreate
 
-    // 페이스북 토큰
-    private void handleFacebookAccessToken(AccessToken token) {
 
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
 
-                        } else {
-                            Toast.makeText(LoginActivity.this, "FaceBook 아이디 연동 성공", Toast.LENGTH_SHORT).show();
-                        }
-
-                        // ...
-                    }
-                });
-    }
 
     private void createUser(final String email, final String password) {
         mAuth.createUserWithEmailAndPassword(email, password)
@@ -272,6 +250,25 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 });
     }
 
+    // 페이스북 토큰
+    private void handleFacebookAccessToken(AccessToken token) {
+
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                        } else {
+                            Toast.makeText(LoginActivity.this, "FaceBook 아이디 연동 성공", Toast.LENGTH_SHORT).show();
+                        }
+
+                        // ...
+                    }
+                });
+    }
+
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
@@ -313,9 +310,5 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             actionBar.hide();
         }
     }
-
-
-
-
 
 }
