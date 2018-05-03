@@ -144,16 +144,16 @@ public class MainActivity extends AppCompatActivity
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
-
             @Override
             public void onPageSelected(int position) {
                 if (position == 0) {
                     appBarLayout.setVisibility(View.GONE);
+                    mViewPager2.setVisibility(View.VISIBLE);
                 } else {
                     appBarLayout.setVisibility(View.VISIBLE);
+                    mViewPager2.setVisibility(View.GONE);
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
