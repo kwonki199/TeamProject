@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         //뷰페이저
         appBarLayout = findViewById(R.id.appBarLayout);
         tabLayout =  findViewById(R.id.tabs);
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager(), appBarLayout);
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
         mViewPager = findViewById(R.id.container);
         appBarLayout.setVisibility(View.GONE);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity
 
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager(),appBarLayout);
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "홈");             // 0 포지션
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");

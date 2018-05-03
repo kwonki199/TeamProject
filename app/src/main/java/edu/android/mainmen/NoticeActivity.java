@@ -2,6 +2,7 @@ package edu.android.mainmen;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,6 +31,7 @@ public class NoticeActivity extends AppCompatActivity {
     private List<AllNoticeDTO> allNoticeDTOS = new ArrayList<>();
     public static final String TITLE = "title";
     public static final String TEXT = "text";
+    private TextView closeBtn;
 
 
     private String[] subTitile = {
@@ -48,6 +50,19 @@ public class NoticeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+        }
+
+        closeBtn = findViewById(R.id.notice_textview_close);
+        closeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         recyclerView = findViewById(R.id.noticeRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -141,4 +156,5 @@ public class NoticeActivity extends AppCompatActivity {
             }
         }
     }
+
 }
