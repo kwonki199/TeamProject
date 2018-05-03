@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Banner.Post1Activity"
-    tools:showIn="@layout/activity_scrolling_post1">
+    tools:context=".Banner.Post2Activity"
+    tools:showIn="@layout/activity_scrolling_post2">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -81,6 +81,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="161dp"
                     app:srcCompat="@drawable/tae3" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -128,6 +129,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="161dp"
                     app:srcCompat="@drawable/tae5" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -140,7 +142,8 @@
 비빔밥 중 택1이다. 기본으로 된장찌개도 나오기 때문에
 두탕(탕이두개)라고 부른다. 1인당 7천원에 가성비가
 훌륭하다. 점심에 반치이 미리 세팅 되어 있어 빨리
-먹을 수 있어서 좋다."/>
+먹을 수 있어서 좋다." />
+
                 <ImageView
                     android:id="@+id/imageView15"
                     android:layout_width="match_parent"
@@ -175,6 +178,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="153dp"
                     app:srcCompat="@drawable/tae7" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -186,6 +190,7 @@
 많지만 줄이 긴 편은 아니다. 불맛이 느껴지는 불고기와\n
 옛날 도시락에 밥과 계란후라이가 같이 나온다.\n
 양은 살짝 아쉬울 수 있지만 불고기가 그만큼 맛있다. " />
+
                 <ImageView
                     android:id="@+id/imageView17"
                     android:layout_width="match_parent"
@@ -220,6 +225,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="161dp"
                     app:srcCompat="@drawable/tae9" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

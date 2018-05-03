@@ -31,7 +31,7 @@ public class Banner2Fragment extends Fragment {
         bannerImageView2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Post1Activity.class);
+                Intent intent = new Intent(getContext(), Post2Activity.class);
                 startActivity(intent);
             }
         });

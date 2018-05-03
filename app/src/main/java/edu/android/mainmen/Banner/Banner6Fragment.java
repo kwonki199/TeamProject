@@ -33,7 +33,7 @@ public class Banner6Fragment extends Fragment {
         bannerImageView6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getContext(), Post1Activity.class);
+                Intent intent = new Intent(getContext(), Post6Activity.class);
                 startActivity(intent);
             }
         });
