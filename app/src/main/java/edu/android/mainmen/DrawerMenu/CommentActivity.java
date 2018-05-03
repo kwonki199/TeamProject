@@ -151,13 +151,13 @@ public class CommentActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
             holder.textId.setText(allCommentDTOS.get(position).ID);
             holder.textComment.setText(allCommentDTOS.get(position).Comment);
-            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    delete_content(position);
-
-                }
-            });
+//            holder.deleteButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    delete_content(position);
+//
+//                }
+//            });
         }
 
         private void delete_content(final int position) {
@@ -182,13 +182,13 @@ public class CommentActivity extends AppCompatActivity {
         class ViewHolder extends RecyclerView.ViewHolder {
             TextView textId;
             TextView textComment;
-            ImageView deleteButton;
+//            ImageView deleteButton;
 
             public ViewHolder(View itemView) {
                 super(itemView);
                 textId = itemView.findViewById(R.id.text_id);
                 textComment = itemView.findViewById(R.id.text_comment);
-                deleteButton = itemView.findViewById(R.id.item_delete_image);
+//                deleteButton = itemView.findViewById(R.id.item_delete_image);
 
             }
         }
