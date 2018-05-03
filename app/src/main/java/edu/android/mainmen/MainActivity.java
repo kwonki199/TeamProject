@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity
 
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager(),appBarLayout);
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new FoodListFragment(), "홈");             // 0 포지션
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");

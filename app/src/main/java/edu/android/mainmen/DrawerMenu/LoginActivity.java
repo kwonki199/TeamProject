@@ -118,7 +118,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 progress_spinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progress_spinner.show();
 
-                ((MainActivity)MainActivity.context).hideItem();
+//                ((MainActivity)MainActivity.context).hideItem();
 
 
 
