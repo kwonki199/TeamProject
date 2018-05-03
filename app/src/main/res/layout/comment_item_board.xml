@@ -19,13 +19,15 @@
             android:id="@+id/text_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:text="TextView" />
 
         <TextView
             android:padding="16dp"
             android:id="@+id/text_comment"
             android:layout_width="match_parent"
-            android:textSize="16sp"
+            android:textSize="14sp"
             android:layout_height="wrap_content"
             android:text="댓글 내용" />
 

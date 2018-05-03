@@ -48,12 +48,13 @@ public class SearchActivity extends AppCompatActivity {
         age40Textview = findViewById(R.id.search_40age_textView4);
         cancelBtn = findViewById(R.id.search_cancelBtn);
 
-
+        
         heartTextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this,SearchDetailActivity.class);
                 heartSearch = "좋아요순";
+                intent.putExtra("a", heartTextview.getText().toString());
                 startActivity(intent);
             }
         });
@@ -62,6 +63,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this,SearchDetailActivity.class);
+                intent.putExtra("a", manTextview.getText().toString());
                 orderByChild = "usersex";
                 equalTo = "남성";
                 heartSearch = null;
@@ -72,8 +74,8 @@ public class SearchActivity extends AppCompatActivity {
         womanTextview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent intent = new Intent(SearchActivity.this,SearchDetailActivity.class);
+                intent.putExtra("a", womanTextview.getText().toString());
                 orderByChild = "usersex";
                 equalTo = "여성";
                 heartSearch = null;
@@ -85,6 +87,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this,SearchDetailActivity.class);
+                intent.putExtra("a", age10Textview.getText().toString());
                 orderByChild = "userage";
                 equalTo = "10대";
                 heartSearch = null;
@@ -96,6 +99,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this,SearchDetailActivity.class);
+                intent.putExtra("a", age20Textview.getText().toString());
                 orderByChild = "userage";
                 equalTo = "20대";
                 heartSearch = null;
@@ -107,6 +111,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this,SearchDetailActivity.class);
+                intent.putExtra("a", age30Textview.getText().toString());
                 orderByChild = "userage";
                 equalTo = "30대";
                 heartSearch = null;
@@ -117,6 +122,7 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(SearchActivity.this,SearchDetailActivity.class);
+                intent.putExtra("a", age40Textview.getText().toString());
                 orderByChild = "userage";
                 equalTo = "40대 이상";
                 heartSearch = null;

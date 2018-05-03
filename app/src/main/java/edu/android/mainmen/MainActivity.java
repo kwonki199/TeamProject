@@ -46,26 +46,26 @@ import java.security.MessageDigest;
 
 import edu.android.mainmen.Adapter.SectionsBannerPageAdapter;
 import edu.android.mainmen.Adapter.SectionsPageAdapter;
-import edu.android.mainmen.BannerFragments.Banner2Fragment;
-import edu.android.mainmen.BannerFragments.Banner3Fragment;
-import edu.android.mainmen.BannerFragments.Banner4Fragment;
-import edu.android.mainmen.BannerFragments.Banner1Fragment;
-import edu.android.mainmen.BannerFragments.Banner5Fragment;
-import edu.android.mainmen.BannerFragments.Banner6Fragment;
+import edu.android.mainmen.Banner.Banner2Fragment;
+import edu.android.mainmen.Banner.Banner3Fragment;
+import edu.android.mainmen.Banner.Banner4Fragment;
+import edu.android.mainmen.Banner.Banner1Fragment;
+import edu.android.mainmen.Banner.Banner5Fragment;
+import edu.android.mainmen.Banner.Banner6Fragment;
 import edu.android.mainmen.DrawerMenu.MyWritingActivity;
 import edu.android.mainmen.DrawerMenu.RouletteActivity;
 import edu.android.mainmen.DrawerMenu.LoginActivity;
-import edu.android.mainmen.ReviewFragment.ReviewBossamFragment;
-import edu.android.mainmen.ReviewFragment.ReviewChikenFragment;
-import edu.android.mainmen.ReviewFragment.ReviewFastFoodFragment;
-import edu.android.mainmen.ReviewFragment.ReviewSnackBarFragment;
+import edu.android.mainmen.Review.ReviewBossamFragment;
+import edu.android.mainmen.Review.ReviewChikenFragment;
+import edu.android.mainmen.Review.ReviewFastFoodFragment;
+import edu.android.mainmen.Review.ReviewSnackBarFragment;
 import edu.android.mainmen.Search.SearchActivity;
 import edu.android.mainmen.Upload.FirebaseUploadActivity;
-import edu.android.mainmen.ReviewFragment.ReviewChinaFragment;
-import edu.android.mainmen.ReviewFragment.ReviewJapanFragment;
-import edu.android.mainmen.ReviewFragment.ReviewKoreanFragment;
-import edu.android.mainmen.ReviewFragment.ReviewWesternFragment;
-import edu.android.mainmen.ReviewFragment.ReadReviewFragment;
+import edu.android.mainmen.Review.ReviewChinaFragment;
+import edu.android.mainmen.Review.ReviewJapanFragment;
+import edu.android.mainmen.Review.ReviewKoreanFragment;
+import edu.android.mainmen.Review.ReviewWesternFragment;
+import edu.android.mainmen.Review.ReviewFragment;
 
 // 미해결사항 해결하시면 미해결 -> 해결로 바꿔주세요.
 //TODO: Tabbed 기능 추가 홈화면 터치 이외에 탭이동으로도 보기 쉽게 구현 - 해결
@@ -127,12 +127,34 @@ public class MainActivity extends AppCompatActivity
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         //뷰페이저
-        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
-        mViewPager = findViewById(R.id.container);
-        setupViewPager(mViewPager);
+        appBarLayout = findViewById(R.id.appBarLayout);
         tabLayout =  findViewById(R.id.tabs);
+        mSectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager(), appBarLayout);
+        mViewPager = findViewById(R.id.container);
+        appBarLayout.setVisibility(View.GONE);
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (position==0) {
+                    appBarLayout.setVisibility(View.GONE);
+                }else{
+                    appBarLayout.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        setupViewPager(mViewPager);
         tabLayout.setupWithViewPager(mViewPager);
 
 
@@ -141,6 +163,7 @@ public class MainActivity extends AppCompatActivity
         sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         mViewPager2 = findViewById(R.id.containerBanner);
         setupBannerViewPager(mViewPager2);
+
 
 
         // 탭과 옆으로 드로잉할때 연결시키기.
@@ -176,31 +199,12 @@ public class MainActivity extends AppCompatActivity
         }
 
 
-        appBarLayout = findViewById(R.id.appBarLayout);
-        //홈화면에서 앱바 숨기기.
-//        mViewPager.getCurrentItem() == 0
-//        if (tabLayout.getSelectedTabPosition()==0) {
-//            appBarLayout.setVisibility(view.GONE);
-//        }else{
-//            tabLayout.setVisibility(view.VISIBLE);
-//        }
 
-//        headerSignin = findViewById(R.id.header_sign_in);
-//        headerSignout = findViewById(R.id.header_sign_out);
-//        headerSignin.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                FirebaseUser user = auth.getCurrentUser();
-//                if (user == null) {
-//                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-//                    startActivity(intent);
-//                }else{
-//                    Toast.makeText(MainActivity.this, "로그인상태입니다.", Toast.LENGTH_SHORT).show();
-//                    header_email.setText(auth.getCurrentUser().getEmail());
-////                item.setVisible(false);
-//                }
-//            }
-//        });
+
+
+
+
+
 
     }// end onCrete
 
@@ -263,7 +267,7 @@ public class MainActivity extends AppCompatActivity
             }else{
                 Toast.makeText(this, "로그인상태입니다.", Toast.LENGTH_SHORT).show();
                 header_email.setText(auth.getCurrentUser().getEmail());
-//                item.setVisible(false);
+                item.setVisible(false);
             }
         } else if (id == R.id.nav_mywritings) { // 리뷰 작성
             if (user != null) {
@@ -282,9 +286,9 @@ public class MainActivity extends AppCompatActivity
                 alertLoginLayout();
             }
 
-        } else if (id == R.id.nav_bookmark) { // 즐겨찾기
-
-            // 아직 즐겨찾기 구현안됨
+//        } else if (id == R.id.nav_bookmark) { // 즐겨찾기
+//
+//            // 아직 즐겨찾기 구현안됨
 
         } else if (id == R.id.nav_logout) { // 로그아웃
             if (user != null) {
@@ -308,7 +312,7 @@ public class MainActivity extends AppCompatActivity
 
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager(),appBarLayout);
         adapter.addFragment(new FoodListFragment(), "홈");             // 0 포지션
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");
@@ -318,10 +322,11 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new ReviewSnackBarFragment(), "분식");
         adapter.addFragment(new ReviewFastFoodFragment(), "패스트푸드");
         adapter.addFragment(new ReviewBossamFragment(), "족발/보쌈");   // 9 포지션
-        adapter.addFragment(new ReadReviewFragment(), "전체리뷰");
+        adapter.addFragment(new ReviewFragment(), "전체리뷰");
         viewPager.setAdapter(adapter);
     }
 
+    // 배너 뷰페이저
     private void setupBannerViewPager(ViewPager viewPager) {
         SectionsBannerPageAdapter adapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         adapter.addFragment(new Banner1Fragment());
@@ -334,7 +339,8 @@ public class MainActivity extends AppCompatActivity
         viewPager.setAdapter(adapter);
     }
 
-    // 탭과 프래그먼트 연동
+
+    // 탭과 프래그먼트 클릭연동
     @Override
     public void onHomeSelected(int position) {
         Log.i(TAG, "position=" + position);
@@ -486,7 +492,7 @@ public class MainActivity extends AppCompatActivity
                         Intent intent = new Intent(MainActivity.this, MyInfoActivity.class);
                         startActivity(intent);
                     } else {
-                        alertLoginButtons();
+                        Toast.makeText(MainActivity.this, "로그인 후 이용하십시오", Toast.LENGTH_SHORT).show();
                     }
 
                     return true;
@@ -495,6 +501,7 @@ public class MainActivity extends AppCompatActivity
         }
     };
 
+    //바텀네비게이션 고정
     static class BottomNavigationViewHelper {
 
          @SuppressLint("RestrictedApi")
@@ -518,6 +525,7 @@ public class MainActivity extends AppCompatActivity
             }
         }
     }
+
 
 
 }// end MainActivity

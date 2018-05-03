@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -58,6 +59,8 @@ public class DetailViewActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_view2);
 
+        hideActionBar();
+
         ID = findViewById(R.id.item_textView_id);
         detailAdress = findViewById(R.id.detailAdress);
         imageView = (ImageView) findViewById(R.id.item_imageView);
@@ -90,6 +93,15 @@ public class DetailViewActivity2 extends AppCompatActivity {
 
 
         detailAdress.setText(Location);
+
+    }
+
+    private void hideActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.hide();
+
+        }
 
     }
 
