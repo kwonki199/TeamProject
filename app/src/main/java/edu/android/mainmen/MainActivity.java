@@ -169,22 +169,6 @@ public class MainActivity extends AppCompatActivity
         sectionsBannerPageAdapter = new SectionsBannerPageAdapter(getSupportFragmentManager());
         mViewPager2 = findViewById(R.id.containerBanner);
         setupBannerViewPager(mViewPager2);
-        mViewPager2.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
 
 
@@ -220,12 +204,12 @@ public class MainActivity extends AppCompatActivity
             header_email.setText("로그인이 되어있지 않습니다.");
         }
 
+        if(user != null){
+            hideItem();
 
+        }else{
 
-
-
-
-
+        }
 
 
     }// end onCrete
@@ -282,6 +266,14 @@ public class MainActivity extends AppCompatActivity
 
         FirebaseUser user = auth.getCurrentUser();
 
+
+
+        if(user == null){
+
+
+
+        }
+
         if (id == R.id.nav_membershipInformation) { // 로그인
             if (user == null) {
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
@@ -317,16 +309,21 @@ public class MainActivity extends AppCompatActivity
                 auth.signOut();
                 header_email.setText("로그인이 되어있지 않습니다.");
                 Toast.makeText(this, "로그아웃되었습니다.", Toast.LENGTH_SHORT).show();
-            }else {
+                showItem();
+
+            } else {
                 Toast.makeText(this, "로그아웃 상태입니다", Toast.LENGTH_SHORT).show();
             }
-        } else if (id == R.id.nav_coupon) { // 쿠폰
-
-        } else if (id == R.id.nav_game) { // 룰렛
+        } else if (id == R.id.nav_coupon) {
+            Toast.makeText(this, "보관함에 쿠폰이 없습니다.", Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_game) {
             Intent intent = new Intent(MainActivity.this, RouletteActivity.class);
             startActivity(intent);
-        } else if (id == R.id.nav_heart) { //하트왕
+        } else if (id == R.id.nav_heart) {
             Intent intent = new Intent(MainActivity.this, HeartKingActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_event) {
+            Intent intent = new Intent(MainActivity.this, EventActivity.class);
             startActivity(intent);
         }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -490,18 +487,18 @@ public class MainActivity extends AppCompatActivity
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
 
-                    //홈
+                //홈
                 case R.id.navigation_home:
 
                     mViewPager.setCurrentItem(0);
                     return true;
 
-                    //전체리뷰
+                //전체리뷰
                 case R.id.navigation_allsearch:
                     mViewPager.setCurrentItem(10);
                     return true;
 
-                    //글쓰기
+                //글쓰기
                 case R.id.navigation_write:
                     FirebaseUser user = auth.getCurrentUser();
                     if (user != null) {
@@ -531,8 +528,8 @@ public class MainActivity extends AppCompatActivity
     //바텀네비게이션 고정
     static class BottomNavigationViewHelper {
 
-         @SuppressLint("RestrictedApi")
-         static void removeShiftMode(BottomNavigationView view) {
+        @SuppressLint("RestrictedApi")
+        static void removeShiftMode(BottomNavigationView view) {
             BottomNavigationMenuView menuView = (BottomNavigationMenuView) view.getChildAt(0);
             try {
                 Field shiftingMode = menuView.getClass().getDeclaredField("mShiftingMode");
@@ -554,5 +551,23 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+
+
+ public void hideItem()
+    {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_membershipInformation).setVisible(false);
+        context = this;
+
+    }
+
+
+    private void showItem()
+    {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_membershipInformation).setVisible(true);
+    }
 
 }// end MainActivity

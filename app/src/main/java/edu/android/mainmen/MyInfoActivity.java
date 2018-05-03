@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -111,7 +112,7 @@ public class MyInfoActivity extends AppCompatActivity {
             holder.couponBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(MyInfoActivity.this, "쿠폰 버튼", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MyInfoActivity.this, "보관함에 쿠폰이 없습니다.", Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -122,12 +123,28 @@ public class MyInfoActivity extends AppCompatActivity {
                     startActivity(intent);
                 }
             });
+
+            holder.eventButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MyInfoActivity.this, EventActivity.class);
+                    startActivity(intent);
+                }
+            });
             
 
             holder.noticeBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(MyInfoActivity.this, NoticeActivity.class);
+                    startActivity(intent);
+                }
+            });
+
+            holder.workBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MyInfoActivity.this, WorkLogActivity.class);
                     startActivity(intent);
                 }
             });
@@ -146,10 +163,10 @@ public class MyInfoActivity extends AppCompatActivity {
             TextView textUserAge;
             ImageView couponBtn;
             ImageView managementReviewBtn;
-            ImageView likeBtn;
+            LinearLayout eventButton;
             Button noticeBtn;
-            Button nameChangeBtn;
             Button cancelBtn;
+            Button workBtn;
 
 
             public ViewHolder(View itemView) {
@@ -162,6 +179,8 @@ public class MyInfoActivity extends AppCompatActivity {
                 managementReviewBtn = itemView.findViewById(R.id.managementReviewBtn);
                 noticeBtn = itemView.findViewById(R.id.noticeBtn);
                 cancelBtn = itemView.findViewById(R.id.myInfo_cancelBtn);
+                workBtn = itemView.findViewById(R.id.workBtn);
+                eventButton = itemView.findViewById(R.id.linear_event);
             }
         }
     }
