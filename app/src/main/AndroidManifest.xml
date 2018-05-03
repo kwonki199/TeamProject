@@ -100,6 +100,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Banner.HeartKingActivity" />
         <activity android:name=".Tutorial2Activity"></activity>
+        <activity android:name=".WorkLogActivity"></activity>
     </application>
 
 </manifest>

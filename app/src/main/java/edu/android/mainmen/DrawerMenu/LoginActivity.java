@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -86,6 +87,8 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+
+
         SignInButton googleLogin = (SignInButton) findViewById(R.id.google_login_button);
         googleLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,6 +117,11 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
                 progress_spinner.setMessage("Loading...");
                 progress_spinner.setProgressStyle(ProgressDialog.STYLE_SPINNER);
                 progress_spinner.show();
+
+                ((MainActivity)MainActivity.context).hideItem();
+
+
+
 
 
 
@@ -306,6 +314,7 @@ public class LoginActivity extends AppCompatActivity implements GoogleApiClient.
             actionBar.hide();
         }
     }
+
 
 
 

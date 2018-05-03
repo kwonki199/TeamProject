@@ -2,6 +2,7 @@ package edu.android.mainmen;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -101,7 +102,8 @@ public class MainActivity extends AppCompatActivity
     private ViewPager mViewPager2;
     private AppBarLayout appBarLayout;
     private FirebaseUser user;
-    private Button headerSignin , headerSignout;
+    private Button headerSignin, headerSignout;
+    public static Context context;
 
 
     @Override
@@ -111,6 +113,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         alertNoticeButton();
         getAppKeyHash(); // hash 키 불러오기
+
+        context = this;
+
 
         //파이어베이스
         database = FirebaseDatabase.getInstance();
@@ -141,9 +146,9 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onPageSelected(int position) {
-                if (position==0) {
+                if (position == 0) {
                     appBarLayout.setVisibility(View.GONE);
-                }else{
+                } else {
                     appBarLayout.setVisibility(View.VISIBLE);
                 }
             }
@@ -312,7 +317,7 @@ public class MainActivity extends AppCompatActivity
 
     // 탭+프래그먼트 세팅 뷰페이저
     private void setupViewPager(ViewPager viewPager) {
-        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
+        SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager(),appBarLayout);
         adapter.addFragment(new FoodListFragment(), "홈");             // 0 포지션
         adapter.addFragment(new ReviewKoreanFragment(), "한식");
         adapter.addFragment(new ReviewChinaFragment(), "중식");
