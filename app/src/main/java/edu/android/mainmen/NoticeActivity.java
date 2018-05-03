@@ -73,13 +73,13 @@ public class NoticeActivity extends AppCompatActivity {
 
 
 //        for (int i = 0; i < stringsText.length; i++) { // 공지사항 추가할때 한번 실행
-////            AllNoticeDTO allNoticeDTO = new AllNoticeDTO();
-////            allNoticeDTO.subtitle = subTitile[i];
-////            allNoticeDTO.title = stringsTitle[i];
-////            allNoticeDTO.text = stringsText[i];
-////            database.getReference("Notice").push().setValue(allNoticeDTO);
-////
-////        }
+//            AllNoticeDTO allNoticeDTO = new AllNoticeDTO();
+//            allNoticeDTO.subtitle = subTitile[i];
+//            allNoticeDTO.title = stringsTitle[i];
+//            allNoticeDTO.text = stringsText[i];
+//            database.getReference("Notice").push().setValue(allNoticeDTO);
+//
+//        }
 
 
         database.getReference().child("Notice").addValueEventListener(new ValueEventListener() {
