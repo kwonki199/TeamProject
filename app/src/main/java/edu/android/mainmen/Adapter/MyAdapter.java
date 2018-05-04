@@ -146,8 +146,13 @@ public class MyAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         ((CustomViewHolder)holder).deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseUser user = auth.getCurrentUser();
+                if (user.getEmail().equals(allFoodDTOList.get(position).userId)) {
+                    delete_content(position);
+                }else{
+                    Toast.makeText(context, "작성한 사용자가 아닙니다.", Toast.LENGTH_SHORT).show();
+                }
 
-                delete_content(position);
             }
         });
 
