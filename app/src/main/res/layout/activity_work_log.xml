@@ -9,12 +9,14 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_marginLeft="4dp"
-        android:textSize="20sp"
-        android:layout_marginBottom="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="작업현황" />
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:text="작업현황"
+        android:textColor="@android:color/background_dark"
+        android:textSize="20sp" />
 
 
     <android.support.v7.widget.RecyclerView

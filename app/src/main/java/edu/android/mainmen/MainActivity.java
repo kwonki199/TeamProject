@@ -496,7 +496,12 @@ public class MainActivity extends AppCompatActivity
 
                 //홈
                 case R.id.navigation_home:
-
+                    FirebaseUser user3 = auth.getCurrentUser();
+                    if (user3 != null) {
+                        header_email.setText(auth.getCurrentUser().getEmail());
+                    } else {
+                        header_email.setText("로그인이 되어있지 않습니다.");
+                    }
                     mViewPager.setCurrentItem(0);
                     return true;
 

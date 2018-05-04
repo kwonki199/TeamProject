@@ -25,8 +25,8 @@ public class kindsOfFoodDao {
     };
     private static final int[] ALL_MENU_IMAGE = { ////////////////////////////// 전체 메뉴 이미지 그림
             R.drawable.f11, R.drawable.f12, R.drawable.f13,
-            R.drawable.f14, R.drawable.f15, R.drawable.f16,
-            R.drawable.f17, R.drawable.f18, R.drawable.f19
+            R.drawable.f14, R.drawable.f15, R.drawable.f17,
+            R.drawable.f16, R.drawable.f18, R.drawable.f19
     };
 
     private List<kindsOfFood> foodList = new ArrayList<>();

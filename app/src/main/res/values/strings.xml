@@ -45,15 +45,15 @@
     <string name="fb_login_protocol_scheme">fb226881738046500</string>
     <string name="title_activity_maps2">Map</string>
 
-    <string name="notice1">ver0.4 공지사항</string>
+    <string name="notice1">ver0.7 공지사항</string>
     <string name="notice2">\n\n
-                            화요일할것 \n
-                            회원정보,글수정기능 \n\n
-                           배너아이템넣기\n
-                           하이드구현하기\n\n
-                           UI 디자인 필요 사용자가 이용하기 편하게\n\n
-                           안정화 ( 노에러 구현 )\n
-                                          동희   - \n\n
+                            불필요한 리뷰 (홍보성,음란성,비방성) \n
+                            리뷰작성시, \n
+                           영구정지대상이 됩니다.\n\n
+                           기타 문의사항은 \n\n
+                           itWill@gmail.com 로 \n\n
+                           보내주시기 바랍니다.\n
+                                          맛뷰개발팀 - \n\n
                    </string>
 
     <!--스피너 값-->

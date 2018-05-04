@@ -6,40 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".Search.SearchDetailActivity">
 
-    <TextView
-        android:id="@+id/detailSearchTitleTextView"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="세부검색"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/searchdetail_Btn"
-        android:layout_width="33dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="291dp"
-        android:background="@android:color/transparent"
-        android:text="X"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/fragment2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/detailSearchTitleTextView"
-        app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/detailSearchTitleTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_weight="1"
+            android:text="세부검색"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/searchdetail_Btn"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:text="X"
+            android:textColor="@android:color/darker_gray"
+
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/detailSearchTitleTextView"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
     <fragment
         android:id="@+id/fragment2"
         android:name="edu.android.mainmen.Search.ReviewSearchDetailFragment"
         android:layout_width="0dp"
-        android:layout_height="475dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchdetail_Btn"
-        app:layout_constraintVertical_bias="0.727" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 </android.support.constraint.ConstraintLayout>

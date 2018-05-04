@@ -17,6 +17,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.ScrollView;
@@ -72,6 +73,7 @@ public class DetailViewActivity2 extends AppCompatActivity {
     private String desc;
     private String title;
     private ScrollView scrollView;
+    private ImageButton btn;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +95,14 @@ public class DetailViewActivity2 extends AppCompatActivity {
         textView2 = (TextView) findViewById(R.id.item_textView2);
         rb = findViewById(R.id.rb);
         detailStoreName = (TextView)findViewById(R.id.detailStoreName);
+        btn = findViewById(R.id.imageButton);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
 
         Intent intent = getIntent();
 

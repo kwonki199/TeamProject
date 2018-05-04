@@ -12,15 +12,16 @@
         android:background="@drawable/border">
 
         <TextView
-            android:layout_marginLeft="4dp"
-            android:layout_marginTop="4dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"
             android:id="@+id/workLogTitleText"
             android:layout_width="match_parent"
-            android:textSize="20sp"
             android:layout_height="wrap_content"
-            android:text="작업현황 제목" />
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:text="작업현황 제목"
+            android:textColor="@android:color/background_dark"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
 
         <TextView

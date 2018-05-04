@@ -12,6 +12,7 @@
         android:layout_height="25dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
         <ImageView
@@ -52,8 +53,6 @@
             android:id="@+id/item_imageView"
             android:layout_width="match_parent"
             android:layout_height="339dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
             app:srcCompat="@android:color/holo_blue_bright" />
 
     </LinearLayout>
@@ -74,10 +73,10 @@
                 android:id="@+id/item_textView"
                 android:layout_width="159dp"
                 android:layout_height="35dp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
                 android:gravity="left|center"
+                android:paddingLeft="50dp"
                 android:text="음식 이름"
                 android:textSize="12sp"
                 android:textStyle="bold"

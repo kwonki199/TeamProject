@@ -16,11 +16,14 @@ public class WorkLogActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
 
     private String[] workTitles = {
-            "4/16 작업내역", "4/17 작업내역", "4/18 작업내역", "4/19 작업내역", "4/20 작업내역"
+            "4/16 작업내역", "4/17 작업내역", "4/18 작업내역", "4/19 작업내역", "4/20 작업내역",
+            "4/21 작업내역","4/22 작업내역","4/23 작업내역","4/24 작업내역","4/25 작업내역",
     };
 
     private String[] workTexts = {
-        "주제 토론","리뷰를 테마로 앱만들기 목표","역할분담설정","드로어메뉴만들고 리사이클러뷰설정","로그인연동"
+        "주제 토론","리뷰를 테마로 앱만들기 목표","역할분담설정","드로어메뉴만들고 리사이클러뷰설정","로그인연동",
+            "업로드구현완료","세부 메뉴 나열","전체적인 에러한번 잡기","아이디어 다시 점검","프래그먼트추가"
+
     };
 
     @Override
@@ -36,6 +39,8 @@ public class WorkLogActivity extends AppCompatActivity {
 
 
     }
+
+    
 
     class WorkLogAdapter extends RecyclerView.Adapter<WorkLogAdapter.ViewHolder> {
 
