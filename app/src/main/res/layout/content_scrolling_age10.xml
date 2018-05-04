@@ -28,7 +28,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="취향저격10대맛집"
+                    android:text="취향저격10대맛집 \n\n 애플하우스"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <android.support.v4.view.ViewPager
@@ -39,13 +39,20 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 12313123" />
+                    android:text=
+"저렴한 가격의 신당동식 즉석 떡볶이로 유명한\n
+분식집니다. 말캉한 떡과 오뎅, 양배추 등이\n
+들어간 내용물에, 춘장과 고추장을 넣은 즉석\n
+떡볶이가 인기있습니다. 바삭하게 튀겨낸\n
+군만두에 애플하우스만의 특별한 고추장\n
+소스로 버무린 무침군만두도 좋은 평가를 받고\n
+있습니다. 벽면의 빼곡한 낙서와 서민적\n
+스타일의 테이블이 정감있지요.\n\n
 
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae2" />
+주소: 서울특별시 서초구 반포동 신반포로 50\n
+영업시간: 10:00 ~ 22:00\n
+연락처: 02-553-1292" />
+
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
@@ -65,25 +72,28 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="123123"
+                    android:text="한성돈까스"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae3" />
+                    android:layout_height="244dp"
+                    app:srcCompat="@drawable/teen4" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 1231231" />
+                    android:text=
+"엄선된 양질의 돈육을 사용하며 생빵가루로 더욱 바삭한\n
+돈까스를 만들어 냅니다. 순식물성 기름만을 사용하며\n
+자체 개발한 돈까스와 야채소스는 색다른\n
+돈까스의 맛을 느끼게 합니다.\n
+조리료를 전혀 쓰지 않는 건강식입니다.\n\n
 
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae4" />
+주소: 서울특별시 서초구 잠원동 21-5\n
+영업시간: 11:00 ~ 22:00\n
+연락처: 02-540-7054" />
 
 
             </LinearLayout>
@@ -105,25 +115,27 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="123123"
+                    android:text="맛이차이나"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView14"
                     android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae5" />
+                    android:layout_height="214dp"
+                    app:srcCompat="@drawable/teen5" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 123123123" />
+                    android:text=
+"마포구 상수동에 위치한 맛집! 맛이차이나, 깨끗하고\n
+캐주얼하면서 세련됬습니다. 기본 메뉴도 맛있는데\n
+까르보나라 깐쇼새우,탕수육등 퓨전 중국요리도\n
+있습니다.\n\n
 
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="163dp"
-                    app:srcCompat="@drawable/tae6" />
+주소: 서울특별시 마포구 서강동 독막로 68\n
+영업시간: 11:00 ~ 22:00\n
+연락처: 02-322-2653" />
 
 
             </LinearLayout>
@@ -145,25 +157,29 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1231231"
+                    android:text="생고기제작소"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView16"
                     android:layout_width="match_parent"
-                    android:layout_height="153dp"
-                    app:srcCompat="@drawable/tae7" />
+                    android:layout_height="239dp"
+                    app:srcCompat="@drawable/teen6" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 12312312" />
+                    android:text=
+"2017년 대박 프랜차이즈 생고기제작소 입니다.\n
+업계최초로 냉장 소고기무한리필 을 시작하여 이미\n
+전국에 95개 매장을 보유하고 있으며 맛으로\n
+검증되어 현재까지 많은분들의 사랑을 받고 있는\n
+브랜드 입니다. 못가본 사람은 있어도 한번만\n
+가본사람은 없을정도로 맛으로 검증된 업체 입니다\n\n
 
-                <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="match_parent"
-                    android:layout_height="177dp"
-                    app:srcCompat="@drawable/tae8" />
+주소: 울특별시 강북구 수유동 221-23\n
+영업시간: 11:00 ~ 23:00\n
+연락처: 02-382-2583" />
 
 
             </LinearLayout>
@@ -185,25 +201,26 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="123123"
+                    android:text="삼풍치킨"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView18"
                     android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae9" />
+                    android:layout_height="186dp"
+                    app:srcCompat="@drawable/teen8" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 123123123" />
+                    android:text=
+"서초구에서 유명한 치킨집입니다. 오븐치킨이 메인이며\n
+가격대도 저렴한 편입니다. 가게 내부도 넓어서 모임을\n
+가지기에도 좋습니다.\n\n
 
-                <ImageView
-                    android:id="@+id/imageView19"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae10" />
+주소: 서울특별시 서초구 서초동 1695-13\n
+영업시간: 12:00 ~ 03:00\n
+연락처: 02-593-9992" />
 
             </LinearLayout>
 

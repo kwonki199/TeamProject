@@ -19,7 +19,7 @@ public class ScrollingPostPageAdapter extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
-    private Integer[] images = {R.drawable.b1, R.drawable.b2, R.drawable.b3};
+    private Integer[] images = {R.drawable.t1, R.drawable.t2, R.drawable.t3};
 
     public ScrollingPostPageAdapter(Context context) {
         this.context = context;

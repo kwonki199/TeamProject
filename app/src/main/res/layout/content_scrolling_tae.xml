@@ -28,7 +28,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Haru(일식당 / 이자까야)"
+                    android:text="강남불백(불고기백반)"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <android.support.v4.view.ViewPager
@@ -39,20 +39,15 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 메뉴: (런치)일식돈까스,우동,모밀,돈부리 등\n
-주소: 강남구 역삼구 649-8\n
-전화번호: 02-539-2648\n
-영업시간: 11:40 ~ 21:40\n
-태슐랭평가: 평범함 속의 특별한 맛, 기본에 충실한\n
-일식당이며 애피타이저로 떡볶이가 나오는 것이 특징.\n
-준수한 가성비와 매일 런치특가로 특정 메뉴를\n
-저렴하게 즐길 수 있다." />
+                    android:text=" 메뉴: 불고기백반 정식\n
+주소: 서울 강남구 강남대로94길 21\n
+전화번호: 02-501-8763\n
+영업시간: 매일 10:00 - 23:00\n
+태슐랭평가: 줄서서 먹는 불고기 백반집, 평소에 손님이\n
+많지만 줄이 긴 편은 아니다. 불맛이 느껴지는 불고기와\n
+옛날 도시락에 밥과 계란후라이가 같이 나온다.\n
+양은 살짝 아쉬울 수 있지만 불고기가 그만큼 맛있다." />
 
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae2" />
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
@@ -72,33 +67,24 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="장터(백반집)"
+                    android:text="교동짬뽕(중국집)"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView12"
                     android:layout_width="match_parent"
                     android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae3" />
+                    app:srcCompat="@drawable/t4" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 메뉴: 제육,보쌈,두루치기,생선구이 등 \n
-주소: 서울 강남구 테헤란로 123  B1\n
+                    android:text=" 메뉴: 짬뽕,짜장면,탕수육 등 \n
+주소: 서울 강남구 강남대로94길 11  B1\n
 전화번호: 02-561-2412\n
-영업시간: 06:00 ~ 22:00\n
-태슐랭평가: 단돈 6천원으로 느끼는 사장님의 따뜻한\n
-인심과 끝없는 포만감, 밑 반찬부터 메인요리까지\n
-무한리필처럼 제공해준다. 부침개를 포함한 밑반찬에\n
-매일 메인요리가 2개씩 추가된다.
-준수한 맛에 후식으로 누중지사탕을 한주먹 가득 가져가는 건 보너스" />
-
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae4" />
+영업시간: 10:00 ~ 22:00\n
+태슐랭평가: 불맛이 강한 짬뽕집, 매운맛이 매운맛 단계별로\n
+있는것도 맘에들지만 국물 진짜 맛있고 공간도 넓고 깨끗하다.\n" />
 
 
             </LinearLayout>
@@ -120,14 +106,14 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="서래갈매기(돼지고기구이)"
+                    android:text="서래갈매기(고기볶음,찌개)"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView14"
                     android:layout_width="match_parent"
                     android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae5" />
+                    app:srcCompat="@drawable/t5" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -143,12 +129,6 @@
 훌륭하다. 점심에 반치이 미리 세팅 되어 있어 빨리
 먹을 수 있어서 좋다." />
 
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="match_parent"
-                    android:layout_height="163dp"
-                    app:srcCompat="@drawable/tae6" />
-
 
             </LinearLayout>
 
@@ -169,32 +149,25 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="강남불백(불고기백반)"
+                    android:text="신부자식당"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
-
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="match_parent"
-                    android:layout_height="153dp"
-                    app:srcCompat="@drawable/tae7" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text=" 메뉴: 불고기백반 정식\n
-주소: 서울 강남구 강남대로94길 21\n
-전화번호: 02-501-8763\n
-영업시간: 매일 10:00 - 23:00\n
-태슐랭평가: 줄서서 먹는 불고기 백반집, 평소에 손님이\n
-많지만 줄이 긴 편은 아니다. 불맛이 느껴지는 불고기와\n
-옛날 도시락에 밥과 계란후라이가 같이 나온다.\n
-양은 살짝 아쉬울 수 있지만 불고기가 그만큼 맛있다. " />
 
                 <ImageView
                     android:id="@+id/imageView17"
                     android:layout_width="match_parent"
-                    android:layout_height="177dp"
-                    app:srcCompat="@drawable/tae8" />
+                    android:layout_height="153dp"
+                    app:srcCompat="@drawable/t6" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" 메뉴: 김치찌개,제육\n
+주소: 서울 강남구 강남대로96길 5\n
+전화번호: 02-401-8231\n
+영업시간: 매일 10:00 - 23:00\n
+태슐랭평가: 런치메뉴로 김치찌개와 제육이\n
+같이 나온다 김치찌개 맛이 일품이며 밑반찬으로\n
+나오는 수제 동그랑땡이 정말 부드럽다.\n" />
 
 
             </LinearLayout>
@@ -216,37 +189,150 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="장인닭갈비"
+                    android:text="아쭈(쭈꾸미)"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView18"
                     android:layout_width="match_parent"
                     android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae9" />
+                    app:srcCompat="@drawable/t7" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text=" 메뉴: 철판 닭갈비\n
-주소: 서울 강남구 테헤란로1길 19\n
-전화번호: 02-3452-3441\n
+                    android:text=" 메뉴: 쭈꾸미\n
+주소: 서울 강남구 강남대로94길 18\n
+전화번호: 02-752-3211\n
 영업시간: 매일 11:00 - 23:00\n
-태슐랭평가: 국내산 닭과 순수 100% 모짜렐라 치즈만\n
-사용하는 장인닭갈비. 2인세트와 4인세트가 있는데\n
-고기가 몇 개 더 있을 뿐 야채와 치즈의 양은 그렇게\n
-차이가 나이 않으니 참고. 치즈가 풍족하며 닭갈비를\n
-포함한 전체적인 맛이 좋고 개업한지 얼마 되지 않아\n
-식당내부가 매우 깔끔하다." />
+태슐랭평가: 매운맛 정도를 선택할수 있으며\n
+철판에 2인분 기준으로 쭈꾸미가 나온다.\n
+쭈꾸미 뿐만아니라 닭갈비랑 새우가 곁들어진 메뉴도\n
+있으며 식당 분위기도 고급스럽다.\n" />
+
+            </LinearLayout>
+
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin">
+
+            <LinearLayout
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="황토감자탕"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                 <ImageView
                     android:id="@+id/imageView19"
                     android:layout_width="match_parent"
-                    android:layout_height="161dp"
-                    app:srcCompat="@drawable/tae10" />
+                    android:layout_height="153dp"
+                    app:srcCompat="@drawable/t8" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" 메뉴: 감자탕,뼈해장국\n
+주소: 서울 강남구 테헤란로1길 20\n
+전화번호: 02-411-7563\n
+영업시간: 매일 10:00 - 23:00\n
+태슐랭평가: 다른 뼈해장국집에 비해서 조미료가 조금\n
+들어가는 것 같지만 그렇다고 국물맛이 약하지 않다.\n
+고기 또한 많이 들어 있으면 무엇보다 김치를 직접\n
+담궈서 그런지 맛있다." />
+
 
             </LinearLayout>
 
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin">
+
+            <LinearLayout
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Haru(일식당 / 이자까야)"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <ImageView
+                    android:id="@+id/imageView20"
+                    android:layout_width="match_parent"
+                    android:layout_height="153dp"
+                    app:srcCompat="@drawable/t9" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" 메뉴: (런치)일식돈까스,우동,모밀,돈부리 등\n
+주소: 강남구 역삼구 649-8\n
+전화번호: 02-539-2648\n
+영업시간: 11:40 ~ 21:40\n
+태슐랭평가: 평범함 속의 특별한 맛, 기본에 충실한\n
+일식당이며 애피타이저로 떡볶이가 나오는 것이 특징.\n
+준수한 가성비와 매일 런치특가로 특정 메뉴를\n
+저렴하게 즐길 수 있다." />
+
+
+            </LinearLayout>
+
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/card_margin"
+            android:layout_marginLeft="@dimen/card_margin"
+            android:layout_marginRight="@dimen/card_margin">
+
+            <LinearLayout
+                style="@style/Widget.CardContent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="장터(백반)"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+
+                <ImageView
+                    android:id="@+id/imageView21"
+                    android:layout_width="match_parent"
+                    android:layout_height="153dp"
+                    app:srcCompat="@drawable/t10" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text=" 메뉴: 제육,보쌈,생선,찌개 등\n
+주소: 서울 강남구 테헤란로 21 B1\n
+전화번호: 02-221-3763\n
+영업시간: 매일 10:00 - 20:00\n
+태슐랭평가: 단돈 6000원으로 아주\n
+배부르게 먹을 수 있다. 맛도 있고 매일 메인요리가\n
+달라지는데 다 먹고 처음양만큼 리필도 무료로 해준다.\n
+후식으로 누룽지 사탕이 있다. 소문에 의하면\n
+한모씨가 누룽지 사탕을 대량으로 가져간다고 한다.\n
+" />
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 
