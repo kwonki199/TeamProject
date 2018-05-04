@@ -1,9 +1,12 @@
 package edu.android.mainmen.DrawerMenu;
 
 
+import android.annotation.TargetApi;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -21,6 +24,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +37,7 @@ import java.util.List;
 
 
 import edu.android.mainmen.Controller.AllCommentDTO;
+import edu.android.mainmen.MainActivity;
 import edu.android.mainmen.R;
 
 
@@ -85,7 +90,30 @@ public class CommentActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                commentUpload(commentText.getText().toString());
+                FirebaseUser user = auth.getCurrentUser();
+                if (user != null) {
+                    commentUpload(commentText.getText().toString());
+                } else {
+                    new AlertDialog.Builder(CommentActivity.this)
+                            .setTitle("로그인이 필요합니다")
+                            .setMessage("로그인창으로 이동하시겠습니까?")
+                            .setIcon(R.drawable.logotest)
+                            .setPositiveButton("YES",
+                                    new DialogInterface.OnClickListener() {
+                                        @TargetApi(11)
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            Intent intent = new Intent(CommentActivity.this, LoginActivity.class);
+                                            startActivity(intent);
+                                            dialog.cancel();
+                                        }
+                                    })
+                            .setNegativeButton("NO", new DialogInterface.OnClickListener() {
+                                @TargetApi(11)
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            }).show();
+                }
             }
         });
 
