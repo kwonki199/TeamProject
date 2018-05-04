@@ -35,9 +35,7 @@
         <activity android:name=".DrawerMenu.BookmarkActivity" />
         <activity android:name=".DrawerMenu.RegisterActivity" />
         <activity android:name=".DrawerMenu.RouletteActivity" />
-        <activity android:name=".Upload.WriteReviewActivity" />
         <activity android:name=".Upload.FirebaseUploadActivity" />
-        <activity android:name=".Upload.MapsActivity" />
         <activity android:name=".DrawerMenu.MyWritingActivity" />
         <activity android:name=".Search.SearchActivity" />
         <activity android:name=".DetailViewActivity2" />
@@ -85,11 +83,13 @@
         <activity
             android:name=".Banner.Post1Activity"
             android:label="@string/title_activity_scrolling_1"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".Banner.Post2Activity"
             android:label="@string/title_activity_scrolling_2"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            />
         <activity
             android:name=".Banner.Post5Activity"
             android:label="@string/title_activity_scrolling_5"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
+    android:layout_marginBottom="8dp"
+    android:layout_marginTop="8dp"
     android:background="@drawable/border"
     android:orientation="vertical">
 
@@ -28,20 +29,22 @@
             android:layout_height="30dp"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
+            android:gravity="left|center"
             android:text="TextView"
-            android:textSize="18sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp">
 
         <ImageView
             android:id="@+id/item_imageView"
             android:layout_width="match_parent"
-            android:layout_height="220dp"
+            android:layout_height="333dp"
             app:srcCompat="@android:color/holo_blue_bright" />
 
     </LinearLayout>
@@ -59,39 +62,9 @@
             android:layout_height="wrap_content"
             android:text="TextView"
             android:textAlignment="center"
+            android:textColor="@android:color/black"
             android:textSize="18sp"
             android:textStyle="bold" />
-
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/item_textView"
-                android:layout_width="203dp"
-                android:layout_height="35dp"
-                android:layout_weight="1"
-                android:text="음식 이름"
-                android:textSize="12sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="11dp" />
-
-            <RatingBar
-                android:id="@+id/rb"
-                android:layout_width="235dp"
-                android:layout_height="41dp"
-                android:layout_weight="1"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:rating="0"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/item_textView"
-                tools:layout_editor_absoluteY="8dp" />
-        </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -108,21 +81,60 @@
                 android:layout_width="match_parent"
                 android:layout_height="32dp"
                 android:layout_weight="1"
+                android:gravity="left|center"
                 android:text="TextView" />
 
         </LinearLayout>
 
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/item_textView"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:layout_marginEnd="3dp"
+                android:layout_marginTop="3dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="음식 이름"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/rb"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <RatingBar
+                android:id="@+id/rb"
+                android:layout_width="wrap_content"
+                android:layout_height="41dp"
+                android:layout_weight="1"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:rating="0"
+                android:scaleX="0.5"
+                android:scaleY="0.5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/item_textView"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
         <ScrollView
             android:id="@+id/scrollView"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp">
 
 
             <TextView
-                android:layout_marginBottom="8dp"
                 android:id="@+id/item_textView2"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:hint="리뷰 내용" />
 
         </ScrollView>

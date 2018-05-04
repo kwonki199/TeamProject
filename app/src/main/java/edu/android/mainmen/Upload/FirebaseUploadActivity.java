@@ -330,11 +330,6 @@ public class FirebaseUploadActivity extends AppCompatActivity {
     }
 
 
-    public void findByMyLocation(View view) {
-        Intent intent = new Intent(this, MapsActivity.class);
-        startActivity(intent);
-    }
-
     private void hideActionBar() {
         ActionBar actionBar = getSupportActionBar();
 
