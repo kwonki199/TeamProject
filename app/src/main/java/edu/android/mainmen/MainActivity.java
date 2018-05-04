@@ -297,7 +297,7 @@ public class MainActivity extends AppCompatActivity
                 Intent intent = new Intent(MainActivity.this, MyWritingActivity.class);
                 startActivity(intent);
             }else{
-                alertLoginLayout();
+                alertLoginButtons();
             }
 
 //        } else if (id == R.id.nav_bookmark) { // 즐겨찾기
